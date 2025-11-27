@@ -7,6 +7,7 @@ import Login from './components/auth/Login/Login.jsx';
 import About from './components/about/About.jsx';
 import PlaceCreate from './components/place-create/PlaceCreate.jsx';
 import Catalog from './components/catalog/catalog/Catalog.jsx';
+import PlaceDetails from './components/place-details/PlaceDetails.jsx';
 
 function App() {
     return (
@@ -22,6 +23,10 @@ function App() {
                         <Route path='/about' element={<About />} />
                         <Route path='/create' element={<PlaceCreate />} />
                         <Route path='/catalog' element={<Catalog />} />
+                        <Route
+                            path='/place/:placeId'
+                            element={<PlaceDetails />}
+                        />
                     </Routes>
                 </main>
 

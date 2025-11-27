@@ -12,7 +12,7 @@ export default function Footer() {
                         <img
                             src='./images/logo/logo.png'
                             class='h-7 me-3'
-                            alt='Pathfinder Logo'
+                            alt='Logo'
                         />
                         <span class='text-heading self-center text-2xl font-semibold whitespace-nowrap '>
                             Pathfinder

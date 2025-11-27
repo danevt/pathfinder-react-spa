@@ -11,7 +11,7 @@ export default function Header() {
                     <img
                         src='./images/logo/logo.png'
                         className='h-20 w-20 sm:h-10 sm:w-10 md:h-20 md:w-20 me-2'
-                        alt='Pathfinder Logo'
+                        alt='Logo'
                     />
                     <span className='text-heading self-center text-6xl font-bold whitespace-nowrap '>
                         Pathfinder
