@@ -1,0 +1,100 @@
+import { Link } from 'react-router';
+
+export default function PlaceCreate() {
+    return (
+        <section className='bg-gradient-to-r from-black via-gray-500 to-black px-6 py-12 flex justify-center items-center'>
+            <form className='bg-white rounded-xl shadow-lg p-8 w-full max-w-md space-y-6 border-b-6 border-black border-r-6 border-gray-800'>
+                <h2 className='text-4xl font-bold text-center text-black drop-shadow-[1px_1px_1px_black]'>
+                    Add New Place
+                </h2>
+
+                <div>
+                    <label className='block text-black font-bold mb-2'>
+                        Title
+                    </label>
+                    <input
+                        type='text'
+                        placeholder='Enter place title'
+                        className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
+                    />
+                </div>
+
+                <div>
+                    <label className='block text-black font-bold mb-2'>
+                        Image URL
+                    </label>
+                    <input
+                        type='text'
+                        placeholder='https://example.com/image.jpg'
+                        className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
+                    />
+                </div>
+
+                <div>
+                    <label className='block text-black font-bold mb-2'>
+                        Description
+                    </label>
+                    <textarea
+                        placeholder='Describe the place...'
+                        className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
+                    ></textarea>
+                </div>
+
+                <div>
+                    <label className='block text-black font-bold mb-2'>
+                        Location
+                    </label>
+                    <input
+                        type='text'
+                        placeholder='City, Country'
+                        className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
+                    />
+                </div>
+
+                <div>
+                    <label className='block text-black font-bold mb-2'>
+                        Category
+                    </label>
+                    <select className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'>
+                        <option value=''>Select category</option>
+                        <option value='mountain'>Mountain</option>
+                        <option value='beach'>Beach</option>
+                        <option value='monastery'>Monastery</option>
+                        <option value='lake'>Lake</option>
+                        <option value='park'>Park</option>
+                        <option value='river'>River</option>
+                        <option value='museum'>Museum</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label className='block text-black font-bold mb-2'>
+                        Difficulty
+                    </label>
+                    <select className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'>
+                        <option value=''>Select difficulty</option>
+                        <option value='easy'>Easy</option>
+                        <option value='medium'>Medium</option>
+                        <option value='hard'>Hard</option>
+                    </select>
+                </div>
+
+                <button
+                    type='submit'
+                    className='w-full bg-[#4A9603] text-black font-bold py-2 hover:bg-[#5ECF00] rounded-xl shadow-md border-b-4 border-black border-r-4 border-gray-900 transform transition-transform duration-300 hover:scale-105'
+                >
+                    Add Place
+                </button>
+
+                <p className='text-sm text-center mt-4 text-black font-semibold'>
+                    <Link
+                        to='/'
+                        className='text-[#4A9603] font-bold hover:text-[#5ECF00] transition'
+                    >
+                        Back to Home
+                    </Link>
+                </p>
+            </form>
+        </section>
+    );
+}

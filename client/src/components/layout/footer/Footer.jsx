@@ -10,7 +10,7 @@ export default function Footer() {
                         class='flex items-center drop-shadow-[1px_1px_1px_black] hover:drop-shadow-[3px_3px_3px_#7CFC00]'
                     >
                         <img
-                            src='./images/logo.png'
+                            src='./images/logo/logo.png'
                             class='h-7 me-3'
                             alt='Pathfinder Logo'
                         />
@@ -51,7 +51,7 @@ export default function Footer() {
                         <span class='sr-only'>Discord</span>
                     </Link>
                     <Link
-                        to='https://github.com/'
+                        to='https://github.com/danevt'
                         class='text-body hover:text-heading ms-5 hover:drop-shadow-[3px_3px_3px_#7CFC00]'
                     >
                         <svg

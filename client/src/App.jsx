@@ -5,6 +5,7 @@ import Footer from './components/layout/footer/Footer.jsx';
 import Register from './components/auth/Register/Register.jsx';
 import Login from './components/auth/Login/Login.jsx';
 import About from './components/about/About.jsx';
+import PlaceCreate from './components/place-create/PlaceCreate.jsx';
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                         <Route path='/register' element={<Register />} />
                         <Route path='/login' element={<Login />} />
                         <Route path='/about' element={<About />} />
+                        <Route path='/create' element={<PlaceCreate />} />
                     </Routes>
                 </main>
 
