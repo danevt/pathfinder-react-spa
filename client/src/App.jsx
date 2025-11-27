@@ -6,13 +6,17 @@ import Footer from './components/layout/footer/Footer.jsx';
 function App() {
     return (
         <>
-            <Header />
+            <div className='flex flex-col h-screen'>
+                <Header />
 
-            <Routes>
-                <Route path='/' element={<Home />} />
-            </Routes>
+                <main className='flex-grow bg-gradient-to-r from-black via-gray-500 to-black'>
+                    <Routes>
+                        <Route path='/' element={<Home />} />
+                    </Routes>
+                </main>
 
-            <Footer />
+                <Footer />
+            </div>
         </>
     );
 }
