@@ -29,7 +29,7 @@ export default function Footer() {
 
                 <div class='flex mt-4 sm:justify-center md:mt-0 space-x-2 rtl:space-x-reverse drop-shadow-[1px_1px_1px_black]'>
                     <Link
-                        to='/About'
+                        to='/about'
                         class='hover:underline drop-shadow-[1px_1px_1px_black] hover:drop-shadow-[3px_3px_3px_#7CFC00]'
                     >
                         About
