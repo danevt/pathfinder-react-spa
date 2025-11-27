@@ -24,13 +24,13 @@ export default function Header() {
                     className='inline-block text-3xl drop-shadow-[1px_1px_1px_black] hover:text-black  hover:drop-shadow-[3px_3px_3px_#7CFC00] transform transition-transform duration-300 hover:scale-110'
                     to='/catalog'
                 >
-                    Locations
+                    Destinations
                 </Link>
                 <Link
                     className='inline-block text-3xl drop-shadow-[1px_1px_1px_black] hover:text-black  hover:drop-shadow-[3px_3px_3px_#7CFC00] transform transition-transform duration-300 hover:scale-110'
                     to='/create'
                 >
-                    Add Location
+                    Add Place
                 </Link>
                 <Link
                     className='inline-block text-3xl drop-shadow-[1px_1px_1px_black] hover:text-black  hover:drop-shadow-[3px_3px_3px_#7CFC00] transform transition-transform duration-300 hover:scale-110'
