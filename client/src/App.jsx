@@ -6,6 +6,7 @@ import Register from './components/auth/Register/Register.jsx';
 import Login from './components/auth/Login/Login.jsx';
 import About from './components/about/About.jsx';
 import PlaceCreate from './components/place-create/PlaceCreate.jsx';
+import Catalog from './components/catalog/catalog/Catalog.jsx';
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                         <Route path='/login' element={<Login />} />
                         <Route path='/about' element={<About />} />
                         <Route path='/create' element={<PlaceCreate />} />
+                        <Route path='/catalog' element={<Catalog />} />
                     </Routes>
                 </main>
 
