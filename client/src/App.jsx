@@ -1,7 +1,18 @@
+import { Route, Routes } from 'react-router';
+import Home from './components/home/Home.jsx';
+import Header from './components/layout/header/Header.jsx';
+import Footer from './components/layout/footer/Footer.jsx';
+
 function App() {
     return (
         <>
-            <h1 className='text-3xl font-bold underline'>Hello world!</h1>
+            <Header />
+
+            <Routes>
+                <Route path='/' element={<Home />} />
+            </Routes>
+
+            <Footer />
         </>
     );
 }
