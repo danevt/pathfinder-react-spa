@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { Link, useNavigate, useParams } from 'react-router';
+import PlaceDelete from '../place-delete/PlaceDelete.jsx';
 
 export default function PlaceDetails() {
+    const navigate = useNavigate();
     const { placeId } = useParams();
     const [place, setPlace] = useState({});
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
 
     useEffect(() => {
         fetch(`http://localhost:3030/jsonstore/blog/places/${placeId}`)
@@ -16,6 +19,14 @@ export default function PlaceDetails() {
         return <p className='text-white text-3xl'>Loading...</p>;
     }
 
+    const cancelDeleteHandler = () => {
+        setShowDeleteModal(false);
+    };
+
+    const afterDeleteHandler = () => {
+        setShowDeleteModal(false);
+        navigate('/');
+    };
     return (
         <section className='bg-gradient-to-r from-black via-gray-500 to-black p-6 min-h-screen flex flex-col items-center'>
             <div className='text-white text-center font-bold drop-shadow-[2px_2px_2px_black] mb-6'>
@@ -73,19 +84,33 @@ export default function PlaceDetails() {
                             </div> */}
                         </div>
                         <div className='flex gap-2'>
-                            <button className='bg-[#4A9603] text-black font-bold py-2 px-4 rounded-xl border-b-4 border-black border-r-4 border-gray-900 hover:bg-[#5ECF00] transform transition-transform duration-300 hover:scale-105'>
-                                Edit
-                            </button>
-                            <button className='bg-red-600 text-white font-bold py-2 px-4 rounded-xl border-b-4 border-black border-r-4 border-gray-900 hover:bg-red-500 transform transition-transform duration-300 hover:scale-105'>
+                            <Link to={`/places/${placeId}/edit`}>
+                                <button className='bg-[#4A9603] text-black font-bold py-2 px-4 rounded-xl border-b-4 border-black border-r-4 border-gray-900 hover:bg-[#5ECF00] transform transition-transform duration-300 hover:scale-105'>
+                                    Edit
+                                </button>
+                            </Link>
+                            <button
+                                onClick={() => setShowDeleteModal(true)}
+                                className='bg-red-600 text-black font-bold py-2 px-4 rounded-xl border-b-4 border-black border-r-4 border-gray-900 hover:bg-red-500 transform transition-transform duration-300 hover:scale-105'
+                            >
                                 Delete
                             </button>
-                            <button className='bg-[#4A9603] text-black font-bold py-2 px-4 rounded-xl border-b-4 border-black border-r-4 border-gray-900 hover:bg-[#5ECF00] transform transition-transform duration-300 hover:scale-105'>
-                                Rate
-                            </button>
+                            {/* <Link>
+                                <button className='bg-[#4A9603] text-black font-bold py-2 px-4 rounded-xl border-b-4 border-black border-r-4 border-gray-900 hover:bg-[#5ECF00] transform transition-transform duration-300 hover:scale-105'>
+                                    Rate
+                                </button>
+                            </Link> */}
                         </div>
                     </div>
                 </div>
             </div>
+            {showDeleteModal && (
+                <PlaceDelete
+                    placeId={placeId}
+                    onCancel={cancelDeleteHandler}
+                    onConfirm={afterDeleteHandler} 
+                />
+            )}
         </section>
     );
 }
