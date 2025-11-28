@@ -1,5 +1,7 @@
+import { Link } from 'react-router';
+
 export default function PlaceCard({
-    // _id,
+    _id,
     title,
     imageUrl,
     location,
@@ -33,13 +35,15 @@ export default function PlaceCard({
                         {/* <span className='text-yellow-500'>★ ★ ★ ★ ☆</span> */}
                         {/* <span className='text-sm text-gray-600'>(4.5)</span> */}
                     </div>
-                    <button
-                        className='bg-[#4A9603] hover:bg-[#5ECF00] text-black font-bold py-2 px-6
+                    <Link to={`/places/${_id}/details`}>
+                        <button
+                            className='bg-[#4A9603] hover:bg-[#5ECF00] text-black font-bold py-2 px-6
                         rounded-xl shadow-md border-b-4 border-black border-r-4 border-gray-900
                         transform transition-transform duration-300 hover:scale-105'
-                    >
-                        Explore
-                    </button>
+                        >
+                            Explore
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>

@@ -25,7 +25,7 @@ function App() {
                         <Route path='/about' element={<About />} />
                         <Route path='/create' element={<PlaceCreate />} />
                         <Route
-                            path='/place/:placeId'
+                            path='/places/:placeId/details'
                             element={<PlaceDetails />}
                         />
 

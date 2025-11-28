@@ -10,15 +10,15 @@ export default function PlaceDetails() {
                 </p>
             </div>
 
-            <div className='flex flex-col md:flex-row w-full max-w-7xl gap-6'>
-                <div className='md:flex-[2_2_0%] h-[600px]'>
+            <div className='flex flex-col md:flex-row w-full max-w-7xl gap-6 '>
+                <div className='md:flex-[2_2_0%] h-[600px] rounded-xl  border-b-6 border-black border-r-6 border-gray-800'>
                     <img
                         src='https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%2Fid%2FOIP.vigYuyIr0o4IHBxqVFI4zgHaEK%3Fpid%3DApi&f=1&ipt=5b40d13c04ae1c5820329d73157cd0cf2b1b450b363fc1fa32ed00d754cf1e1f&ipo=images'
                         alt='Vitosha Mountain'
                         className='w-full h-full object-cover rounded-xl shadow-md'
                     />
                 </div>
-                <div className='md:w-1/3 h-[600px] bg-white rounded-xl shadow-lg p-6 flex flex-col justify-between border-b-6 border-black border-r-6 border-gray-900'>
+                <div className='md:w-1/3 h-[600px] bg-white rounded-xl shadow-lg p-6 flex flex-col justify-between border-b-6 border-black border-r-6 border-gray-800'>
                     <div>
                         <h2 className='text-xl font-extrabold text-black text-left'>
                             Vitosha Mountain

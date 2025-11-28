@@ -47,7 +47,7 @@ export default function Catalog() {
                     </div>
                     <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8'>
                         {places.map(place => (
-                            <PlaceCard key={place.id} {...place} />
+                            <PlaceCard key={place._id} {...place} />
                         ))}
                     </div>
                 </>
