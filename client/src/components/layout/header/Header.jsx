@@ -9,12 +9,13 @@ export default function Header() {
                     className='flex items-center object-contain drop-shadow-[2px_2px_2px_black] hover:drop-shadow-[3px_3px_3px_#7CFC00] transform transition-transform duration-300 hover:scale-110'
                 >
                     <img
-                        src='./images/logo/logo.png'
+                        src='./images/logos/logo1.png'
                         className='h-20 w-20 sm:h-10 sm:w-10 md:h-20 md:w-20 me-2'
                         alt='Logo'
                     />
-                    <span className='text-heading self-center text-6xl font-bold whitespace-nowrap '>
-                        Pathfinder
+                    <span className='text-heading self-center text-4xl font-bold whitespace-nowrap '>
+                        {/* Pathfinder */}
+                        PATHFINDER
                     </span>
                 </Link>
             </div>

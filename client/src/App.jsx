@@ -8,6 +8,7 @@ import About from './components/about/About.jsx';
 import PlaceCreate from './components/place-create/PlaceCreate.jsx';
 import Catalog from './components/catalog/catalog/Catalog.jsx';
 import PlaceDetails from './components/place-details/PlaceDetails.jsx';
+import NotFound from './components/not-found/NotFound.jsx';
 
 function App() {
     return (
@@ -27,6 +28,8 @@ function App() {
                             path='/place/:placeId'
                             element={<PlaceDetails />}
                         />
+
+                        <Route path='*' element={<NotFound />} />
                     </Routes>
                 </main>
 

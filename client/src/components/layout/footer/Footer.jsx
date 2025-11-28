@@ -10,12 +10,13 @@ export default function Footer() {
                         class='flex items-center drop-shadow-[1px_1px_1px_black] hover:drop-shadow-[3px_3px_3px_#7CFC00]'
                     >
                         <img
-                            src='./images/logo/logo.png'
+                            src='./images/logos/logo1.png'
                             class='h-7 me-3'
                             alt='Logo'
                         />
-                        <span class='text-heading self-center text-2xl font-semibold whitespace-nowrap '>
-                            Pathfinder
+                        <span class='text-heading self-center text-1xl font-semibold whitespace-nowrap '>
+                            {/* Pathfinder */}
+                            PATHFINDER
                         </span>
                     </Link>
                 </div>
