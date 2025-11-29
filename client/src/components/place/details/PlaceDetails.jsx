@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router';
-import PlaceDelete from '../place-delete/PlaceDelete.jsx';
+import PlaceDelete from '../delete/PlaceDelete.jsx';
 
 export default function PlaceDetails() {
     const navigate = useNavigate();
@@ -54,11 +54,8 @@ export default function PlaceDetails() {
                         <h2 className='text-xl font-extrabold text-black text-left'>
                             {place.title || 'Loading...'}
                         </h2>
-                        <p className='text-gray-700 font-semibold text-left'>
+                        <p className='text-gray-500 font-semibold text-left'>
                             {place.location}
-                        </p>
-                        <p className='text-gray-800 uppercase font-semibold mt-2 text-left'>
-                            {place.category} | {place.difficulty}
                         </p>
 
                         <div className='flex items-center gap-2 mt-2 text-left'>
@@ -66,22 +63,23 @@ export default function PlaceDetails() {
                             {/* <span className='text-gray-600'>(4.5)</span> */}
                         </div>
                     </div>
-
-                    <div className='my-4 text-gray-700 flex-1 overflow-auto'>
+                    <div className='my-8  font-bold text-black flex-1 overflow-auto'>
                         <p>{place.description}</p>
                     </div>
-
                     <div className='flex justify-between items-end mt-4'>
+                        <p className='text-black uppercase font-semibold mt-2 text-left'>
+                            {place.category} - {place.difficulty}
+                        </p>
                         <div className='flex items-center gap-2'>
                             {/* <img
                                 src='/images/avatars/avatar1.svg'
                                 alt='Author Avatar'
                                 className='w-12 h-12 rounded-full'
-                            /> */}
+                                /> */}
                             {/* <div className='text-gray-700 text-sm'>
                                 <p className='font-semibold'>John Doe</p>
                                 <p>Created on: 27 Nov 2025</p>
-                            </div> */}
+                                </div> */}
                         </div>
                         <div className='flex gap-2'>
                             <Link to={`/places/${placeId}/edit`}>
@@ -108,7 +106,7 @@ export default function PlaceDetails() {
                 <PlaceDelete
                     placeId={placeId}
                     onCancel={cancelDeleteHandler}
-                    onConfirm={afterDeleteHandler} 
+                    onConfirm={afterDeleteHandler}
                 />
             )}
         </section>

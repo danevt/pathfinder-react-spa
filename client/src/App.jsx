@@ -2,12 +2,12 @@ import { Route, Routes } from 'react-router';
 import Home from './components/home/Home.jsx';
 import Header from './components/layout/header/Header.jsx';
 import Footer from './components/layout/footer/Footer.jsx';
-import Catalog from './components/catalog/catalog/Catalog.jsx';
+import Catalog from './components/catalog/Catalog.jsx';
 import Register from './components/auth/Register/Register.jsx';
 import Login from './components/auth/Login/Login.jsx';
 import About from './components/about/About.jsx';
-import PlaceCreate from './components/place-create/PlaceCreate.jsx';
-import PlaceDetails from './components/place-details/PlaceDetails.jsx';
+import PlaceCreate from './components/place/create/PlaceCreate.jsx';
+import PlaceDetails from './components/place/details/PlaceDetails.jsx';
 import NotFound from './components/not-found/NotFound.jsx';
 
 function App() {

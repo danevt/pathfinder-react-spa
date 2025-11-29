@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import PlaceCard from '../place-card/PlaceCard.jsx';
 import { Link } from 'react-router';
+import PlaceCard from '../place/card/PlaceCard.jsx';
 
 export default function Catalog() {
     const [places, setPlaces] = useState([]);

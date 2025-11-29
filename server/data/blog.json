@@ -1,135 +1,136 @@
 {
-  "places": {
-    "5f1d7c2e-8f3a-4d2b-b5c6-9a1e7f8d2c3b": {
-      "_id": "5f1d7c2e-8f3a-4d2b-b5c6-9a1e7f8d2c3b",
-      "title": "Vitosha Mountain",
-      "imageUrl": "/images/places/vitosha.jpg",
-      "description": "One of the most popular destinations near Sofia. Offers scenic trails, cozy huts, and breathtaking views throughout the year.",
-      "location": "Sofia, Bulgaria",
-      "category": "mountain",
-      "difficulty": "easy",
-      "votes": [
-        { "userId": "u1", "value": 5 },
-        { "userId": "u2", "value": 4 }
-      ],
-      "_createdOn": 1617194350000,
-      "_ownerId": "u1"
+    "places": {
+        "5f1d7c2e-8f3a-4d2b-b5c6-9a1e7f8d2c3b": {
+            "_id": "5f1d7c2e-8f3a-4d2b-b5c6-9a1e7f8d2c3b",
+            "title": "Vitosha Mountain",
+            "imageUrl": "/images/places/vitosha.jpg",
+            "description": "Vitosha Mountain, located just outside Sofia, offers a wide variety of hiking trails suitable for all levels, cozy mountain huts, and breathtaking panoramic views. The area is rich in flora and fauna, making it perfect for nature walks, photography, mountain biking, and spending a relaxing day immersed in the fresh mountain air.",
+            "location": "Sofia, Bulgaria",
+            "category": "mountain",
+            "difficulty": "easy",
+            "votes": [
+                { "userId": "u1", "value": 5 },
+                { "userId": "u2", "value": 4 }
+            ],
+            "_createdOn": 1617194350000,
+            "_ownerId": "u1"
+        },
+        "6a2b8e3f-1d4c-4f5e-9a7b-2c3d4e5f6g7h": {
+            "_id": "6a2b8e3f-1d4c-4f5e-9a7b-2c3d4e5f6g7h",
+            "title": "Nessebar Old Town",
+            "imageUrl": "/images/places/nessebar.jpg",
+            "description": "Nessebar Old Town is a charming UNESCO World Heritage site on the Bulgarian Black Sea coast. Its cobbled streets, ancient churches, and traditional wooden houses tell centuries of history. Visitors can enjoy seaside views, explore cultural landmarks, and experience local cafes, galleries, and lively events, making it a memorable destination for history and culture lovers.",
+            "location": "Nessebar, Bulgaria",
+            "category": "museum",
+            "difficulty": "easy",
+            "votes": [],
+            "_createdOn": 1617200000000,
+            "_ownerId": "u2"
+        },
+        "7b3c9f4g-2e5d-5g6f-0b8c-3d4e5f6g7h8i": {
+            "_id": "7b3c9f4g-2e5d-5g6f-0b8c-3d4e5f6g7h8i",
+            "title": "Seven Rila Lakes",
+            "imageUrl": "/images/places/rila-lakes.jpg",
+            "description": "The Seven Rila Lakes, carved by glaciers in the Rila Mountains, are a spectacular natural landmark. Each lake has a unique color and character, surrounded by dramatic alpine scenery. Well-marked hiking trails allow visitors to explore the area, take stunning photographs, and observe wildlife, making it a must-visit destination for adventurers and nature enthusiasts.",
+            "location": "Rila Mountain, Bulgaria",
+            "category": "lake",
+            "difficulty": "medium",
+            "votes": [{ "userId": "u1", "value": 5 }],
+            "_createdOn": 1617210000000,
+            "_ownerId": "u2"
+        },
+        "8c4d0g5h-3f6e-6h7g-1c9d-4e5f6g7h8i9j": {
+            "_id": "8c4d0g5h-3f6e-6h7g-1c9d-4e5f6g7h8i9j",
+            "title": "Buzludzha Monument",
+            "imageUrl": "/images/places/buzludzha.jpg",
+            "description": "The Buzludzha Monument, perched atop a peak in the Stara Planina Mountains, is an abandoned architectural marvel. Its futuristic design, intricate mosaics, and vast interior spaces attract photographers and explorers. The monument offers a haunting yet awe-inspiring atmosphere, along with panoramic views of surrounding mountains and valleys that make the journey unforgettable.",
+            "location": "Stara Zagora, Bulgaria",
+            "category": "landmark",
+            "difficulty": "hard",
+            "votes": [{ "userId": "u1", "value": 1 }],
+            "_createdOn": 1617220000000,
+            "_ownerId": "u1"
+        },
+        "9d5e1h6i-4g7f-7i8h-2d0e-5f6g7h8i9j0k": {
+            "_id": "9d5e1h6i-4g7f-7i8h-2d0e-5f6g7h8i9j0k",
+            "title": "Plovdiv Old Town",
+            "imageUrl": "/images/places/plovdiv.jpg",
+            "description": "Plovdiv Old Town combines ancient history with vibrant culture and picturesque architecture. Colorful houses, cobblestone streets, and the Roman theater create a unique atmosphere. Visitors can explore museums, art galleries, local shops, and cafes, immersing themselves in the rich cultural heritage of one of Bulgaria’s oldest and most captivating cities.",
+            "location": "Plovdiv, Bulgaria",
+            "category": "town",
+            "difficulty": "easy",
+            "votes": [{ "userId": "u2", "value": 5 }],
+            "_createdOn": 1617230000000,
+            "_ownerId": "u2"
+        },
+        "0e6f2i7j-5h8g-8j9i-3e1f-6g7h8i9j0k1l": {
+            "_id": "0e6f2i7j-5h8g-8j9i-3e1f-6g7h8i9j0k1l",
+            "title": "Pirin National Park",
+            "imageUrl": "/images/places/pirin.jpg",
+            "description": "Pirin National Park is a haven for hikers and nature lovers, featuring majestic alpine peaks, glacial lakes, and diverse wildlife. Visitors can explore extensive trails, enjoy panoramic views, and immerse themselves in untouched nature. The park offers opportunities for photography, wildlife observation, and peaceful walks in a pristine mountain environment.",
+            "location": "Bansko, Bulgaria",
+            "category": "mountain",
+            "difficulty": "medium",
+            "votes": [],
+            "_createdOn": 1617240000000,
+            "_ownerId": "u1"
+        }
     },
-    "6a2b8e3f-1d4c-4f5e-9a7b-2c3d4e5f6g7h": {
-      "_id": "6a2b8e3f-1d4c-4f5e-9a7b-2c3d4e5f6g7h",
-      "title": "Nessebar Old Town",
-      "imageUrl": "/images/places/nessebar.jpg",
-      "description": "UNESCO heritage site with cobblestone streets, historic churches, and stunning seaside views.",
-      "location": "Nessebar, Bulgaria",
-      "category": "museum",
-      "difficulty": "easy",
-      "votes": [],
-      "_createdOn": 1617200000000,
-      "_ownerId": "u2"
-    },
-    "7b3c9f4g-2e5d-5g6f-0b8c-3d4e5f6g7h8i": {
-      "_id": "7b3c9f4g-2e5d-5g6f-0b8c-3d4e5f6g7h8i",
-      "title": "Seven Rila Lakes",
-      "imageUrl": "/images/places/rila-lakes.jpg",
-      "description": "A must-visit natural landmark in Rila Mountain. The seven glacial lakes offer spectacular hiking and photography opportunities.",
-      "location": "Rila Mountain, Bulgaria",
-      "category": "lake",
-      "difficulty": "medium",
-      "votes": [{ "userId": "u1", "value": 5 }],
-      "_createdOn": 1617210000000,
-      "_ownerId": "u2"
-    },
-    "8c4d0g5h-3f6e-6h7g-1c9d-4e5f6g7h8i9j": {
-      "_id": "8c4d0g5h-3f6e-6h7g-1c9d-4e5f6g7h8i9j",
-      "title": "Buzludzha Monument",
-      "imageUrl": "/images/places/buzludzha.jpg",
-      "description": "Abandoned futuristic monument in the Stara Planina mountains. Popular for photography and urban exploration.",
-      "location": "Stara Zagora, Bulgaria",
-      "category": "landmark",
-      "difficulty": "hard",
-      "votes": [{ "userId": "u1", "value": 1 }],
-      "_createdOn": 1617220000000,
-      "_ownerId": "u1"
-    },
-    "9d5e1h6i-4g7f-7i8h-2d0e-5f6g7h8i9j0k": {
-      "_id": "9d5e1h6i-4g7f-7i8h-2d0e-5f6g7h8i9j0k",
-      "title": "Plovdiv Old Town",
-      "imageUrl": "/images/places/plovdiv.jpg",
-      "description": "Historic center of Plovdiv with colorful houses, Roman theaters, and a vibrant cultural scene.",
-      "location": "Plovdiv, Bulgaria",
-      "category": "town",
-      "difficulty": "easy",
-      "votes": [{ "userId": "u2", "value": 5 }],
-      "_createdOn": 1617230000000,
-      "_ownerId": "u2"
-    },
-    "0e6f2i7j-5h8g-8j9i-3e1f-6g7h8i9j0k1l": {
-      "_id": "0e6f2i7j-5h8g-8j9i-3e1f-6g7h8i9j0k1l",
-      "title": "Pirin National Park",
-      "imageUrl": "/images/places/pirin.jpg",
-      "description": "A paradise for hikers and nature lovers. Stunning peaks, alpine lakes, and rich flora and fauna.",
-      "location": "Bansko, Bulgaria",
-      "category": "mountain",
-      "difficulty": "medium",
-      "votes": [],
-      "_createdOn": 1617240000000,
-      "_ownerId": "u1"
+
+    "comments": {
+        "a1b2c3d4-5e6f-7g8h-9i0j-1k2l3m4n5o6p": {
+            "_id": "a1b2c3d4-5e6f-7g8h-9i0j-1k2l3m4n5o6p",
+            "placeId": "5f1d7c2e-8f3a-4d2b-b5c6-9a1e7f8d2c3b",
+            "userId": "u2",
+            "username": "Traveler02",
+            "avatar": "avatar3",
+            "text": "Great place for a weekend walk. Trails are well marked and easy for beginners.",
+            "_createdOn": 1617250000000
+        },
+        "b2c3d4e5-6f7g-8h9i-0j1k-2l3m4n5o6p7q": {
+            "_id": "b2c3d4e5-6f7g-8h9i-0j1k-2l3m4n5o6p7q",
+            "placeId": "7b3c9f4g-2e5d-5g6f-0b8c-3d4e5f6g7h8i",
+            "userId": "u1",
+            "username": "Riddick",
+            "avatar": "avatar2",
+            "text": "Amazing views at the Seven Rila Lakes. Bring good hiking shoes!",
+            "_createdOn": 1617260000000
+        },
+        "c3d4e5f6-7g8h-9i0j-1k2l-3m4n5o6p7q8r": {
+            "_id": "c3d4e5f6-7g8h-9i0j-1k2l-3m4n5o6p7q8r",
+            "placeId": "6a2b8e3f-1d4c-4f5e-9a7b-2c3d4e5f6g7h",
+            "userId": "u1",
+            "username": "Riddick",
+            "avatar": "avatar2",
+            "text": "Lovely historical town, a must-see for history lovers.",
+            "_createdOn": 1617270000000
+        },
+        "d4e5f6g7-8h9i-0j1k-2l3m-4n5o6p7q8r9s": {
+            "_id": "d4e5f6g7-8h9i-0j1k-2l3m-4n5o6p7q8r9s",
+            "placeId": "8c4d0g5h-3f6e-6h7g-1c9d-4e5f6g7h8i9j",
+            "userId": "u2",
+            "username": "Traveler02",
+            "avatar": "avatar3",
+            "text": "A bit eerie but very photogenic. The architecture is unique.",
+            "_createdOn": 1617280000000
+        },
+        "e5f6g7h8-9i0j-1k2l-3m4n-5o6p7q8r9s0t": {
+            "_id": "e5f6g7h8-9i0j-1k2l-3m4n-5o6p7q8r9s0t",
+            "placeId": "9d5e1h6i-4g7f-7i8h-2d0e-5f6g7h8i9j0k",
+            "userId": "u1",
+            "username": "Riddick",
+            "avatar": "avatar2",
+            "text": "Beautiful old town with charming streets and amazing local cafes.",
+            "_createdOn": 1617290000000
+        },
+        "f6g7h8i9-0j1k-2l3m-4n5o-6p7q8r9s0t1u": {
+            "_id": "f6g7h8i9-0j1k-2l3m-4n5o-6p7q8r9s0t1u",
+            "placeId": "0e6f2i7j-5h8g-8j9i-3e1f-6g7h8i9j0k1l",
+            "userId": "u2",
+            "username": "Traveler02",
+            "avatar": "avatar3",
+            "text": "Hiking here is refreshing, and the views of Pirin peaks are breathtaking.",
+            "_createdOn": 1617300000000
+        }
     }
-  },
-  "comments": {
-    "a1b2c3d4-5e6f-7g8h-9i0j-1k2l3m4n5o6p": {
-      "_id": "a1b2c3d4-5e6f-7g8h-9i0j-1k2l3m4n5o6p",
-      "placeId": "5f1d7c2e-8f3a-4d2b-b5c6-9a1e7f8d2c3b",
-      "userId": "u2",
-      "username": "Traveler02",
-      "avatar": "avatar3",
-      "text": "Great place for a weekend walk. Trails are well marked and easy for beginners.",
-      "_createdOn": 1617250000000
-    },
-    "b2c3d4e5-6f7g-8h9i-0j1k-2l3m4n5o6p7q": {
-      "_id": "b2c3d4e5-6f7g-8h9i-0j1k-2l3m4n5o6p7q",
-      "placeId": "7b3c9f4g-2e5d-5g6f-0b8c-3d4e5f6g7h8i",
-      "userId": "u1",
-      "username": "Riddick",
-      "avatar": "avatar2",
-      "text": "Amazing views at the Seven Rila Lakes. Bring good hiking shoes!",
-      "_createdOn": 1617260000000
-    },
-    "c3d4e5f6-7g8h-9i0j-1k2l-3m4n5o6p7q8r": {
-      "_id": "c3d4e5f6-7g8h-9i0j-1k2l-3m4n5o6p7q8r",
-      "placeId": "6a2b8e3f-1d4c-4f5e-9a7b-2c3d4e5f6g7h",
-      "userId": "u1",
-      "username": "Riddick",
-      "avatar": "avatar2",
-      "text": "Lovely historical town, a must-see for history lovers.",
-      "_createdOn": 1617270000000
-    },
-    "d4e5f6g7-8h9i-0j1k-2l3m-4n5o6p7q8r9s": {
-      "_id": "d4e5f6g7-8h9i-0j1k-2l3m-4n5o6p7q8r9s",
-      "placeId": "8c4d0g5h-3f6e-6h7g-1c9d-4e5f6g7h8i9j",
-      "userId": "u2",
-      "username": "Traveler02",
-      "avatar": "avatar3",
-      "text": "A bit eerie but very photogenic. The architecture is unique.",
-      "_createdOn": 1617280000000
-    },
-    "e5f6g7h8-9i0j-1k2l-3m4n-5o6p7q8r9s0t": {
-      "_id": "e5f6g7h8-9i0j-1k2l-3m4n-5o6p7q8r9s0t",
-      "placeId": "9d5e1h6i-4g7f-7i8h-2d0e-5f6g7h8i9j0k",
-      "userId": "u1",
-      "username": "Riddick",
-      "avatar": "avatar2",
-      "text": "Beautiful old town with charming streets and amazing local cafes.",
-      "_createdOn": 1617290000000
-    },
-    "f6g7h8i9-0j1k-2l3m-4n5o-6p7q8r9s0t1u": {
-      "_id": "f6g7h8i9-0j1k-2l3m-4n5o-6p7q8r9s0t1u",
-      "placeId": "0e6f2i7j-5h8g-8j9i-3e1f-6g7h8i9j0k1l",
-      "userId": "u2",
-      "username": "Traveler02",
-      "avatar": "avatar3",
-      "text": "Hiking here is refreshing, and the views of Pirin peaks are breathtaking.",
-      "_createdOn": 1617300000000
-    }
-  }
 }

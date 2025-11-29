@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import PlaceCard from '../catalog/place-card/PlaceCard.jsx';
 import { Link } from 'react-router';
+import PlaceCard from '../place/card/PlaceCard.jsx';
 
 export default function Home() {
     const [latestPlaces, setLatestPlaces] = useState([]);
