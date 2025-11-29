@@ -18,13 +18,13 @@ export default function PlaceCard({
             <div className='p-4 flex flex-col justify-between h-36'>
                 <div className='flex justify-between items-start mb-4'>
                     <div className='text-left'>
-                        <h3 className='text-xl font-extrabold text-black'>
+                        <h3 className='text-xl font-extrabold text-black text-shadow-sm'>
                             {title}
                         </h3>
-                        <p className='text-sm text-gray-600'>{location}</p>
+                        <p className='text-sm text-gray-600 text-shadow-sm'>{location}</p>
                     </div>
                     <div className='text-right'>
-                        <span className='text-sm font-semibold text-gray-800 uppercase'>
+                        <span className='text-sm font-semibold text-gray-800 uppercase text-shadow-sm'>
                             {category} | {difficulty}
                         </span>
                     </div>

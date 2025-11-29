@@ -8,7 +8,7 @@ export default function Login() {
                     Login
                 </h2>
                 <div>
-                    <label className='block text-black font-bold mb-2'>
+                    <label className='block text-black font-bold mb-2 text-shadow-sm'>
                         Email Address
                     </label>
                     <input
@@ -19,7 +19,7 @@ export default function Login() {
                     />
                 </div>
                 <div>
-                    <label className='block text-black font-bold mb-2'>
+                    <label className='block text-black font-bold mb-2 text-shadow-sm'>
                         Password
                     </label>
                     <input
@@ -36,11 +36,11 @@ export default function Login() {
                     Login
                 </button>
 
-                <p className='text-sm text-center mt-4 text-black'>
+                <p className='text-sm text-center mt-4 text-black text-shadow-sm'>
                     Don't have an account?{' '}
                     <Link
                         to='/register'
-                        className='text-[#4A9603] font-bold hover:text-[#5ECF00] transition'
+                        className='text-[#4A9603] font-bold hover:text-[#5ECF00] transition text-shadow-sm'
                     >
                         → Register
                     </Link>

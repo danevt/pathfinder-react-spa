@@ -9,7 +9,7 @@ export default function PlaceCreate() {
                 </h2>
 
                 <div>
-                    <label className='block text-black font-bold mb-2'>
+                    <label className='block text-black font-bold mb-2 text-shadow-sm'>
                         Title
                     </label>
                     <input
@@ -20,7 +20,7 @@ export default function PlaceCreate() {
                 </div>
 
                 <div>
-                    <label className='block text-black font-bold mb-2'>
+                    <label className='block text-black font-bold mb-2 text-shadow-sm'>
                         Image URL
                     </label>
                     <input
@@ -31,7 +31,7 @@ export default function PlaceCreate() {
                 </div>
 
                 <div>
-                    <label className='block text-black font-bold mb-2'>
+                    <label className='block text-black font-bold mb-2 text-shadow-sm'>
                         Description
                     </label>
                     <textarea
@@ -41,7 +41,7 @@ export default function PlaceCreate() {
                 </div>
 
                 <div>
-                    <label className='block text-black font-bold mb-2'>
+                    <label className='block text-black font-bold mb-2 text-shadow-sm'>
                         Location
                     </label>
                     <input
@@ -52,7 +52,7 @@ export default function PlaceCreate() {
                 </div>
 
                 <div>
-                    <label className='block text-black font-bold mb-2'>
+                    <label className='block text-black font-bold mb-2 text-shadow-sm'>
                         Category
                     </label>
                     <select className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'>
@@ -66,17 +66,40 @@ export default function PlaceCreate() {
                         <option value='museum'>Museum</option>
                     </select>
                 </div>
-
                 <div>
-                    <label className='block text-black font-bold mb-2'>
+                    <span className='block text-black font-bold mb-2 text-shadow-sm'>
                         Difficulty
-                    </label>
-                    <select className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'>
-                        <option value=''>Select difficulty</option>
-                        <option value='easy'>Easy</option>
-                        <option value='medium'>Medium</option>
-                        <option value='hard'>Hard</option>
-                    </select>
+                    </span>
+                    <div className='flex gap-4 font-bold text-shadow-sm'>
+                        <label className='text-green-600'>
+                            <input
+                                type='radio'
+                                name='difficulty'
+                                value='easy'
+                                required
+                                className='mr-1'
+                            />
+                            Easy
+                        </label>
+                        <label className='text-yellow-500'>
+                            <input
+                                type='radio'
+                                name='difficulty'
+                                value='medium'
+                                className='mr-1'
+                            />
+                            Medium
+                        </label>
+                        <label className='text-red-600'>
+                            <input
+                                type='radio'
+                                name='difficulty'
+                                value='hard'
+                                className='mr-1'
+                            />
+                            Hard
+                        </label>
+                    </div>
                 </div>
 
                 <button
@@ -89,7 +112,7 @@ export default function PlaceCreate() {
                 <p className='text-sm text-center mt-4 text-black font-semibold'>
                     <Link
                         to='/'
-                        className='text-[#4A9603] font-bold hover:text-[#5ECF00] transition'
+                        className='text-[#4A9603] font-bold hover:text-[#5ECF00] transition text-shadow-sm'
                     >
                         Back to Home
                     </Link>

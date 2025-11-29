@@ -9,19 +9,19 @@ export default function Register() {
                 </h2>
 
                 <div>
-                    <label className='block text-black font-bold mb-2'>
+                    <label className='block text-black font-bold mb-2 text-shadow-sm'>
                         Email Address
                     </label>
                     <input
                         type='email'
                         required
                         placeholder='example@mail.com'
-                        className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00] '
+                        className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
                     />
                 </div>
 
                 <div>
-                    <label className='block text-black font-bold mb-2 '>
+                    <label className='block text-black font-bold mb-2 text-shadow-sm'>
                         Username
                     </label>
                     <input
@@ -33,7 +33,7 @@ export default function Register() {
                 </div>
 
                 <div>
-                    <label className='block text-black font-bold mb-2'>
+                    <label className='block text-black font-bold mb-2 text-shadow-sm'>
                         Password
                     </label>
                     <input
@@ -45,7 +45,7 @@ export default function Register() {
                 </div>
 
                 <div>
-                    <label className='block text-black font-bold mb-2'>
+                    <label className='block text-black font-bold mb-2 text-shadow-sm'>
                         Repeat Password
                     </label>
                     <input
@@ -57,10 +57,10 @@ export default function Register() {
                 </div>
 
                 <div>
-                    <span className='block text-black font-bold mb-2'>
+                    <span className='block text-black font-bold mb-2 text-shadow-sm'>
                         Gender
                     </span>
-                    <div className='flex gap-4 font-bold'>
+                    <div className='flex gap-4 font-bold text-shadow-sm'>
                         <label>
                             <input
                                 type='radio'
@@ -89,11 +89,11 @@ export default function Register() {
                     Register
                 </button>
 
-                <p className='text-sm text-center mt-4 text-black font-semibold'>
+                <p className='text-sm text-center mt-4 text-black font-semibold text-shadow-sm'>
                     Already have an account?{' '}
                     <Link
                         to='/login'
-                        className='text-[#4A9603] font-bold hover:text-[#5ECF00] transition'
+                        className='text-[#4A9603] font-bold hover:text-[#5ECF00] transition text-shadow-sm'
                     >
                         → Login
                     </Link>

@@ -51,24 +51,24 @@ export default function PlaceDetails() {
                 </div>
                 <div className='md:w-1/3 h-[600px] bg-white rounded-xl shadow-lg p-6 flex flex-col justify-between border-b-6 border-black border-r-6 border-gray-800'>
                     <div>
-                        <h2 className='text-xl font-extrabold text-black text-left'>
+                        <h2 className='text-xl font-extrabold text-black text-left text-shadow-sm'>
                             {place.title || 'Loading...'}
                         </h2>
-                        <p className='text-gray-500 font-semibold text-left'>
+                        <p className='text-gray-500 font-semibold text-left text-shadow-sm'>
                             {place.location}
                         </p>
 
-                        <div className='flex items-center gap-2 mt-2 text-left'>
+                        <div className='flex items-center gap-2 mt-2 text-left text-shadow-sm'>
                             {/* <span className='text-yellow-500'>★ ★ ★ ★ ☆</span> */}
                             {/* <span className='text-gray-600'>(4.5)</span> */}
                         </div>
                     </div>
-                    <div className='my-8  font-bold text-black flex-1 overflow-auto'>
+                    <div className='my-8  font-bold text-black flex-1 overflow-auto text-shadow-sm'>
                         <p>{place.description}</p>
                     </div>
                     <div className='flex justify-between items-end mt-4'>
-                        <p className='text-black uppercase font-semibold mt-2 text-left'>
-                            {place.category} - {place.difficulty}
+                        <p className='text-black uppercase font-semibold mt-2 text-left text-shadow-sm'>
+                            {place.category} | {place.difficulty}
                         </p>
                         <div className='flex items-center gap-2'>
                             {/* <img

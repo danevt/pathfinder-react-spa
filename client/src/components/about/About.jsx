@@ -1,3 +1,5 @@
+import { Link } from 'react-router';
+
 export default function About() {
     return (
         <section className='bg-gradient-to-r from-black via-gray-500 to-black px-6 py-12 flex justify-center items-center'>
@@ -6,26 +8,38 @@ export default function About() {
                     About Pathfinder
                 </h2>
 
-                <p className='text-lg text-black font-semibold leading-relaxed'>
+                <p className='text-lg text-black font-semibold leading-relaxed text-shadow-sm'>
                     Pathfinder is a blog dedicated to sharing{' '}
-                    <span className='text-[#4A9603] font-bold'>
-                        unique destinations
-                    </span>{' '}
+                    <Link to='/create'>
+                        <span className='text-[#4A9603] font-bold hover:text-[#5ECF00] transition text-shadow-sm'>
+                            unique destinations
+                        </span>{' '}
+                    </Link>
                     and travel experiences. Our mission is to inspire explorers
-                    to discover new places, connect with nature, and enjoy
-                    unforgettable adventures.
+                    to{' '}
+                    <Link to='/catalog'>
+                        <span className='text-[#4A9603] font-bold hover:text-[#5ECF00] transition text-shadow-sm'>
+                            discover new places
+                        </span>{' '}
+                    </Link>
+                    , connect with nature, and enjoy unforgettable adventures.
                 </p>
 
-                <p className='text-lg text-black font-semibold leading-relaxed'>
+                <p className='text-lg text-black font-semibold leading-relaxed text-shadow-sm'>
                     Here you will find curated guides, personal stories, and
                     recommendations for both popular and hidden gems. Whether
                     you are looking for a weekend getaway or a long journey,
                     Pathfinder helps you plan and explore with ease.
                 </p>
 
-                <p className='text-lg text-black font-semibold leading-relaxed'>
-                    Join our community, share your favorite destinations, and
-                    let’s build a collection of inspiring places together.
+                <p className='text-lg text-black font-semibold leading-relaxed text-shadow-sm'>
+                    <Link to='/create'>
+                        <span className='text-[#4A9603] font-bold hover:text-[#5ECF00] transition text-shadow-sm'>
+                            Join
+                        </span>{' '}
+                    </Link>
+                    our community, share your favorite destinations, and let's
+                    build a collection of inspiring places together.
                 </p>
             </div>
         </section>
