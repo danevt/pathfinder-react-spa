@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
+import { BASE_URL } from '../../config/api.js';
 import PlaceCard from '../place/card/PlaceCard.jsx';
 
 export default function Catalog() {
     const [places, setPlaces] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3030/jsonstore/blog')
+        fetch(BASE_URL)
             .then(response => response.json())
             .then(result => {
                 // setPlaces(Object.values(result.places));

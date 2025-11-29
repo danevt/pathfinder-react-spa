@@ -46,7 +46,7 @@ export default function PlaceCreate() {
                     </label>
                     <input
                         type='text'
-                        placeholder='City, Country'
+                        placeholder='City'
                         className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
                     />
                 </div>

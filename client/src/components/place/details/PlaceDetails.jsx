@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router';
+import { PLACES_API } from '../../../config/api.js';
 import PlaceDelete from '../delete/PlaceDelete.jsx';
 
 export default function PlaceDetails() {
-    const navigate = useNavigate();
     const { placeId } = useParams();
+    const navigate = useNavigate();
     const [place, setPlace] = useState({});
     const [showDeleteModal, setShowDeleteModal] = useState(false);
 
     useEffect(() => {
-        fetch(`http://localhost:3030/jsonstore/blog/places/${placeId}`)
+        fetch(`${PLACES_API}${placeId}`)
             .then(response => response.json())
             .then(result => setPlace(result))
             .catch(error => alert(error.message));
@@ -105,6 +106,7 @@ export default function PlaceDetails() {
             {showDeleteModal && (
                 <PlaceDelete
                     placeId={placeId}
+                    placeTitle={place.title}
                     onCancel={cancelDeleteHandler}
                     onConfirm={afterDeleteHandler}
                 />
