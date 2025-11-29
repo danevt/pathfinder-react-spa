@@ -1,23 +1,38 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
-import { BASE_URL } from '../../config/api.js';
+import { PLACES_API } from '../../config/api.js';
 import PlaceCard from '../place/card/PlaceCard.jsx';
 
 export default function Catalog() {
     const [places, setPlaces] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const placesPerPage = 3;
 
     useEffect(() => {
-        fetch(BASE_URL)
+        fetch(PLACES_API)
             .then(response => response.json())
             .then(result => {
-                // setPlaces(Object.values(result.places));
-                const allPlaces = Object.values(result.places).sort(
+                const allPlaces = Object.values(result).sort(
                     (a, b) => b._createdOn - a._createdOn
                 );
                 setPlaces(allPlaces);
             })
             .catch(error => alert(error.message));
     }, []);
+
+    const totalPages = Math.ceil(places.length / placesPerPage);
+
+    const indexOfFirstPlace = (currentPage - 1) * placesPerPage;
+    const indexOfLastPlace = currentPage * placesPerPage;
+    const currentPlaces = places.slice(indexOfFirstPlace, indexOfLastPlace);
+
+    const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+    const goToPage = num => setCurrentPage(num);
+    const goFirst = () => setCurrentPage(1);
+    const goLast = () => setCurrentPage(totalPages);
+    const goPrev = () => setCurrentPage(prev => Math.max(prev - 1, 1));
+    const goNext = () => setCurrentPage(prev => Math.min(prev + 1, totalPages));
 
     return (
         <section className='bg-gradient-to-r from-black via-gray-500 to-black p-6 flex flex-col'>
@@ -47,44 +62,57 @@ export default function Catalog() {
                         </p>
                     </div>
                     <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8'>
-                        {places.map(place => (
+                        {currentPlaces.map(place => (
                             <PlaceCard key={place._id} {...place} />
                         ))}
                     </div>
-                </>
-            )}
 
-            {places.length > 0 && (
-                <div className='flex justify-center gap-2'>
-                    <button
-                        className='bg-[#4A9603] hover:bg-[#5ECF00] text-black font-bold py-2 px-6
-                        rounded-xl shadow-md border-b-4 border-black border-r-4 border-gray-900
-                        transform transition-transform duration-300 hover:scale-105'
-                    >
-                        1
-                    </button>
-                    <button
-                        className='bg-[#4A9603] hover:bg-[#5ECF00] text-black font-bold py-2 px-6
-                        rounded-xl shadow-md border-b-4 border-black border-r-4 border-gray-900
-                        transform transition-transform duration-300 hover:scale-105'
-                    >
-                        2
-                    </button>
-                    <button
-                        className='bg-[#4A9603] hover:bg-[#5ECF00] text-black font-bold py-2 px-6
-                        rounded-xl shadow-md border-b-4 border-black border-r-4 border-gray-900
-                        transform transition-transform duration-300 hover:scale-105'
-                    >
-                        3
-                    </button>
-                    <button
-                        className='bg-[#4A9603] hover:bg-[#5ECF00] text-black font-bold py-2 px-6
-                        rounded-xl shadow-md border-b-4 border-black border-r-4 border-gray-900
-                        transform transition-transform duration-300 hover:scale-105'
-                    >
-                        Next
-                    </button>
-                </div>
+                    <div className='flex justify-center gap-2 mb-8'>
+                        <button
+                            onClick={goFirst}
+                            disabled={currentPage === 1}
+                            className='bg-[#4A9603] hover:bg-[#5ECF00] text-black font-bold py-2 px-4 rounded-xl shadow-md border-b-4 border-black border-r-4 border-gray-900'
+                        >
+                            First
+                        </button>
+                        <button
+                            onClick={goPrev}
+                            disabled={currentPage === 1}
+                            className='bg-[#4A9603] hover:bg-[#5ECF00] text-black font-bold py-2 px-4 rounded-xl shadow-md border-b-4 border-black border-r-4 border-gray-900'
+                        >
+                            Prev
+                        </button>
+
+                        {pageNumbers.map(num => (
+                            <button
+                                key={num}
+                                onClick={() => goToPage(num)}
+                                className={`bg-[#4A9603] hover:bg-[#5ECF00] text-black font-bold py-2 px-4 rounded-xl shadow-md border-b-4 border-black border-r-4 border-gray-900 ${
+                                    currentPage === num
+                                        ? 'ring-2 ring-[#5ECF00]'
+                                        : ''
+                                }`}
+                            >
+                                {num}
+                            </button>
+                        ))}
+
+                        <button
+                            onClick={goNext}
+                            disabled={currentPage === totalPages}
+                            className='bg-[#4A9603] hover:bg-[#5ECF00] text-black font-bold py-2 px-4 rounded-xl shadow-md border-b-4 border-black border-r-4 border-gray-900'
+                        >
+                            Next
+                        </button>
+                        <button
+                            onClick={goLast}
+                            disabled={currentPage === totalPages}
+                            className='bg-[#4A9603] hover:bg-[#5ECF00] text-black font-bold py-2 px-4 rounded-xl shadow-md border-b-4 border-black border-r-4 border-gray-900'
+                        >
+                            Last
+                        </button>
+                    </div>
+                </>
             )}
         </section>
     );

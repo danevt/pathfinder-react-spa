@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
-import { BASE_URL } from '../../config/api.js';
+import { PLACES_API } from '../../config/api.js';
 import PlaceCard from '../place/card/PlaceCard.jsx';
 
 export default function Home() {
     const [latestPlaces, setLatestPlaces] = useState([]);
 
     useEffect(() => {
-        fetch(BASE_URL)
+        fetch(PLACES_API)
             .then(response => response.json())
             .then(result => {
-                const resultPlaces = Object.values(result.places)
+                const resultPlaces = Object.values(result)
                     .sort((a, b) => b._createdOn - a._createdOn)
                     .slice(0, 3);
 
@@ -55,23 +55,3 @@ export default function Home() {
         </section>
     );
 }
-
-// {
-//     /* TODO latest 3 Places */
-// }
-
-// <section className='bg-gradient-to-r from-black via-gray-500 to-black p-6  flex flex-col'>
-//     <div className='text-white text-left font-bold  drop-shadow-[2px_2px_2px_black]'>
-//         <h2 className='text-4xl text-center  font-bold mb-4'>
-//             Welcome to Pathfinder
-//         </h2>
-//         <p className='text-lg mb-10 text-center'>
-//             Discover interesting places and landmarks around you
-//         </p>
-//     </div>
-//     <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6'>
-//         {latestPlaces.map(place => (
-//             <PlaceCard key={place._id} {...place} />
-//         ))}
-//     </div>
-// </section>
