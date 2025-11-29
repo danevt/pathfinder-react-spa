@@ -56,6 +56,10 @@ export default function Home() {
     );
 }
 
+// {
+//     /* TODO latest 3 Places */
+// }
+
 // <section className='bg-gradient-to-r from-black via-gray-500 to-black p-6  flex flex-col'>
 //     <div className='text-white text-left font-bold  drop-shadow-[2px_2px_2px_black]'>
 //         <h2 className='text-4xl text-center  font-bold mb-4'>

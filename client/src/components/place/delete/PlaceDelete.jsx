@@ -6,12 +6,27 @@ export default function PlaceDelete({
     onCancel,
     onConfirm
 }) {
-    const deletePlaceHandler = () => {
-        fetch(`${PLACES_API}${placeId}`, {
-            method: 'DELETE'
-        })
-            .then(() => onConfirm())
-            .catch(error => alert(error.message));
+    const deletePlaceHandler = async () => {
+        try {
+            await fetch(`${PLACES_API}${placeId}`, {
+                method: 'DELETE'
+            });
+
+            //TODO  Re-enable proper error handling when switching to the real server
+            // const response = await fetch(`${PLACES_API}invalid-id`, {
+            //     method: 'DELETE'
+            // });
+            // if (!response.ok) {
+            //     const errorData = await response.json().catch(() => ({}));
+            //     throw new Error(
+            //         errorData.message || 'This place does not exist!'
+            //     );
+            // }
+
+            onConfirm();
+        } catch (error) {
+            alert(`Unable to delete ${placeTitle}: ${error.message}`);
+        }
     };
 
     return (

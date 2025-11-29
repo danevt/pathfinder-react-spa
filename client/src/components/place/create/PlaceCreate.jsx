@@ -1,61 +1,126 @@
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import { PLACES_API } from '../../../config/api.js';
 
 export default function PlaceCreate() {
+    const navigate = useNavigate();
+
+    const addPlaceHandler = async e => {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+
+        const data = Object.fromEntries(formData);
+
+        data._createdOn = Date.now();
+
+        try {
+            const response = await fetch(PLACES_API, {
+                method: 'POST',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+
+            //TODO  Re-enable proper error handling when switching to the real server
+            // if (!response.ok) {
+            //     const errorData = await response.json().catch(() => ({}));
+            //     throw new Error(errorData.message || 'Failed to create place!');
+            // }
+
+            const result = await response.json();
+            console.log(result);
+
+            navigate('/catalog');
+        } catch (error) {
+            alert(error.message);
+        }
+    };
+
     return (
         <section className='bg-gradient-to-r from-black via-gray-500 to-black px-6 py-12 flex justify-center items-center'>
-            <form className='bg-white rounded-xl shadow-lg p-8 w-full max-w-md space-y-6 border-b-6 border-black border-r-6 border-gray-800'>
+            <form
+                id='add-new-place'
+                onSubmit={addPlaceHandler}
+                className='bg-white rounded-xl shadow-lg p-8 w-full max-w-md space-y-6 border-b-6 border-black border-r-6 border-gray-800'
+            >
                 <h2 className='text-4xl font-bold text-center text-black drop-shadow-[1px_1px_1px_black]'>
                     Add New Place
                 </h2>
 
                 <div>
-                    <label className='block text-black font-bold mb-2 text-shadow-sm'>
-                        Title
+                    <label
+                        htmlFor='title'
+                        className='block text-black font-bold mb-2 text-shadow-sm'
+                    >
+                        Title:
                     </label>
                     <input
                         type='text'
-                        placeholder='Enter place title'
+                        id='title'
+                        name='title'
+                        placeholder='Enter place title...'
                         className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
                     />
                 </div>
 
                 <div>
-                    <label className='block text-black font-bold mb-2 text-shadow-sm'>
-                        Image URL
+                    <label
+                        htmlFor='imageUrl'
+                        className='block text-black font-bold mb-2 text-shadow-sm'
+                    >
+                        Image URL:
                     </label>
                     <input
                         type='text'
+                        id='imageUrl'
+                        name='imageUrl'
                         placeholder='https://example.com/image.jpg'
                         className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
                     />
                 </div>
 
                 <div>
-                    <label className='block text-black font-bold mb-2 text-shadow-sm'>
-                        Description
+                    <label
+                        htmlFor='description'
+                        className='block text-black font-bold mb-2 text-shadow-sm'
+                    >
+                        Description:
                     </label>
                     <textarea
+                        id='description'
+                        name='description'
                         placeholder='Describe the place...'
                         className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
                     ></textarea>
                 </div>
 
                 <div>
-                    <label className='block text-black font-bold mb-2 text-shadow-sm'>
-                        Location
+                    <label
+                        htmlFor='location'
+                        className='block text-black font-bold mb-2 text-shadow-sm'
+                    >
+                        Location:
                     </label>
                     <input
                         type='text'
+                        id='location'
+                        name='location'
                         placeholder='City'
                         className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
                     />
                 </div>
 
                 <div>
-                    <label className='block text-black font-bold mb-2 text-shadow-sm'>
-                        Category
+                    <label
+                        htmlFor='category'
+                        className='block text-black font-bold mb-2 text-shadow-sm'
+                    >
+                        Category:
                     </label>
-                    <select className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'>
+                    <select
+                        id='category'
+                        name='category'
+                        className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
+                    >
                         <option value=''>Select category</option>
                         <option value='mountain'>Mountain</option>
                         <option value='beach'>Beach</option>
@@ -68,12 +133,13 @@ export default function PlaceCreate() {
                 </div>
                 <div>
                     <span className='block text-black font-bold mb-2 text-shadow-sm'>
-                        Difficulty
+                        Difficulty:
                     </span>
                     <div className='flex gap-4 font-bold text-shadow-sm'>
                         <label className='text-green-600'>
                             <input
                                 type='radio'
+                                id='difficulty-easy'
                                 name='difficulty'
                                 value='easy'
                                 required
@@ -84,8 +150,10 @@ export default function PlaceCreate() {
                         <label className='text-yellow-500'>
                             <input
                                 type='radio'
+                                id='difficulty-medium'
                                 name='difficulty'
                                 value='medium'
+                                required
                                 className='mr-1'
                             />
                             Medium
@@ -93,8 +161,10 @@ export default function PlaceCreate() {
                         <label className='text-red-600'>
                             <input
                                 type='radio'
+                                id='difficulty-hard'
                                 name='difficulty'
                                 value='hard'
+                                required
                                 className='mr-1'
                             />
                             Hard

@@ -21,7 +21,9 @@ export default function PlaceCard({
                         <h3 className='text-xl font-extrabold text-black text-shadow-sm'>
                             {title}
                         </h3>
-                        <p className='text-sm text-gray-600 text-shadow-sm'>{location}</p>
+                        <p className='text-sm text-gray-600 text-shadow-sm'>
+                            {location}
+                        </p>
                     </div>
                     <div className='text-right'>
                         <span className='text-sm font-semibold text-gray-800 uppercase text-shadow-sm'>
@@ -32,6 +34,8 @@ export default function PlaceCard({
 
                 <div className='flex justify-between items-center'>
                     <div className='flex items-center gap-1'>
+                        {/* TODO */}
+
                         {/* <span className='text-yellow-500'>★ ★ ★ ★ ☆</span> */}
                         {/* <span className='text-sm text-gray-600'>(4.5)</span> */}
                     </div>

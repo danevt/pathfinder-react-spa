@@ -60,6 +60,7 @@ export default function PlaceDetails() {
                         </p>
 
                         <div className='flex items-center gap-2 mt-2 text-left text-shadow-sm'>
+                            {/* TODO */}
                             {/* <span className='text-yellow-500'>★ ★ ★ ★ ☆</span> */}
                             {/* <span className='text-gray-600'>(4.5)</span> */}
                         </div>
@@ -72,6 +73,7 @@ export default function PlaceDetails() {
                             {place.category} | {place.difficulty}
                         </p>
                         <div className='flex items-center gap-2'>
+                            {/* TODO */}
                             {/* <img
                                 src='/images/avatars/avatar1.svg'
                                 alt='Author Avatar'
@@ -94,6 +96,7 @@ export default function PlaceDetails() {
                             >
                                 Delete
                             </button>
+                            {/* TODO */}
                             {/* <Link>
                                 <button className='bg-[#4A9603] text-black font-bold py-2 px-4 rounded-xl border-b-4 border-black border-r-4 border-gray-900 hover:bg-[#5ECF00] transform transition-transform duration-300 hover:scale-105'>
                                     Rate
