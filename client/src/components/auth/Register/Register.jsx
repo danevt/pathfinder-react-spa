@@ -1,7 +1,13 @@
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 
-export default function Register({ user, onRegister }) {
-    const registerSubmit = formData => {
+export default function Register({ onRegister }) {
+    const navigate = useNavigate();
+
+    const submitHandler = e => {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+
         const email = formData.get('email');
         const username = formData.get('username');
         const password = formData.get('password');
@@ -11,18 +17,23 @@ export default function Register({ user, onRegister }) {
             return alert('Passwords do not match.');
         }
 
-        onRegister({
-            email,
-            username
-        });
+        try {
+            onRegister({
+                email,
+                username,
+                password
+            });
 
-        console.log(user);
+            navigate('/');
+        } catch (error) {
+            alert(error.message);
+        }
     };
     return (
         <section className='bg-gradient-to-r from-black via-gray-500 to-black px-6 py-12 flex justify-center items-center'>
             <form
                 id='register'
-                action={registerSubmit}
+                onSubmit={submitHandler}
                 className='bg-white rounded-xl shadow-lg p-8 w-full max-w-md space-y-6 border-b-6 border-black border-r-6 border-gray-800'
             >
                 <h2 className='text-4xl font-bold text-center text-black drop-shadow-[1px_1px_1px_black]'>

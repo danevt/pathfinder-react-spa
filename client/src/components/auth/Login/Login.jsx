@@ -1,9 +1,30 @@
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 
-export default function Login() {
+export default function Login({ onLogin }) {
+    const navigate = useNavigate();
+
+    const submitHandler = e => {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+        const email = formData.get('email');
+        const password = formData.get('password');
+
+        try {
+            onLogin(email, password);
+
+            navigate('/');
+        } catch (error) {
+            alert(error.message);
+        }
+    };
     return (
         <section className='bg-gradient-to-r from-black via-gray-500 to-black px-6 py-16 flex justify-center items-center'>
-            <form className='bg-white rounded-xl shadow-lg p-8 w-full max-w-md space-y-6 border-b-6 border-black border-r-6 border-gray-800'>
+            <form
+                id='login'
+                onSubmit={submitHandler}
+                className='bg-white rounded-xl shadow-lg p-8 w-full max-w-md space-y-6 border-b-6 border-black border-r-6 border-gray-800'
+            >
                 <h2 className='text-4xl font-bold text-center text-black drop-shadow-[1px_1px_1px_black]'>
                     Login
                 </h2>
@@ -13,6 +34,8 @@ export default function Login() {
                     </label>
                     <input
                         type='email'
+                        id='email'
+                        name='email'
                         required
                         placeholder='example@mail.com'
                         className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
@@ -24,6 +47,8 @@ export default function Login() {
                     </label>
                     <input
                         type='password'
+                        id='password'
+                        name='password'
                         required
                         placeholder='********'
                         className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'

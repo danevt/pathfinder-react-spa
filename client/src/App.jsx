@@ -12,13 +12,32 @@ import PlaceDetails from './components/place/details/PlaceDetails.jsx';
 import NotFound from './components/not-found/NotFound.jsx';
 
 function App() {
+    const [registerdUser, setRegisterdUser] = useState([]);
     const [user, setUser] = useState(null);
 
-    const registerHandler = ({ email, username }) => {
-        setUser({
-            email,
-            username
-        });
+    const registerHandler = ({ email, username, password }) => {
+        if (registerdUser.some(user => user.email === email)) {
+            throw new Error('Email already exists.');
+        }
+
+        if (registerdUser.some(user => user.username === username)) {
+            throw new Error('Username already exists.');
+        }
+
+        setRegisterdUser(regUsers => [
+            ...regUsers,
+            { email, username, password }
+        ]);
+    };
+
+    const loginHandler = (email, password) => {
+        const existingUser = registerdUser.find(u => u.email === email);
+
+        if (!existingUser || existingUser.password !== password) {
+            throw new Error('Invalid email or password!');
+        }
+
+        setUser(existingUser);
     };
 
     return (
@@ -32,14 +51,12 @@ function App() {
                         <Route path='/catalog' element={<Catalog />} />
                         <Route
                             path='/register'
-                            element={
-                                <Register
-                                    user={user}
-                                    onRegister={registerHandler}
-                                />
-                            }
+                            element={<Register onRegister={registerHandler} />}
                         />
-                        <Route path='/login' element={<Login />} />
+                        <Route
+                            path='/login'
+                            element={<Login onLogin={loginHandler} />}
+                        />
                         <Route path='/about' element={<About />} />
                         <Route path='/create' element={<PlaceCreate />} />
                         <Route
