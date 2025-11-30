@@ -24,10 +24,11 @@ function App() {
             throw new Error('Username already exists.');
         }
 
-        setRegisterdUser(regUsers => [
-            ...regUsers,
-            { email, username, password }
-        ]);
+        const newUser = { email, username, password };
+
+        setRegisterdUser(regUsers => [...regUsers, newUser]);
+
+        setUser(newUser);
     };
 
     const loginHandler = (email, password) => {
