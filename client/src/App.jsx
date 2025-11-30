@@ -10,6 +10,7 @@ import About from './components/about/About.jsx';
 import PlaceCreate from './components/place/create/PlaceCreate.jsx';
 import PlaceDetails from './components/place/details/PlaceDetails.jsx';
 import NotFound from './components/not-found/NotFound.jsx';
+import Logout from './components/auth/Logout/Logout.jsx';
 
 function App() {
     const [registerdUser, setRegisterdUser] = useState([]);
@@ -41,6 +42,10 @@ function App() {
         setUser(existingUser);
     };
 
+    const logoutHandler = () => {
+        setUser(null);
+    };
+
     return (
         <>
             <div className='flex flex-col h-screen'>
@@ -63,6 +68,10 @@ function App() {
                         <Route
                             path='/places/:placeId/details'
                             element={<PlaceDetails />}
+                        />
+                        <Route
+                            path='/logout'
+                            element={<Logout onLogout={logoutHandler} />}
                         />
 
                         <Route path='*' element={<NotFound />} />
