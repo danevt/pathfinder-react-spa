@@ -1,19 +1,22 @@
 import { Link } from 'react-router';
 
-export default function Register() {
+export default function Register({ user, onRegister }) {
     const registerSubmit = formData => {
         const email = formData.get('email');
         const username = formData.get('username');
         const password = formData.get('password');
         const confirmPassword = formData.get('confirmPassword');
 
-        if (!email || !username || !password || !confirmPassword) {
-            return alert('Email , username and password are required!');
+        if (password !== confirmPassword) {
+            return alert('Passwords do not match.');
         }
 
-        if (password !== confirmPassword) {
-            return alert('Password missmatch!');
-        }
+        onRegister({
+            email,
+            username
+        });
+
+        console.log(user);
     };
     return (
         <section className='bg-gradient-to-r from-black via-gray-500 to-black px-6 py-12 flex justify-center items-center'>
@@ -34,6 +37,7 @@ export default function Register() {
                         id='email'
                         name='email'
                         required
+                        pattern='[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'
                         placeholder='example@mail.com'
                         className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
                     />
@@ -47,7 +51,10 @@ export default function Register() {
                         id='username'
                         name='username'
                         required
-                        placeholder='John Doe'
+                        minlength='3'
+                        maxlength='20'
+                        pattern='[A-Za-z0-9]+'
+                        placeholder='JohnDoe'
                         className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
                     />
                 </div>
@@ -60,6 +67,9 @@ export default function Register() {
                         id='password'
                         name='password'
                         required
+                        minlength='8'
+                        maxlength='20'
+                        pattern='[A-Za-z0-9!@#$%^&*()_+=-]+'
                         placeholder='********'
                         className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
                     />

@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router';
+import { useState } from 'react';
 import Home from './components/home/Home.jsx';
 import Header from './components/layout/header/Header.jsx';
 import Footer from './components/layout/footer/Footer.jsx';
@@ -11,16 +12,33 @@ import PlaceDetails from './components/place/details/PlaceDetails.jsx';
 import NotFound from './components/not-found/NotFound.jsx';
 
 function App() {
+    const [user, setUser] = useState(null);
+
+    const registerHandler = ({ email, username }) => {
+        setUser({
+            email,
+            username
+        });
+    };
+
     return (
         <>
             <div className='flex flex-col h-screen'>
-                <Header />
+                <Header user={user} />
 
                 <main className='flex-grow bg-gradient-to-r from-black via-gray-500 to-black'>
                     <Routes>
                         <Route path='/' element={<Home />} />
                         <Route path='/catalog' element={<Catalog />} />
-                        <Route path='/register' element={<Register />} />
+                        <Route
+                            path='/register'
+                            element={
+                                <Register
+                                    user={user}
+                                    onRegister={registerHandler}
+                                />
+                            }
+                        />
                         <Route path='/login' element={<Login />} />
                         <Route path='/about' element={<About />} />
                         <Route path='/create' element={<PlaceCreate />} />
