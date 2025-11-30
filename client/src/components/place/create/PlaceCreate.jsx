@@ -49,14 +49,15 @@ export default function PlaceCreate() {
                 <div>
                     <label
                         htmlFor='title'
-                        className='block text-black font-bold mb-2 text-shadow-sm'
+                        className='block text-black font-bold mb-2 text-shadow-sm pl-2'
                     >
-                        Title:
+                        Title
                     </label>
                     <input
                         type='text'
                         id='title'
                         name='title'
+                        required
                         placeholder='Enter place title...'
                         className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
                     />
@@ -65,14 +66,15 @@ export default function PlaceCreate() {
                 <div>
                     <label
                         htmlFor='imageUrl'
-                        className='block text-black font-bold mb-2 text-shadow-sm'
+                        className='block text-black font-bold mb-2 text-shadow-sm pl-2'
                     >
-                        Image URL:
+                        Image URL
                     </label>
                     <input
                         type='text'
                         id='imageUrl'
                         name='imageUrl'
+                        required
                         placeholder='https://example.com/image.jpg'
                         className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
                     />
@@ -81,13 +83,14 @@ export default function PlaceCreate() {
                 <div>
                     <label
                         htmlFor='description'
-                        className='block text-black font-bold mb-2 text-shadow-sm'
+                        className='block text-black font-bold mb-2 text-shadow-sm pl-2'
                     >
-                        Description:
+                        Description
                     </label>
                     <textarea
                         id='description'
                         name='description'
+                        required
                         placeholder='Describe the place...'
                         className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
                     ></textarea>
@@ -96,14 +99,15 @@ export default function PlaceCreate() {
                 <div>
                     <label
                         htmlFor='location'
-                        className='block text-black font-bold mb-2 text-shadow-sm'
+                        className='block text-black font-bold mb-2 text-shadow-sm pl-2'
                     >
-                        Location:
+                        Location
                     </label>
                     <input
                         type='text'
                         id='location'
                         name='location'
+                        required
                         placeholder='City'
                         className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
                     />
@@ -112,13 +116,14 @@ export default function PlaceCreate() {
                 <div>
                     <label
                         htmlFor='category'
-                        className='block text-black font-bold mb-2 text-shadow-sm'
+                        className='block text-black font-bold mb-2 text-shadow-sm pl-2'
                     >
-                        Category:
+                        Category
                     </label>
                     <select
                         id='category'
                         name='category'
+                        required
                         className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
                     >
                         <option value=''>Select category</option>
@@ -132,10 +137,10 @@ export default function PlaceCreate() {
                     </select>
                 </div>
                 <div>
-                    <span className='block text-black font-bold mb-2 text-shadow-sm'>
-                        Difficulty:
+                    <span className='block text-black font-bold mb-2 text-shadow-sm pl-2'>
+                        Difficulty
                     </span>
-                    <div className='flex gap-4 font-bold text-shadow-sm'>
+                    <div className='flex gap-4 font-bold text-shadow-sm pl-4'>
                         <label className='text-green-600'>
                             <input
                                 type='radio'

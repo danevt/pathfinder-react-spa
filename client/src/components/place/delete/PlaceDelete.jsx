@@ -51,7 +51,7 @@ export default function PlaceDelete({
                     ?
                 </h2>
 
-                <div className='flex justify-center gap-4'>
+                <div className='flex justify-center gap-12'>
                     <button
                         onClick={deletePlaceHandler}
                         className='bg-red-600 text-black font-bold py-2 px-6 rounded-xl border-b-4 border-black border-r-4 border-gray-900 hover:bg-red-500 transform transition-transform duration-300 hover:scale-105'

@@ -33,7 +33,7 @@ export default function About() {
                 </p>
 
                 <p className='text-lg text-black font-semibold leading-relaxed text-shadow-sm'>
-                    <Link to='/create'>
+                    <Link to='/register'>
                         <span className='text-[#4A9603] font-bold hover:text-[#5ECF00] transition text-shadow-sm'>
                             Join
                         </span>{' '}

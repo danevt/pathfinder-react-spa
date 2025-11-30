@@ -29,7 +29,7 @@ export default function PlaceDetails() {
         navigate('/');
     };
     return (
-        <section className='bg-gradient-to-r from-black via-gray-500 to-black p-6 min-h-screen flex flex-col items-center'>
+        <section className='bg-gradient-to-r from-black via-gray-500 to-black p-6  flex flex-col items-center'>
             <div className='text-white text-center font-bold drop-shadow-[2px_2px_2px_black] mb-6'>
                 <h2 className='text-4xl font-bold mb-2'>
                     Explore this Destination
@@ -86,7 +86,7 @@ export default function PlaceDetails() {
                         </div>
                         <div className='flex gap-2'>
                             <Link to={`/places/${placeId}/edit`}>
-                                <button className='bg-[#4A9603] text-black font-bold py-2 px-4 rounded-xl border-b-4 border-black border-r-4 border-gray-900 hover:bg-[#5ECF00] transform transition-transform duration-300 hover:scale-105'>
+                                <button className='bg-[#4A9603] text-black font-bold py-2 px-6 rounded-xl border-b-4 border-black border-r-4 border-gray-900 hover:bg-[#5ECF00] transform transition-transform duration-300 hover:scale-105'>
                                     Edit
                                 </button>
                             </Link>
