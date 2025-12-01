@@ -1,8 +1,6 @@
 import { Link } from 'react-router';
 
-export default function Header({ user }) {
-    console.log(user?.email);
-
+export default function Header() {
     return (
         <header className='bg-gradient-to-r from-[#438004] via-[#7CFC00] to-[#4A9603] flex justify-between items-center px-6 py-0 border-b-4 border-black'>
             <div className='flex items-center gap-2'>

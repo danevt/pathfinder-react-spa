@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
-import { PLACES_API } from '../../config/api.js';
 import PlaceCard from '../place/card/PlaceCard.jsx';
+import request from '../../utils/requester.js';
+import { PLACES_API } from '../../config/api.js';
 
 export default function Catalog() {
     const [places, setPlaces] = useState([]);
@@ -9,8 +10,7 @@ export default function Catalog() {
     const placesPerPage = 3;
 
     useEffect(() => {
-        fetch(PLACES_API)
-            .then(response => response.json())
+        request(PLACES_API)
             .then(result => {
                 const allPlaces = Object.values(result).sort(
                     (a, b) => b._createdOn - a._createdOn

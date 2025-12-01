@@ -26,7 +26,7 @@ export default function PlaceEdit() {
     };
 
     useEffect(() => {
-        request(`places/${placeId}`)
+        request(`${PLACES_API}${placeId}`)
             .then(result => setValues(result))
             .catch(error => alert(error.message));
     }, [placeId]);

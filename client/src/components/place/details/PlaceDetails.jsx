@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router';
-import { PLACES_API } from '../../../config/api.js';
 import PlaceDelete from '../delete/PlaceDelete.jsx';
+import request from '../../../utils/requester.js';
+import { PLACES_API } from '../../../config/api.js';
 
 export default function PlaceDetails() {
     const { placeId } = useParams();
@@ -10,8 +11,7 @@ export default function PlaceDetails() {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
 
     useEffect(() => {
-        fetch(`${PLACES_API}${placeId}`)
-            .then(response => response.json())
+        request(`${PLACES_API}${placeId}`)
             .then(result => setPlace(result))
             .catch(error => alert(error.message));
     }, [placeId]);

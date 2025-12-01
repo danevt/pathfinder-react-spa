@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
-import { PLACES_API } from '../../config/api.js';
 import PlaceCard from '../place/card/PlaceCard.jsx';
+import request from '../../utils/requester.js';
+import { PLACES_API } from '../../config/api.js';
 
 export default function Home() {
     const [latestPlaces, setLatestPlaces] = useState([]);
 
     useEffect(() => {
-        fetch(PLACES_API)
-            .then(response => response.json())
+        request(PLACES_API)
             .then(result => {
                 const resultPlaces = Object.values(result)
                     .sort((a, b) => b._createdOn - a._createdOn)

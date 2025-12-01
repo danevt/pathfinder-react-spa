@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router';
 import { PLACES_API } from '../../../config/api.js';
+import request from '../../../utils/requester.js';
 
 export default function PlaceCreate() {
     const navigate = useNavigate();
@@ -8,26 +9,11 @@ export default function PlaceCreate() {
         e.preventDefault();
 
         const formData = new FormData(e.target);
-
         const data = Object.fromEntries(formData);
-
         data._createdOn = Date.now();
 
         try {
-            const response = await fetch(PLACES_API, {
-                method: 'POST',
-                headers: { 'content-type': 'application/json' },
-                body: JSON.stringify(data)
-            });
-
-            //TODO  Re-enable proper error handling when switching to the real server
-            // if (!response.ok) {
-            //     const errorData = await response.json().catch(() => ({}));
-            //     throw new Error(errorData.message || 'Failed to create place!');
-            // }
-
-            const result = await response.json();
-            console.log(result);
+            await request(PLACES_API, 'POST', data);
 
             navigate('/catalog');
         } catch (error) {

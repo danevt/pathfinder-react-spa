@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import { PLACES_API } from '../../../config/api.js';
+import request from '../../../utils/requester.js';
 
 export default function PlaceDelete({
     placeId,
@@ -6,26 +8,19 @@ export default function PlaceDelete({
     onCancel,
     onConfirm
 }) {
-    const deletePlaceHandler = async () => {
-        try {
-            await fetch(`${PLACES_API}${placeId}`, {
-                method: 'DELETE'
-            });
+    const [isDeleting, setIsDeleting] = useState(false);
 
-            //TODO  Re-enable proper error handling when switching to the real server
-            // const response = await fetch(`${PLACES_API}invalid-id`, {
-            //     method: 'DELETE'
-            // });
-            // if (!response.ok) {
-            //     const errorData = await response.json().catch(() => ({}));
-            //     throw new Error(
-            //         errorData.message || 'This place does not exist!'
-            //     );
-            // }
+    const deletePlaceHandler = async () => {
+        setIsDeleting(true);
+
+        try {
+            await request(`${PLACES_API}${placeId}`, 'DELETE');
 
             onConfirm();
         } catch (error) {
             alert(`Unable to delete ${placeTitle}: ${error.message}`);
+        } finally {
+            setIsDeleting(false);
         }
     };
 
@@ -34,6 +29,7 @@ export default function PlaceDelete({
             <div className='fixed inset-0 inset-0   bg-opacity-20 backdrop-blur-[2px]'></div>
 
             <div className='bg-white rounded-xl shadow-md w-full max-w-md border-b-8 border-black border-r-6 border-gray-900 relative p-6 z-10 pointer-events-auto'>
+                
                 <button
                     onClick={onCancel}
                     className='absolute top-3 right-3 w-6 h-6 bg-black text-white font-bold flex items-center justify-center rounded-sm border-black border-r-2 border-b-2 hover:bg-red-500  transform transition-transform duration-300 hover:scale-105'
@@ -50,14 +46,20 @@ export default function PlaceDelete({
                     </span>{' '}
                     ?
                 </h2>
-
                 <div className='flex justify-center gap-12'>
+
                     <button
                         onClick={deletePlaceHandler}
-                        className='bg-red-600 text-black font-bold py-2 px-6 rounded-xl border-b-4 border-black border-r-4 border-gray-900 hover:bg-red-500 transform transition-transform duration-300 hover:scale-105'
+                        disabled={isDeleting}
+                        className={`py-2 px-6 rounded-xl border-b-4 border-black border-r-4 font-bold text-black transform transition-transform duration-300 hover:scale-105 ${
+                            isDeleting
+                                ? 'bg-gray-400 cursor-not-allowed hover:scale-100'
+                                : 'bg-red-600 hover:bg-red-500'
+                        }`}
                     >
                         Delete
                     </button>
+
                     <button
                         onClick={onCancel}
                         className='bg-[#4A9603] text-black font-bold py-2 px-6 rounded-xl border-b-4 border-black border-r-4 border-gray-900 hover:bg-[#5ECF00] transform transition-transform duration-300 hover:scale-105'
