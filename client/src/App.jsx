@@ -8,6 +8,7 @@ import Register from './components/auth/Register/Register.jsx';
 import Login from './components/auth/Login/Login.jsx';
 import About from './components/about/About.jsx';
 import PlaceCreate from './components/place/create/PlaceCreate.jsx';
+import PlaceEdit from './components/place/edit/PlaceEdit.jsx';
 import PlaceDetails from './components/place/details/PlaceDetails.jsx';
 import NotFound from './components/not-found/NotFound.jsx';
 import Logout from './components/auth/Logout/Logout.jsx';
@@ -68,6 +69,10 @@ function App() {
                         <Route
                             path='/places/:placeId/details'
                             element={<PlaceDetails />}
+                        />
+                        <Route
+                            path='/places/:placeId/edit'
+                            element={<PlaceEdit />}
                         />
                         <Route
                             path='/logout'
