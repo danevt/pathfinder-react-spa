@@ -15,7 +15,7 @@ export default function PlaceEdit() {
     const [values, setValues] = useState(initialValues);
 
     const inputHandler = e => {
-        const { name: value } = e.target;
+        const { name, value } = e.target;
 
         setValues(state => ({
             ...state,
