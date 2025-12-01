@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router';
+import { Link, useNavigate, useParams } from 'react-router';
 import { PLACES_API } from '../../../config/api.js';
+import request from '../../../utils/requester.js';
 
 const initialValues = {
     title: '',
@@ -11,6 +12,7 @@ const initialValues = {
     difficulty: ''
 };
 export default function PlaceEdit() {
+    const navigate = useNavigate();
     const { placeId } = useParams();
     const [values, setValues] = useState(initialValues);
 
@@ -24,15 +26,25 @@ export default function PlaceEdit() {
     };
 
     useEffect(() => {
-        fetch(`${PLACES_API}${placeId}`)
-            .then(response => response.json())
+        request(`places/${placeId}`)
             .then(result => setValues(result))
             .catch(error => alert(error.message));
     }, [placeId]);
 
+    const editPlaceHandler = async () => {
+        try {
+            await request(`places/${placeId}`, 'PUT', values);
+
+            navigate(`/places/${placeId}/details`);
+        } catch (error) {
+            alert(error.message);
+        }
+    };
+
     return (
         <section className='bg-gradient-to-r from-black via-gray-500 to-black px-6 py-12 flex justify-center items-center'>
             <form
+                action={editPlaceHandler}
                 id='edit-place'
                 className='bg-white rounded-xl shadow-lg p-8 w-full max-w-md space-y-6 border-b-6 border-black border-r-6 border-gray-800'
             >
@@ -134,6 +146,8 @@ export default function PlaceEdit() {
                         <option value='mountain'>Mountain</option>
                         <option value='beach'>Beach</option>
                         <option value='monastery'>Monastery</option>
+                        <option value='historic-town'>Historic Town</option>
+                        <option value='landmark'>Landmark</option>
                         <option value='lake'>Lake</option>
                         <option value='park'>Park</option>
                         <option value='river'>River</option>

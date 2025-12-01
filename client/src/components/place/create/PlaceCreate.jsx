@@ -130,6 +130,8 @@ export default function PlaceCreate() {
                         <option value='mountain'>Mountain</option>
                         <option value='beach'>Beach</option>
                         <option value='monastery'>Monastery</option>
+                        <option value='historic-town'>Historic Town</option>
+                        <option value='landmark'>Landmark</option>
                         <option value='lake'>Lake</option>
                         <option value='park'>Park</option>
                         <option value='river'>River</option>
