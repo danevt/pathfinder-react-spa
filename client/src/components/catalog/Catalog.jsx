@@ -7,18 +7,21 @@ import { PLACES_API } from '../../config/api.js';
 export default function Catalog() {
     const [places, setPlaces] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [sortAsc, setSortAsc] = useState(false);
     const placesPerPage = 3;
 
     useEffect(() => {
         request(PLACES_API)
             .then(result => {
-                const sortedPlaces = Object.values(result).sort(
-                    (a, b) => b._createdOn - a._createdOn
+                const sortedPlaces = Object.values(result).sort((a, b) =>
+                    sortAsc
+                        ? a._createdOn - b._createdOn
+                        : b._createdOn - a._createdOn
                 );
                 setPlaces(sortedPlaces);
             })
             .catch(error => alert(error.message));
-    }, []);
+    }, [sortAsc]);
 
     const totalPages = Math.ceil(places.length / placesPerPage);
 
@@ -61,6 +64,16 @@ export default function Catalog() {
                             Discover interesting destinations around you
                         </p>
                     </div>
+
+                    <div className='flex justify-center gap-2 mb-4'>
+                        <button
+                            onClick={() => setSortAsc(prev => !prev)}
+                            className='bg-[#4A9603] hover:bg-[#5ECF00] text-black font-bold py-2 px-4 rounded-xl shadow-md border-b-4 border-black border-r-4 border-gray-900'
+                        >
+                            {sortAsc ? 'Oldest First ↑' : 'Newest First ↓'}
+                        </button>
+                    </div>
+
                     <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8'>
                         {currentPlaces.map(place => (
                             <PlaceCard key={place._id} {...place} />
