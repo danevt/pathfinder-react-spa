@@ -26,10 +26,9 @@ export default function PlaceDelete({
 
     return (
         <div className='absolute inset-0  flex items-center justify-center z-50'>
-            <div className='fixed inset-0 inset-0   bg-opacity-20 backdrop-blur-[2px]'></div>
+            <div className='fixed inset-0 bg-opacity-20 backdrop-blur-[2px]'></div>
 
             <div className='bg-white rounded-xl shadow-md w-full max-w-md border-b-8 border-black border-r-6 border-gray-900 relative p-6 z-10 pointer-events-auto'>
-                
                 <button
                     onClick={onCancel}
                     className='absolute top-3 right-3 w-6 h-6 bg-black text-white font-bold flex items-center justify-center rounded-sm border-black border-r-2 border-b-2 hover:bg-red-500  transform transition-transform duration-300 hover:scale-105'
@@ -47,7 +46,6 @@ export default function PlaceDelete({
                     ?
                 </h2>
                 <div className='flex justify-center gap-12'>
-
                     <button
                         onClick={deletePlaceHandler}
                         disabled={isDeleting}
