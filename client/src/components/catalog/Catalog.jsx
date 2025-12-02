@@ -12,10 +12,10 @@ export default function Catalog() {
     useEffect(() => {
         request(PLACES_API)
             .then(result => {
-                const allPlaces = Object.values(result).sort(
+                const sortedPlaces = Object.values(result).sort(
                     (a, b) => b._createdOn - a._createdOn
                 );
-                setPlaces(allPlaces);
+                setPlaces(sortedPlaces);
             })
             .catch(error => alert(error.message));
     }, []);

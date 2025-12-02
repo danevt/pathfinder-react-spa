@@ -4,7 +4,7 @@ export default function CommentCard({ comment }) {
     const formattedDate = new Date(_createdOn).toLocaleDateString();
 
     return (
-        <div className='bg-white rounded-xl shadow-md w-full max-w-md border-b-8 border-black border-r-6 border-gray-900 relative p-6 z-10 pointer-events-auto'>
+        <div className='bg-white rounded-xl shadow-md w-full max-w-lg border-b-8 border-black border-r-6 border-gray-900 relative p-8 z-10 pointer-events-auto'>
             <h2 className='text-1xl font-semibold text-black drop-shadow-lg text-center mb-6'>
                 {text}
             </h2>
