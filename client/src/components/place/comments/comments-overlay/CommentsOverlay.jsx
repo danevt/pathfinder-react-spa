@@ -1,6 +1,24 @@
+import { useEffect, useState } from 'react';
+import { COMMENTS_API } from '../../../../config/api.js';
 import CommentCard from '../comment-card/CommentCard.jsx';
+import request from '../../../../utils/requester.js';
 
-export default function CommentsOverlay({ onClose }) {
+export default function CommentsOverlay({ onClose, placeId }) {
+    const [comments, setComments] = useState([]);
+
+    useEffect(() => {
+        request(`${COMMENTS_API}`)
+            .then(result => {
+                const all = Object.values(result);
+                const filtred = all.filter(
+                    comment => comment.placeId === placeId
+                );
+
+                setComments(filtred);
+            })
+            .catch(error => alert(error.message));
+    }, [placeId]);
+
     return (
         <div className='absolute inset-0 z-50 flex items-center justify-center pt-10 md:pt-10 lg:pt-20'>
             <div
@@ -19,16 +37,11 @@ export default function CommentsOverlay({ onClose }) {
                 <h2 className='text-3xl text-white text-center font-bold drop-shadow-[5px_5px_2px_black] mb-6'>
                     Comments
                 </h2>
+
                 <div className='grid grid-cols-2 gap-5 max-h-[600px] overflow-y-auto'>
-                    <CommentCard />
-                    <CommentCard />
-                    <CommentCard />
-                    <CommentCard />
-                    <CommentCard />
-                    <CommentCard />
-                    <CommentCard />
-                    <CommentCard />
-                    <CommentCard />
+                    {comments.map(comment => (
+                        <CommentCard key={comment._id} comment={comment} />
+                    ))}
                 </div>
             </div>
         </div>

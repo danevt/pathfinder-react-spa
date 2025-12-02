@@ -1,19 +1,22 @@
-export default function CommentCard() {
+export default function CommentCard({ comment }) {
+    const { avatar, username, _createdOn, text } = comment;
+    const avatarSrc = `/images/avatars/${avatar}.svg`;
+    const formattedDate = new Date(_createdOn).toLocaleDateString();
+
     return (
         <div className='bg-white rounded-xl shadow-md w-full max-w-md border-b-8 border-black border-r-6 border-gray-900 relative p-6 z-10 pointer-events-auto'>
             <h2 className='text-1xl font-semibold text-black drop-shadow-lg text-center mb-6'>
-                Comment...Amazing view and peaceful surroundings. Definitely
-                worth visiting! Great for hiking and photography.
+                {text}
             </h2>
             <div className='flex items-center gap-2'>
                 <img
-                    src='/images/avatars/avatar1.svg'
-                    alt='Author Avatar'
+                    src={avatarSrc}
+                    alt={username}
                     className='w-12 h-12 rounded-full'
                 />
                 <div className='text-gray-700 text-sm'>
-                    <p className='font-semibold'>John Doe</p>
-                    <p>27 Nov 2025</p>
+                    <p className='font-semibold'>{username}</p>
+                    <p>{formattedDate}</p>
                 </div>
                 <p className='text-sm mt-4 text-[#4A9603] font-bold text-shadow-sm'>
                     Likes→10

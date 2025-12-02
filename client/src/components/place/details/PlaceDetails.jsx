@@ -99,6 +99,7 @@ export default function PlaceDetails() {
                             {showComments && (
                                 <CommentsOverlay
                                     onClose={() => setShowComments(false)}
+                                    placeId={placeId}
                                 />
                             )}
                             <Link to={`/places/${placeId}/edit`}>
