@@ -21,7 +21,7 @@ export default function Home() {
 
     return (
         <section className='bg-gradient-to-r from-black via-gray-500 to-black p-6 flex flex-col items-center'>
-            <div className='text-white text-center font-bold drop-shadow-[2px_2px_2px_black] mb-10'>
+            <div className='text-white text-center font-bold drop-shadow-[5px_5px_2px_black] mb-10'>
                 <h2 className='text-4xl sm:text-5xl md:text-5xl text-center font-bold mb-4'>
                     Welcome to Pathfinder
                 </h2>
@@ -38,10 +38,10 @@ export default function Home() {
                 </div>
             ) : (
                 <div className='flex flex-col items-center gap-4 mt-20'>
-                    <h3 className='text-4xl sm:text-5xl md:text-5xl font-bold text-white p-0 drop-shadow-[3px_3px_3px_black] text-center'>
+                    <h3 className='text-4xl sm:text-5xl md:text-5xl font-bold text-white p-0 drop-shadow-[5px_5px_2px_black] text-center'>
                         No destinations added yet!
                     </h3>
-                    <p className='text-3xl font-bold text-white text-center font-bold drop-shadow-[2px_2px_2px_black] mb-10'>
+                    <p className='text-3xl font-bold text-white text-center font-bold drop-shadow-[5px_5px_2px_black] mb-10'>
                         Be the first to add a{' '}
                         <Link
                             to='/create'

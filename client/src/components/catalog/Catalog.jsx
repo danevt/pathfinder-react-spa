@@ -38,10 +38,10 @@ export default function Catalog() {
         <section className='bg-gradient-to-r from-black via-gray-500 to-black p-6 flex flex-col'>
             {places.length === 0 ? (
                 <div className='flex flex-col items-center gap-4 mt-20'>
-                    <p className='text-4xl sm:text-5xl md:text-6xl font-bold text-white p-24 drop-shadow-[3px_3px_3px_black] text-center'>
+                    <p className='text-4xl sm:text-5xl md:text-6xl font-bold text-white p-24 drop-shadow-[5px_5px_2px_black] text-center'>
                         No Destinations To Explore Yet
                     </p>
-                    <p className='text-3xl font-bold text-white text-center drop-shadow-[2px_2px_2px_black]'>
+                    <p className='text-3xl font-bold text-white text-center drop-shadow-[5px_5px_2px_black]'>
                         Be the first to add a{' '}
                         <Link
                             to='/create'
@@ -53,7 +53,7 @@ export default function Catalog() {
                 </div>
             ) : (
                 <>
-                    <div className='text-white font-bold drop-shadow-[2px_2px_2px_black] mb-8'>
+                    <div className='text-white font-bold drop-shadow-[5px_5px_2px_black] mb-8'>
                         <h2 className='text-4xl sm:text-5xl md:text-5xl text-center font-bold mb-4'>
                             Explore Places
                         </h2>

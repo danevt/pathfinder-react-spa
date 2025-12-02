@@ -48,7 +48,7 @@ export default function PlaceEdit() {
                 id='edit-place'
                 className='bg-white rounded-xl shadow-lg p-8 w-full max-w-md space-y-6 border-b-6 border-black border-r-6 border-gray-800'
             >
-                <h2 className='text-4xl font-bold text-center text-black drop-shadow-[1px_1px_1px_black]'>
+                <h2 className='text-4xl font-bold text-center text-[#4A9603] drop-shadow-[3px_3px_1px_black]'>
                     Edit Place
                 </h2>
 
@@ -104,7 +104,7 @@ export default function PlaceEdit() {
                         value={values.description}
                         required
                         placeholder='Describe the place...'
-                        className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
+                        className='w-full h-40 px-5 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
                     ></textarea>
                 </div>
 
@@ -211,7 +211,7 @@ export default function PlaceEdit() {
                 <p className='text-sm text-center mt-4 text-black font-semibold'>
                     <Link
                         to='/'
-                        className='text-[#4A9603] font-bold hover:text-[#5ECF00] transition text-shadow-sm'
+                        className='text-[#4A9603] drop-shadow-[1px_1px_0px_black] font-bold hover:text-[#5ECF00] transition text-shadow-sm'
                     >
                         Back to Home
                     </Link>

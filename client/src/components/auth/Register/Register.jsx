@@ -36,7 +36,7 @@ export default function Register({ onRegister }) {
                 onSubmit={submitHandler}
                 className='bg-white rounded-xl shadow-lg p-8 w-full max-w-md space-y-6 border-b-6 border-black border-r-6 border-gray-800'
             >
-                <h2 className='text-4xl font-bold text-center text-black drop-shadow-[1px_1px_1px_black]'>
+                <h2 className='text-4xl font-bold text-center text-[#4A9603] drop-shadow-[3px_3px_1px_black]'>
                     Register
                 </h2>
                 <div>
@@ -105,7 +105,7 @@ export default function Register({ onRegister }) {
                 >
                     Register
                 </button>
-                <p className='text-sm text-center mt-4 text-black font-semibold text-shadow-sm'>
+                <p className='text-sm text-center mt-4 text-black font-semibold drop-shadow-[1px_1px_0px_black]'>
                     Already have an account?{' '}
                     <Link
                         to='/login'
