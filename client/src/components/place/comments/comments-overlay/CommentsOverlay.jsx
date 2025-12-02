@@ -45,7 +45,6 @@ export default function CommentsOverlay({ onClose, placeId }) {
                 >
                     {sortAsc ? '↓' : '↑'}
                 </button>
-             
 
                 {comments.length === 0 ? (
                     <div className='flex flex-col items-center gap-4 mt-20'>
@@ -65,7 +64,19 @@ export default function CommentsOverlay({ onClose, placeId }) {
                 ) : (
                     <div className='flex flex-col gap-4 max-h-[80vh] pr-4 overflow-y-auto'>
                         {comments.map(comment => (
-                            <CommentCard key={comment._id} comment={comment} />
+                            <CommentCard
+                                key={comment._id}
+                                comment={comment}
+                                onUpdate={updatedComment => {
+                                    setComments(prevComments =>
+                                        prevComments.map(c =>
+                                            c._id === updatedComment._id
+                                                ? updatedComment
+                                                : c
+                                        )
+                                    );
+                                }}
+                            />
                         ))}
                     </div>
                 )}
