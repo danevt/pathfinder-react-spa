@@ -3,12 +3,14 @@ import { Link, useNavigate, useParams } from 'react-router';
 import PlaceDelete from '../delete/PlaceDelete.jsx';
 import request from '../../../utils/requester.js';
 import { PLACES_API } from '../../../config/api.js';
+import CommentsOverlay from '../comments/comments-overlay/CommentsOverlay.jsx';
 
 export default function PlaceDetails() {
     const { placeId } = useParams();
     const navigate = useNavigate();
     const [place, setPlace] = useState({});
     const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [showComments, setShowComments] = useState(false);
 
     useEffect(() => {
         request(`${PLACES_API}${placeId}`)
@@ -30,7 +32,7 @@ export default function PlaceDetails() {
     };
     return (
         <section className='bg-gradient-to-r from-black via-gray-500 to-black p-6  flex flex-col items-center'>
-            <div className='text-white text-center font-bold drop-shadow-[2px_2px_2px_black] mb-6'>
+            <div className='text-white text-center font-bold drop-shadow-[5px_5px_2px_black] mb-6'>
                 <h2 className='text-4xl font-bold mb-2'>
                     Explore this Destination
                 </h2>
@@ -74,17 +76,31 @@ export default function PlaceDetails() {
                         </p>
                         <div className='flex items-center gap-2'>
                             {/* TODO */}
-                            {/* <img
+                            <img
                                 src='/images/avatars/avatar1.svg'
                                 alt='Author Avatar'
                                 className='w-12 h-12 rounded-full'
-                                /> */}
+                            />
                             {/* <div className='text-gray-700 text-sm'>
                                 <p className='font-semibold'>John Doe</p>
                                 <p>Created on: 27 Nov 2025</p>
                                 </div> */}
                         </div>
                         <div className='flex gap-2'>
+                            <button className='bg-yellow-500 text-black font-bold py-2 px-4 rounded-xl border-b-4 border-black border-r-4 border-gray-900 hover:bg-yellow-400 transform transition-transform duration-300 hover:scale-105'>
+                                Like
+                            </button>
+                            <button
+                                onClick={() => setShowComments(true)}
+                                className='bg-blue-500 text-black font-bold py-2 px-2 rounded-xl border-b-4 border-black border-r-4 border-gray-900 hover:bg-blue-400 transform transition-transform duration-300 hover:scale-105'
+                            >
+                                Comments
+                            </button>
+                            {showComments && (
+                                <CommentsOverlay
+                                    onClose={() => setShowComments(false)}
+                                />
+                            )}
                             <Link to={`/places/${placeId}/edit`}>
                                 <button className='bg-[#4A9603] text-black font-bold py-2 px-6 rounded-xl border-b-4 border-black border-r-4 border-gray-900 hover:bg-[#5ECF00] transform transition-transform duration-300 hover:scale-105'>
                                     Edit
