@@ -18,15 +18,15 @@ export default function CommentCard({ comment }) {
                     <p className='font-semibold'>{username}</p>
                     <p>{formattedDate}</p>
                 </div>
-                <p className='text-sm mt-4 text-[#4A9603] font-bold text-shadow-sm'>
-                    Likes→10
+                <p className='text-sm mt-4 text-[#4A9603] font-bold drop-shadow-[1px_1px_0px_black]'>
+                    10 Likes
                 </p>
             </div>
             <div className='relative flex-1'>
                 <div className='absolute bottom-0 right-0 flex gap-2'>
-                    <button className='bg-yellow-500 text-black font-bold py-2 px-4 rounded-xl border-b-4 border-black border-r-4 border-gray-900 hover:bg-yellow-400 transform transition-transform duration-300 hover:scale-105'>
+                    {/* <button className='bg-yellow-500 text-black font-bold py-2 px-4 rounded-xl border-b-4 border-black border-r-4 border-gray-900 hover:bg-yellow-400 transform transition-transform duration-300 hover:scale-105'>
                         Like
-                    </button>
+                    </button> */}
                     <button className='bg-[#4A9603] text-black font-bold py-2 px-4 rounded-xl border-b-4 border-black border-r-4 border-gray-900 hover:bg-[#5ECF00] transform transition-transform duration-300 hover:scale-105'>
                         Edit
                     </button>

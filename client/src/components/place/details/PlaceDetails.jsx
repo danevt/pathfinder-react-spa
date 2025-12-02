@@ -4,6 +4,7 @@ import PlaceDelete from '../delete/PlaceDelete.jsx';
 import request from '../../../utils/requester.js';
 import { PLACES_API } from '../../../config/api.js';
 import CommentsOverlay from '../comments/comments-overlay/CommentsOverlay.jsx';
+import CommentCreateOverlay from '../comments/comment-create/CommentCreateOverlay.jsx';
 
 export default function PlaceDetails() {
     const { placeId } = useParams();
@@ -11,6 +12,13 @@ export default function PlaceDetails() {
     const [place, setPlace] = useState({});
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [showComments, setShowComments] = useState(false);
+    const [showCreateComments, setShowCreateComments] = useState(false);
+
+    //TODO static user for testing
+    const user = {
+        username: 'TestUser',
+        avatar: '/images/avatars/avatar1.svg'
+    };
 
     useEffect(() => {
         request(`${PLACES_API}${placeId}`)
@@ -90,6 +98,20 @@ export default function PlaceDetails() {
                             <button className='bg-yellow-500 text-black font-bold py-2 px-4 rounded-xl border-b-4 border-black border-r-4 border-gray-900 hover:bg-yellow-400 transform transition-transform duration-300 hover:scale-105'>
                                 Like
                             </button>
+                            <button
+                                onClick={() => setShowCreateComments(true)}
+                                className='bg-blue-500 text-black font-bold py-2 px-2 rounded-xl border-b-4 border-black border-r-4 border-gray-900 hover:bg-blue-400 transform transition-transform duration-300 hover:scale-105'
+                            >
+                                +Add
+                            </button>
+                            {showCreateComments && (
+                                <CommentCreateOverlay
+                                    placeId={placeId}
+                                    user={user}
+                                    onClose={() => setShowCreateComments(false)}
+                                />
+                            )}
+
                             <button
                                 onClick={() => setShowComments(true)}
                                 className='bg-blue-500 text-black font-bold py-2 px-2 rounded-xl border-b-4 border-black border-r-4 border-gray-900 hover:bg-blue-400 transform transition-transform duration-300 hover:scale-105'
