@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import request from '../../../../utils/requester.js';
 import { COMMENTS_API } from '../../../../config/api.js';
+import request from '../../../../utils/requester.js';
 import LogoSpinner from '../../../ui/spinner/LogoSpinner.jsx';
 
 export default function CommentEditOverlay({ comment, onClose, onSave }) {

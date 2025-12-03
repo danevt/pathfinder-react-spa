@@ -1,11 +1,25 @@
 import { useState } from 'react';
+import { COMMENTS_API } from '../../../../config/api.js';
+import request from '../../../../utils/requester.js';
 import CommentEditOverlay from '../comment-edit/CommentEditOverlay.jsx';
 
-export default function CommentCard({ comment, onUpdate }) {
+export default function CommentCard({ comment, onUpdate, onDelete }) {
     const { avatar, username, _createdOn, text } = comment;
     const avatarSrc = `/images/avatars/${avatar}.svg`;
     const formattedDate = new Date(_createdOn).toLocaleDateString();
     const [isEditing, setIsEditing] = useState(false);
+
+    const handleDelete = () => {
+        if (!confirm('Are you sure you want to delete this comment?')) return;
+
+        request(`${COMMENTS_API}${comment._id}`, 'DELETE')
+            .then(() => {
+                onDelete(comment._id);
+            })
+            .catch(err => {
+                alert(err.message || 'Failed to delete comment');
+            });
+    };
 
     return (
         <>
@@ -38,7 +52,10 @@ export default function CommentCard({ comment, onUpdate }) {
                         >
                             Edit
                         </button>
-                        <button className='py-2 px-2 rounded-xl border-b-4 border-black border-r-4 font-bold text-black transform transition-transform duration-300 hover:scale-105 bg-red-600 hover:bg-red-500'>
+                        <button
+                            onClick={handleDelete}
+                            className='py-2 px-2 rounded-xl border-b-4 border-black border-r-4 font-bold text-black transform transition-transform duration-300 hover:scale-105 bg-red-600 hover:bg-red-500'
+                        >
                             Delete
                         </button>
                     </div>
