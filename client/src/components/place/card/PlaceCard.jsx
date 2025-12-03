@@ -9,7 +9,7 @@ export default function PlaceCard({
     difficulty
 }) {
     return (
-        <div className='bg-white rounded-xl shadow-md overflow-hidden border-b-6 border-black border-r-6 border-gray-900 transform transition-transform duration-300 hover:scale-105'>
+        <div className='bg-gradient-to-r from-white via-gray-300 to-gray-400 rounded-xl shadow-md overflow-hidden border-b-6 border-black border-r-6 border-gray-900 transform transition-transform duration-300 hover:scale-105'>
             <img
                 src={imageUrl}
                 alt={title}
@@ -33,12 +33,6 @@ export default function PlaceCard({
                 </div>
 
                 <div className='flex justify-between items-center'>
-                    <div className='flex items-center gap-1'>
-                        {/* TODO */}
-
-                        {/* <span className='text-yellow-500'>★ ★ ★ ★ ☆</span> */}
-                        {/* <span className='text-sm text-gray-600'>(4.5)</span> */}
-                    </div>
                     <Link to={`/places/${_id}/details`}>
                         <button
                             className='bg-[#4A9603] hover:bg-[#5ECF00] text-black font-bold py-2 px-6

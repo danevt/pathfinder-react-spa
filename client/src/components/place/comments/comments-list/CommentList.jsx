@@ -3,22 +3,29 @@ import { Link } from 'react-router';
 import { COMMENTS_API } from '../../../../config/api.js';
 import CommentCard from '../comment-card/CommentCard.jsx';
 import request from '../../../../utils/requester.js';
+import LogoSpinner from '../../../ui/spinner/LogoSpinner.jsx';
 
-export default function CommentsOverlay({ onClose, placeId }) {
+export default function CommentList({ onClose, placeId, currentUser }) {
     const [comments, setComments] = useState([]);
     const [sortAsc, setSortAsc] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        setLoading(true);
         request(COMMENTS_API)
             .then(result => {
-                const sortedComments = Object.values(result)
-                    .filter(comment => comment.placeId === placeId)
-                    .sort((a, b) => b._createdOn - a._createdOn);
-
-                setComments(sortedComments);
+                const filteredComments = Object.values(result).filter(
+                    comment => comment.placeId === placeId
+                );
+                setComments(filteredComments);
             })
-            .catch(error => alert(error.message));
+            .catch(error => alert(error.message))
+            .finally(() => setLoading(false));
     }, [placeId]);
+
+    const sortedComments = [...comments].sort((a, b) =>
+        sortAsc ? a._createdOn - b._createdOn : b._createdOn - a._createdOn
+    );
 
     return (
         <div className='absolute inset-0 z-50 flex items-center justify-center pt-10 md:pt-10 lg:pt-20'>
@@ -46,12 +53,14 @@ export default function CommentsOverlay({ onClose, placeId }) {
                     {sortAsc ? '↓' : '↑'}
                 </button>
 
-                {comments.length === 0 ? (
+                {loading ? (
+                    <LogoSpinner />
+                ) : comments.length === 0 ? (
                     <div className='flex flex-col items-center gap-4 mt-20'>
                         <h3 className='text-4xl sm:text-5xl md:text-5xl font-bold text-white p-0 drop-shadow-[5px_5px_2px_black] text-center'>
                             No comments yet!
                         </h3>
-                        <p className='text-3xl font-bold text-white text-center drop-shadow-[5px_5px_2px_black] mb-10'>
+                        <p className='text-3xl font-bold text-white text-center drop-shadow-[4px_4px_2px_black] mb-10'>
                             Be the first to{' '}
                             <Link
                                 to={`/places/${placeId}/add-comment`}
@@ -63,16 +72,25 @@ export default function CommentsOverlay({ onClose, placeId }) {
                     </div>
                 ) : (
                     <div className='flex flex-col gap-4 max-h-[80vh] pr-4 overflow-y-auto'>
-                        {comments.map(comment => (
+                        {sortedComments.map(comment => (
                             <CommentCard
                                 key={comment._id}
+                                currentUser={currentUser}
                                 comment={comment}
                                 onUpdate={updatedComment => {
-                                    setComments(prevComments =>
-                                        prevComments.map(c =>
-                                            c._id === updatedComment._id
+                                    setComments(previousComments =>
+                                        previousComments.map(comment =>
+                                            comment._id === updatedComment._id
                                                 ? updatedComment
-                                                : c
+                                                : comment
+                                        )
+                                    );
+                                }}
+                                onDelete={deletedCommentId => {
+                                    setComments(previousComments =>
+                                        previousComments.filter(
+                                            comment =>
+                                                comment._id !== deletedCommentId
                                         )
                                     );
                                 }}

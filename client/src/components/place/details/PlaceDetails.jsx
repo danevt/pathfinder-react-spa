@@ -3,31 +3,29 @@ import { Link, useNavigate, useParams } from 'react-router';
 import PlaceDelete from '../delete/PlaceDelete.jsx';
 import request from '../../../utils/requester.js';
 import { PLACES_API } from '../../../config/api.js';
-import CommentsOverlay from '../comments/comments-overlay/CommentsOverlay.jsx';
 import CommentCreateOverlay from '../comments/comment-create/CommentCreateOverlay.jsx';
+import CommentList from '../comments/comments-list/CommentList.jsx';
+import LogoSpinner from '../../ui/spinner/LogoSpinner.jsx';
 
-export default function PlaceDetails() {
+export default function PlaceDetails({ currentUser }) {
     const { placeId } = useParams();
     const navigate = useNavigate();
     const [place, setPlace] = useState({});
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [showComments, setShowComments] = useState(false);
     const [showCreateComments, setShowCreateComments] = useState(false);
-
-    //TODO static user for testing
-    const user = {
-        username: 'TestUser',
-        avatar: '/images/avatars/avatar1.svg'
-    };
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
+        setIsLoading(true);
         request(`${PLACES_API}${placeId}`)
             .then(result => setPlace(result))
-            .catch(error => alert(error.message));
+            .catch(error => alert(error.message))
+            .finally(() => setIsLoading(false));
     }, [placeId]);
 
-    if (!place._id) {
-        return <p className='text-white text-3xl'>Loading...</p>;
+    if (isLoading) {
+        return <LogoSpinner />;
     }
 
     const cancelDeleteHandler = () => {
@@ -68,12 +66,6 @@ export default function PlaceDetails() {
                         <p className='text-gray-500 font-semibold text-left text-shadow-sm'>
                             {place.location}
                         </p>
-
-                        <div className='flex items-center gap-2 mt-2 text-left text-shadow-sm'>
-                            {/* TODO */}
-                            {/* <span className='text-yellow-500'>★ ★ ★ ★ ☆</span> */}
-                            {/* <span className='text-gray-600'>(4.5)</span> */}
-                        </div>
                     </div>
                     <div className='my-8  font-bold text-black flex-1 overflow-auto text-shadow-sm'>
                         <p>{place.description}</p>
@@ -107,7 +99,7 @@ export default function PlaceDetails() {
                             {showCreateComments && (
                                 <CommentCreateOverlay
                                     placeId={placeId}
-                                    user={user}
+                                    currentUser={currentUser}
                                     onClose={() => setShowCreateComments(false)}
                                 />
                             )}
@@ -119,7 +111,8 @@ export default function PlaceDetails() {
                                 Comments
                             </button>
                             {showComments && (
-                                <CommentsOverlay
+                                <CommentList
+                                    currentUser={currentUser}
                                     onClose={() => setShowComments(false)}
                                     placeId={placeId}
                                 />
@@ -135,12 +128,6 @@ export default function PlaceDetails() {
                             >
                                 Delete
                             </button>
-                            {/* TODO */}
-                            {/* <Link>
-                                <button className='bg-[#4A9603] text-black font-bold py-2 px-4 rounded-xl border-b-4 border-black border-r-4 border-gray-900 hover:bg-[#5ECF00] transform transition-transform duration-300 hover:scale-105'>
-                                    Rate
-                                </button>
-                            </Link> */}
                         </div>
                     </div>
                 </div>

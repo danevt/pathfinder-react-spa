@@ -1,8 +1,13 @@
 import { useState } from 'react';
 import { COMMENTS_API } from '../../../../config/api.js';
 import request from '../../../../utils/requester.js';
+import LogoSpinner from '../../../ui/spinner/LogoSpinner.jsx';
 
-export default function CommentCreateOverlay({ onClose, placeId, user }) {
+export default function CommentCreateOverlay({
+    onClose,
+    placeId,
+    currentUser
+}) {
     const [text, setText] = useState('');
     const [loading, setLoading] = useState(false);
 
@@ -12,12 +17,14 @@ export default function CommentCreateOverlay({ onClose, placeId, user }) {
 
         setLoading(true);
 
+        const { username, avatar } = currentUser;
+
         try {
             const newComment = {
                 placeId,
                 text,
-                username: user.username,
-                avatar: user.avatar,
+                username,
+                avatar,
                 _createdOn: Date.now()
             };
 
@@ -33,6 +40,9 @@ export default function CommentCreateOverlay({ onClose, placeId, user }) {
     };
     return (
         <div className='absolute inset-0 z-50 flex items-center justify-center'>
+            
+            {loading && <LogoSpinner />}
+
             <div
                 className='fixed inset-0 bg-transparent backdrop-blur-[2px] pointer-events-auto'
                 onClick={onClose}

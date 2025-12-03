@@ -33,7 +33,9 @@ export default function CommentEditOverlay({ comment, onClose, onSave }) {
 
     return (
         <div className='absolute inset-0 z-50 flex items-center justify-center'>
+
             {loading && <LogoSpinner />}
+            
             <div
                 className='fixed inset-0 bg-black/10 backdrop-blur-[2px]'
                 onClick={onClose}

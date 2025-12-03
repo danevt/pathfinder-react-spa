@@ -1,12 +1,16 @@
 import { Link, useNavigate } from 'react-router';
 import { PLACES_API } from '../../../config/api.js';
 import request from '../../../utils/requester.js';
+import LogoSpinner from '../../ui/spinner/LogoSpinner.jsx';
+import { useState } from 'react';
 
 export default function PlaceCreate() {
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
 
     const addPlaceHandler = async e => {
         e.preventDefault();
+        setLoading(true);
 
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData);
@@ -18,11 +22,15 @@ export default function PlaceCreate() {
             navigate('/catalog');
         } catch (error) {
             alert(error.message);
+        } finally {
+            setLoading(false);
         }
     };
 
     return (
         <section className='bg-gradient-to-r from-black via-gray-500 to-black px-6 py-12 flex justify-center items-center'>
+            {loading && <LogoSpinner />}
+
             <form
                 id='add-new-place'
                 onSubmit={addPlaceHandler}

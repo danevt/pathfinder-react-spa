@@ -68,7 +68,7 @@ function App() {
                         <Route path='/create' element={<PlaceCreate />} />
                         <Route
                             path='/places/:placeId/details'
-                            element={<PlaceDetails />}
+                            element={<PlaceDetails currentUser={user} />}
                         />
                         <Route
                             path='/places/:placeId/edit'

@@ -164,126 +164,144 @@
             "placeId": "5f1d7c2e",
             "userId": "u2",
             "text": "Perfect weekend spot! Trails are easy and the nature is amazing.",
-            "_createdOn": 1617250000000
+            "_createdOn": 1617250000000,
+            "likes": ["u1", "u3"]
         },
         "c2": {
             "_id": "c2",
             "placeId": "5f1d7c2e",
             "userId": "u3",
             "text": "We go every spring. Lovely place for beginners.",
-            "_createdOn": 1617253000000
+            "_createdOn": 1617253000000,
+            "likes": ["u2"]
         },
         "c3": {
             "_id": "c3",
             "placeId": "7b3c9f4g",
             "userId": "u1",
             "text": "Seven Rila Lakes never disappoints! Wear good shoes.",
-            "_createdOn": 1617260000000
+            "_createdOn": 1617260000000,
+            "likes": ["u3", "u4"]
         },
         "c4": {
             "_id": "c4",
             "placeId": "7b3c9f4g",
             "userId": "u4",
             "text": "The views are magical. One of the best places I've visited.",
-            "_createdOn": 1617261000000
+            "_createdOn": 1617261000000,
+            "likes": ["u1"]
         },
         "c5": {
             "_id": "c5",
             "placeId": "7b3c9f4g",
             "userId": "u2",
             "text": "Crowded in summer but worth it!",
-            "_createdOn": 1617262000000
+            "_createdOn": 1617262000000,
+            "likes": ["u1", "u2", "u4"]
         },
         "c6": {
             "_id": "c6",
             "placeId": "8c4d0g5h",
             "userId": "u3",
             "text": "Eerie atmosphere but incredible location!",
-            "_createdOn": 1617270000000
+            "_createdOn": 1617270000000,
+            "likes": ["u4"]
         },
         "c7": {
             "_id": "c7",
             "placeId": "8c4d0g5h",
             "userId": "u1",
             "text": "One of the most unique places I’ve seen.",
-            "_createdOn": 1617272000000
+            "_createdOn": 1617272000000,
+            "likes": ["u2", "u3"]
         },
         "c8": {
             "_id": "c8",
             "placeId": "9d5e1h6i",
             "userId": "u4",
             "text": "Great atmosphere in the old town!",
-            "_createdOn": 1617280000000
+            "_createdOn": 1617280000000,
+            "likes": ["u1"]
         },
         "c9": {
             "_id": "c9",
             "placeId": "9d5e1h6i",
             "userId": "u3",
             "text": "Nice cafes and beautiful architecture.",
-            "_createdOn": 1617281000000
+            "_createdOn": 1617281000000,
+            "likes": ["u2", "u4"]
         },
         "c10": {
             "_id": "c10",
             "placeId": "01karandila",
             "userId": "u1",
             "text": "Perfect view over Sliven!",
-            "_createdOn": 1617290000000
+            "_createdOn": 1617290000000,
+            "likes": ["u3"]
         },
         "c11": {
             "_id": "c11",
             "placeId": "01karandila",
             "userId": "u4",
             "text": "Great for a weekend hike!",
-            "_createdOn": 1617291000000
+            "_createdOn": 1617291000000,
+            "likes": ["u1", "u2"]
         },
         "c12": {
             "_id": "c12",
             "placeId": "02bolata",
             "userId": "u2",
             "text": "One of the most beautiful beaches in Bulgaria!",
-            "_createdOn": 1617300000000
+            "_createdOn": 1617300000000,
+            "likes": ["u3"]
         },
         "c13": {
             "_id": "c13",
             "placeId": "02bolata",
             "userId": "u3",
             "text": "Crystal clear water and amazing cliffs.",
-            "_createdOn": 1617301000000
+            "_createdOn": 1617301000000,
+            "likes": ["u1", "u4"]
         },
         "c14": {
             "_id": "c14",
             "placeId": "02bolata",
             "userId": "u1",
             "text": "Quiet and peaceful during the week.",
-            "_createdOn": 1617302000000
+            "_createdOn": 1617302000000,
+            "likes": ["u2"]
         },
         "c15": {
             "_id": "c15",
             "placeId": "0e6f2i7j",
             "userId": "u2",
             "text": "Amazing trails with breathtaking views, perfect for a day hike.",
-            "_createdOn": 1617305000000
+            "_createdOn": 1617305000000,
+            "likes": ["u1", "u3", "u4"]
         },
         "c16": {
             "_id": "c16",
             "placeId": "0e6f2i7j",
             "userId": "u3",
             "text": "Loved the peaceful nature and the variety of wildlife along the paths.",
-            "_createdOn": 1617306000000
+            "_createdOn": 1617306000000,
+            "likes": ["u2"]
         },
         "c17": {
             "_id": "c17",
             "placeId": "04iskar",
             "userId": "u1",
             "text": "A spectacular gorge with dramatic scenery, a must-see for nature lovers.",
-            "_createdOn": 1617307000000
+            "_createdOn": 1617307000000,
+            "likes": ["u3", "u4"]
         },
         "c18": {
             "_id": "c18",
             "placeId": "04iskar",
             "userId": "u4",
             "text": "Perfect spot for photography and adventure hiking, truly unforgettable.",
-            "_createdOn": 1617308000000
+            "_createdOn": 1617308000000,
+            "likes": ["u1"]
         }
     }
 }

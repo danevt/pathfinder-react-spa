@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router';
 import { PLACES_API } from '../../../config/api.js';
 import request from '../../../utils/requester.js';
+import LogoSpinner from '../../ui/spinner/LogoSpinner.jsx';
 
 const initialValues = {
     title: '',
@@ -15,6 +16,7 @@ export default function PlaceEdit() {
     const navigate = useNavigate();
     const { placeId } = useParams();
     const [values, setValues] = useState(initialValues);
+    const [isLoading, setIsLoading] = useState(true);
 
     const inputHandler = e => {
         const { name, value } = e.target;
@@ -26,10 +28,16 @@ export default function PlaceEdit() {
     };
 
     useEffect(() => {
+        setIsLoading(true);
         request(`${PLACES_API}${placeId}`)
             .then(result => setValues(result))
-            .catch(error => alert(error.message));
+            .catch(error => alert(error.message))
+            .finally(() => setIsLoading(false));
     }, [placeId]);
+
+    if (isLoading) {
+        return <LogoSpinner />;
+    }
 
     const editPlaceHandler = async () => {
         try {
