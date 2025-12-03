@@ -63,7 +63,7 @@
             "difficulty": "medium",
             "likes": ["u4"],
             "_createdOn": 1617210000000,
-            "_ownerId": "u2"
+            "_ownerId": "u3"
         },
 
         "8c4d0g5h": {
@@ -76,7 +76,7 @@
             "difficulty": "hard",
             "likes": ["u2", "u3"],
             "_createdOn": 1617220000000,
-            "_ownerId": "u1"
+            "_ownerId": "u4"
         },
 
         "9d5e1h6i": {
@@ -89,7 +89,7 @@
             "difficulty": "easy",
             "likes": ["u2"],
             "_createdOn": 1617230000000,
-            "_ownerId": "u2"
+            "_ownerId": "u1"
         },
 
         "0e6f2i7j": {
@@ -100,9 +100,9 @@
             "location": "Bansko",
             "category": "mountain",
             "difficulty": "medium",
-            "likes": [],
+            "likes": ["u1"],
             "_createdOn": 1617240000000,
-            "_ownerId": "u1"
+            "_ownerId": "u2"
         },
 
         "01karandila": {
@@ -113,7 +113,7 @@
             "location": "Sliven",
             "category": "mountain",
             "difficulty": "medium",
-            "likes": ["u1", "u3"],
+            "likes": ["u1", "u4"],
             "_createdOn": 1617255500000,
             "_ownerId": "u3"
         },
@@ -126,7 +126,7 @@
             "location": "Kaliakra",
             "category": "beach",
             "difficulty": "easy",
-            "likes": ["u1", "u2", "u4"],
+            "likes": ["u1", "u2", "u3"],
             "_createdOn": 1617265500000,
             "_ownerId": "u4"
         },
@@ -139,9 +139,9 @@
             "location": "Asenovgrad",
             "category": "monastery",
             "difficulty": "easy",
-            "likes": [],
+            "likes": ["u2"],
             "_createdOn": 1617275500000,
-            "_ownerId": "u2"
+            "_ownerId": "u1"
         },
 
         "04iskar": {
@@ -154,7 +154,7 @@
             "difficulty": "hard",
             "likes": ["u3"],
             "_createdOn": 1617285500000,
-            "_ownerId": "u1"
+            "_ownerId": "u2"
         }
     },
 
@@ -211,7 +211,7 @@
             "_id": "c7",
             "placeId": "8c4d0g5h",
             "userId": "u1",
-            "text": "One of the most unique places I’ve seen.",
+            "text": "One of the most unique places I've seen.",
             "_createdOn": 1617272000000,
             "likes": ["u2", "u3"]
         },

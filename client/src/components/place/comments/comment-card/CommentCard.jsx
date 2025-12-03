@@ -81,7 +81,7 @@ export default function CommentCard({
                         <p className='font-semibold'>{username}</p>
                         <p>{formattedDate}</p>
                     </div>
-                    <p className='text-sm mt-4 text-yellow-500 font-bold drop-shadow-[1px_1px_0px_black]'>
+                    <p className='text-sm  text-yellow-500 font-bold drop-shadow-[1px_1px_0px_black]'>
                         {likes?.length || 0} Likes
                     </p>
                 </div>

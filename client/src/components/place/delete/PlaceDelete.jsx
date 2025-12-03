@@ -36,7 +36,7 @@ export default function PlaceDelete({
                     X
                 </button>
 
-                <h2 className='text-2xl font-bold text-gray-500  text-center mb-8 drop-shadow-[1px_1px_0px_black]'>
+                <h2 className='text-2xl font-bold text-black  text-center mb-8 drop-shadow-[1px_1px_0px_black]'>
                     Are you sure you want to
                     <br />
                     Delete{' '}
