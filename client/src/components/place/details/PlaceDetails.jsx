@@ -107,25 +107,22 @@ export default function PlaceDetails({ currentUser }) {
                     />
                 </div>
                 <div className='md:w-1/3 h-[600px] bg-gradient-to-r from-white via-gray-300 to-gray-400 rounded-xl shadow-lg p-6 flex flex-col justify-between border-b-6 border-black border-r-6 border-gray-800'>
-                    <div>
+                    <div className='flex justify-between items-center'>
                         <h2 className='text-xl font-extrabold text-black text-left text-shadow-sm'>
                             {place.title}
                         </h2>
-                        <p className='text-gray-500 font-semibold text-left text-shadow-sm'>
-                            {place.location}
+                        
+                        <p className='text-black uppercase font-semibold mt-2 text-right text-shadow-sm'>
+                            {place.category} | {place.difficulty}
                         </p>
                     </div>
+                    <p className='text-gray-500 font-semibold text-left text-shadow-sm'>
+                        {place.location}
+                    </p>
                     <div className='my-8  font-bold text-black flex-1 overflow-auto text-shadow-sm'>
                         <p>{place.description}</p>
                     </div>
                     <div className='flex justify-between items-end mt-4'>
-                        <p className='text-black uppercase font-semibold mt-2 text-left text-shadow-sm'>
-                            {place.category} | {place.difficulty}
-                        </p>
-                        <p className='text-yellow-500 font-bold text-sm drop-shadow-[1px_1px_0px_black] mr-4'>
-                            {likes.length} Likes
-                        </p>
-
                         {author && (
                             <div className='flex items-center gap-2'>
                                 <img
@@ -134,20 +131,24 @@ export default function PlaceDetails({ currentUser }) {
                                     className='w-12 h-12 rounded-full'
                                 />
                                 <div className='text-gray-700 text-sm'>
-                                    <p className='font-semibold'>
-                                        {author.username}
-                                    </p>
                                     <p className='text-sm text-gray-600 mt-1'>
-                                        Created on:{' '}
                                         <span className='font-semibold'>
                                             {formattedDate}
                                         </span>
                                     </p>
+                                    <p className='font-semibold'>
+                                        {author.username}
+                                    </p>
                                 </div>
                             </div>
                         )}
-
-                        <div className='flex gap-2'>
+                         <p className='text-yellow-500 font-bold text-sm drop-shadow-[1px_1px_0px_black] mr-4'>
+                            {likes.length} Likes
+                        </p>
+                        
+                    </div>
+                    <div className='flex justify-between items-end mt-4'>
+                        <div className='flex gap-2 mt-auto'>
                             <button
                                 onClick={handlePlaceLike}
                                 className='bg-yellow-500 text-black font-bold py-2 px-4 rounded-xl border-b-4 border-black border-r-4 border-gray-900 hover:bg-yellow-400 transform transition-transform duration-300 hover:scale-105'
