@@ -67,19 +67,19 @@ export default function CommentCard({
 
     return (
         <>
-            <div className='bg-white rounded-xl shadow-md w-full max-w-lg border-b-8 border-black border-r-6 border-gray-900 relative p-8 z-10 pointer-events-auto'>
-                <h2 className='text-1xl font-semibold text-black drop-shadow-lg text-center mb-6'>
+            <div className='bg-gradient-to-r from-white via-gray-300 to-gray-400 rounded-xl shadow-md w-[420px] h-[180px] border-b-8 border-black border-r-6 border-gray-900 relative p-8 z-10 flex flex-col justify-between pointer-events-auto'>
+                <h2 className='text-1xl font-semibold text-black drop-shadow-lg text-center mb-5'>
                     {text}
                 </h2>
-                <div className='flex items-center gap-2'>
+                <div className='flex items-center gap-2 ml-[-10px]'>
                     <img
                         src={avatarSrc}
                         alt={username}
                         className='w-12 h-12 rounded-full'
                     />
                     <div className='text-gray-700 text-sm'>
-                        <p className='font-semibold'>{username}</p>
                         <p>{formattedDate}</p>
+                        <p className='font-semibold'>{username}</p>
                     </div>
                     <p className='text-sm  text-yellow-500 font-bold drop-shadow-[1px_1px_0px_black]'>
                         {likes?.length || 0} Likes

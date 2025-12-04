@@ -9,7 +9,7 @@ export default function PlaceCard({
     difficulty
 }) {
     return (
-        <div className='bg-gradient-to-r from-white via-gray-300 to-gray-400 rounded-xl shadow-md overflow-hidden border-b-6 border-black border-r-6 border-gray-900 transform transition-transform duration-300 hover:scale-105'>
+        <div className='bg-gradient-to-r from-white via-gray-300 to-gray-400 rounded-xl shadow-md overflow-hidden border-b-6 border-black border-r-6 border-gray-900 w-[600px] h-[400px] transform transition-transform duration-300 hover:scale-105'>
             <img
                 src={imageUrl}
                 alt={title}

@@ -77,7 +77,7 @@ function App() {
                         />
                         <Route
                             path='/users/:userId/profile'
-                            element={<ProfileDetails />}
+                            element={<ProfileDetails currentUser={user} />}
                         />
                         <Route
                             path='/logout'

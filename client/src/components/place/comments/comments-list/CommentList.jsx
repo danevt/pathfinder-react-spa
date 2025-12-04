@@ -71,7 +71,7 @@ export default function CommentList({ onClose, placeId, currentUser }) {
                         </p>
                     </div>
                 ) : (
-                    <div className='flex flex-col gap-4 max-h-[80vh] pr-4 overflow-y-auto'>
+                    <div className='flex flex-col gap-4 max-h-[80vh] pr-4 overflow-y-auto pl-4'>
                         {sortedComments.map(comment => (
                             <CommentCard
                                 key={comment._id}
