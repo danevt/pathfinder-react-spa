@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import PlaceCard from '../place/card/PlaceCard.jsx';
 import request from '../../utils/requester.js';
 import { PLACES_API } from '../../config/api.js';
+import Pagination from '../ui/pagination/Pagination.jsx';
 
 export default function Catalog() {
     const [places, setPlaces] = useState([]);
@@ -23,19 +24,9 @@ export default function Catalog() {
             .catch(error => alert(error.message));
     }, [sortAsc]);
 
-    const totalPages = Math.ceil(places.length / placesPerPage);
-
     const indexOfFirstPlace = (currentPage - 1) * placesPerPage;
     const indexOfLastPlace = currentPage * placesPerPage;
     const currentPlaces = places.slice(indexOfFirstPlace, indexOfLastPlace);
-
-    const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
-
-    const goToPage = num => setCurrentPage(num);
-    const goFirst = () => setCurrentPage(1);
-    const goLast = () => setCurrentPage(totalPages);
-    const goPrev = () => setCurrentPage(prev => Math.max(prev - 1, 1));
-    const goNext = () => setCurrentPage(prev => Math.min(prev + 1, totalPages));
 
     return (
         <section className='bg-gradient-to-r from-black via-gray-500 to-black p-6 flex flex-col'>
@@ -68,7 +59,7 @@ export default function Catalog() {
                     <div className='flex justify-center gap-2 mb-4'>
                         <button
                             onClick={() => setSortAsc(prev => !prev)}
-                            className='bg-[#4A9603] hover:bg-[#5ECF00] text-black font-bold py-2 px-4 rounded-xl shadow-md border-b-4 border-black border-r-4 border-gray-900'
+                            className='bg-[#4A9603] hover:bg-[#5ECF00] text-black font-bold py-2 px-4 rounded-xl shadow-md border-b-4 border-black border-r-4 border-gray-900 transform transition-transform duration-300 hover:scale-105'
                         >
                             {sortAsc ? 'Oldest First ↑' : 'Newest First ↓'}
                         </button>
@@ -80,51 +71,12 @@ export default function Catalog() {
                         ))}
                     </div>
 
-                    <div className='flex justify-center gap-2 mb-8'>
-                        <button
-                            onClick={goFirst}
-                            disabled={currentPage === 1}
-                            className='bg-[#4A9603] hover:bg-[#5ECF00] text-black font-bold py-2 px-4 rounded-xl shadow-md border-b-4 border-black border-r-4 border-gray-900'
-                        >
-                            First
-                        </button>
-                        <button
-                            onClick={goPrev}
-                            disabled={currentPage === 1}
-                            className='bg-[#4A9603] hover:bg-[#5ECF00] text-black font-bold py-2 px-4 rounded-xl shadow-md border-b-4 border-black border-r-4 border-gray-900'
-                        >
-                            Prev
-                        </button>
-
-                        {pageNumbers.map(num => (
-                            <button
-                                key={num}
-                                onClick={() => goToPage(num)}
-                                className={`bg-[#4A9603] hover:bg-[#5ECF00] text-black font-bold py-2 px-4 rounded-xl shadow-md border-b-4 border-black border-r-4 border-gray-900 ${
-                                    currentPage === num
-                                        ? 'ring-2 ring-[#5ECF00]'
-                                        : ''
-                                }`}
-                            >
-                                {num}
-                            </button>
-                        ))}
-
-                        <button
-                            onClick={goNext}
-                            disabled={currentPage === totalPages}
-                            className='bg-[#4A9603] hover:bg-[#5ECF00] text-black font-bold py-2 px-4 rounded-xl shadow-md border-b-4 border-black border-r-4 border-gray-900'
-                        >
-                            Next
-                        </button>
-                        <button
-                            onClick={goLast}
-                            disabled={currentPage === totalPages}
-                            className='bg-[#4A9603] hover:bg-[#5ECF00] text-black font-bold py-2 px-4 rounded-xl shadow-md border-b-4 border-black border-r-4 border-gray-900'
-                        >
-                            Last
-                        </button>
-                    </div>
+                    <Pagination
+                        currentPage={currentPage}
+                        totalItems={places.length}
+                        itemsPerPage={placesPerPage}
+                        onPageChange={setCurrentPage}
+                    />
                 </>
             )}
         </section>
