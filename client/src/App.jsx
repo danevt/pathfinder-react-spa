@@ -12,6 +12,7 @@ import PlaceEdit from './components/place/edit/PlaceEdit.jsx';
 import PlaceDetails from './components/place/details/PlaceDetails.jsx';
 import NotFound from './components/not-found/NotFound.jsx';
 import Logout from './components/auth/Logout/Logout.jsx';
+import ProfileDetails from './components/profile/profile-details/ProfileDetails.jsx';
 
 function App() {
     const [registerdUser, setRegisterdUser] = useState([]);
@@ -73,6 +74,10 @@ function App() {
                         <Route
                             path='/places/:placeId/edit'
                             element={<PlaceEdit />}
+                        />
+                        <Route
+                            path='/users/:userId/profile'
+                            element={<ProfileDetails />}
                         />
                         <Route
                             path='/logout'
