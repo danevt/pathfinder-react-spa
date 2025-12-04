@@ -65,7 +65,7 @@ function App() {
                             path='/login'
                             element={<Login onLogin={loginHandler} />}
                         />
-                        <Route path='/about' element={<About />} />
+                        <Route path='/about' element={<About user={user} />} />
                         <Route path='/create' element={<PlaceCreate />} />
                         <Route
                             path='/places/:placeId/details'
