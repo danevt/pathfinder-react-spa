@@ -1,6 +1,9 @@
 import { Link } from 'react-router';
 
-export default function Header() {
+export default function Header({ user }) {
+    const isLogged = Boolean(user);
+    const profilePath = isLogged ? `/users/${user._id}/profile` : '/login';
+
     return (
         <header className='bg-gradient-to-r from-[#438004] via-[#7CFC00] to-[#4A9603] flex justify-between items-center px-6 py-0 border-b-4 border-black'>
             <div className='flex items-center gap-2'>
@@ -14,7 +17,6 @@ export default function Header() {
                         alt='Logo'
                     />
                     <span className='text-heading self-center text-4xl font-bold whitespace-nowrap '>
-                        {/* Pathfinder */}
                         PATHFINDER
                     </span>
                 </Link>
@@ -27,36 +29,44 @@ export default function Header() {
                 >
                     Destinations
                 </Link>
-                <Link
-                    className='inline-block text-3xl drop-shadow-[1px_1px_1px_black] hover:text-black  hover:drop-shadow-[3px_3px_3px_#7CFC00] transform transition-transform duration-300 hover:scale-110'
-                    to='/create'
-                >
-                    Add Place
-                </Link>
-                <Link
-                    className='inline-block text-3xl drop-shadow-[1px_1px_1px_black] hover:text-black  hover:drop-shadow-[3px_3px_3px_#7CFC00] transform transition-transform duration-300 hover:scale-110'
-                    to='/profile'
-                >
-                    Profile
-                </Link>
-                <Link
-                    className='inline-block text-3xl drop-shadow-[1px_1px_1px_black] hover:text-black  hover:drop-shadow-[3px_3px_3px_#7CFC00] transform transition-transform duration-300 hover:scale-110'
-                    to='/logout'
-                >
-                    Logout
-                </Link>
-                <Link
-                    className='inline-block text-3xl drop-shadow-[1px_1px_1px_black] hover:text-black  hover:drop-shadow-[3px_3px_3px_#7CFC00] transform transition-transform duration-300 hover:scale-110'
-                    to='/login'
-                >
-                    Login
-                </Link>
-                <Link
-                    className='inline-block text-3xl drop-shadow-[1px_1px_1px_black] hover:text-black  hover:drop-shadow-[3px_3px_3px_#7CFC00] transform transition-transform duration-300 hover:scale-110'
-                    to='/register'
-                >
-                    Register
-                </Link>
+
+                {isLogged ? (
+                    <>
+                        <Link
+                            className='inline-block text-3xl drop-shadow-[1px_1px_1px_black] hover:text-black  hover:drop-shadow-[3px_3px_3px_#7CFC00] transform transition-transform duration-300 hover:scale-110'
+                            to='/create'
+                        >
+                            Add Place
+                        </Link>
+                        <Link
+                            className='inline-block text-3xl drop-shadow-[1px_1px_1px_black] hover:text-black  hover:drop-shadow-[3px_3px_3px_#7CFC00] transform transition-transform duration-300 hover:scale-110'
+                            to={profilePath}
+                        >
+                            Profile
+                        </Link>
+                        <Link
+                            className='inline-block text-3xl drop-shadow-[1px_1px_1px_black] hover:text-black  hover:drop-shadow-[3px_3px_3px_#7CFC00] transform transition-transform duration-300 hover:scale-110'
+                            to='/logout'
+                        >
+                            Logout
+                        </Link>
+                    </>
+                ) : (
+                    <>
+                        <Link
+                            className='inline-block text-3xl drop-shadow-[1px_1px_1px_black] hover:text-black  hover:drop-shadow-[3px_3px_3px_#7CFC00] transform transition-transform duration-300 hover:scale-110'
+                            to='/login'
+                        >
+                            Login
+                        </Link>
+                        <Link
+                            className='inline-block text-3xl drop-shadow-[1px_1px_1px_black] hover:text-black  hover:drop-shadow-[3px_3px_3px_#7CFC00] transform transition-transform duration-300 hover:scale-110'
+                            to='/register'
+                        >
+                            Register
+                        </Link>
+                    </>
+                )}
             </nav>
         </header>
     );
