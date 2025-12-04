@@ -4,25 +4,43 @@
             "_id": "u1",
             "email": "ivan@example.com",
             "username": "Ivan Petrov",
-            "avatar": "avatar6"
+            "avatar": "avatar6",
+            "aboutMe": "Explorer of mountains and nature. Weekends are best spent surrounded by greenery."
         },
         "u2": {
             "_id": "u2",
             "email": "maria@example.com",
             "username": "Maria Georgieva",
-            "avatar": "avatar8"
+            "avatar": "avatar8",
+            "aboutMe": "Passionate traveler and photographer. Always chasing new adventures."
         },
         "u3": {
             "_id": "u3",
             "email": "georgi@example.com",
             "username": "G.Iliev",
-            "avatar": "avatar7"
+            "avatar": "avatar7",
+            "aboutMe": "Lover of hikes and scenic views. Adventure is my daily inspiration."
         },
         "u4": {
             "_id": "u4",
             "email": "stela@example.com",
             "username": "Stela Dimitrova",
-            "avatar": "avatar3"
+            "avatar": "avatar3",
+            "aboutMe": "History and culture enthusiast. Always exploring landmarks and hidden gems."
+        },
+        "u5": {
+            "_id": "u5",
+            "email": "petar@example.com",
+            "username": "Petar Ivanov",
+            "avatar": "avatar2",
+            "aboutMe": "Active lifestyle and outdoor sports fan. Hiking and exploring are my passions."
+        },
+        "u6": {
+            "_id": "u6",
+            "email": "dimitar@example.com",
+            "username": "Dimitar Kolev",
+            "avatar": "avatar10",
+            "aboutMe": "Adventurer at heart. Seeking breathtaking landscapes and new challenges everywhere."
         }
     },
 
@@ -35,7 +53,7 @@
             "location": "Sofia",
             "category": "mountain",
             "difficulty": "easy",
-            "likes": ["u1", "u2", "u3"],
+            "likes": ["u1", "u5", "u3"],
             "_createdOn": 1617194350000,
             "_ownerId": "u1"
         },
@@ -48,7 +66,7 @@
             "location": "Nessebar",
             "category": "historic-town",
             "difficulty": "easy",
-            "likes": [],
+            "likes": ["u6"],
             "_createdOn": 1617200000000,
             "_ownerId": "u2"
         },
@@ -61,7 +79,7 @@
             "location": "Rila Mountain",
             "category": "lake",
             "difficulty": "medium",
-            "likes": ["u4"],
+            "likes": ["u4", "u5"],
             "_createdOn": 1617210000000,
             "_ownerId": "u3"
         },
@@ -113,7 +131,7 @@
             "location": "Sliven",
             "category": "mountain",
             "difficulty": "medium",
-            "likes": ["u1", "u4"],
+            "likes": ["u1", "u2", "u3", "u4", "u5", "u6"],
             "_createdOn": 1617255500000,
             "_ownerId": "u3"
         },
