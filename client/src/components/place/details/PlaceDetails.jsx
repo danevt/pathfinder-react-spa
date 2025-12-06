@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router';
 import PlaceDelete from '../delete/PlaceDelete.jsx';
 import request from '../../../utils/requester.js';
-import { PLACES_API, USERS_API } from '../../../config/api.js';
+import { PLACES_API, PROFILES_API } from '../../../config/api.js';
 import CommentCreateOverlay from '../comments/comment-create/CommentCreateOverlay.jsx';
 import CommentList from '../comments/comments-list/CommentList.jsx';
 import LogoSpinner from '../../ui/spinner/LogoSpinner.jsx';
@@ -30,7 +30,7 @@ export default function PlaceDetails({ currentUser }) {
 
                 if (result._ownerId) {
                     const authorData = await request(
-                        `${USERS_API}${result._ownerId}`
+                        `${PROFILES_API}${result._ownerId}`
                     );
                     setAuthor(authorData);
                 } else {
@@ -111,7 +111,7 @@ export default function PlaceDetails({ currentUser }) {
                         <h2 className='text-xl font-extrabold text-black text-left text-shadow-sm'>
                             {place.title}
                         </h2>
-                        
+
                         <p className='text-black uppercase font-semibold mt-2 text-right text-shadow-sm'>
                             {place.category} | {place.difficulty}
                         </p>
@@ -142,10 +142,9 @@ export default function PlaceDetails({ currentUser }) {
                                 </div>
                             </div>
                         )}
-                         <p className='text-yellow-500 font-bold text-sm drop-shadow-[1px_1px_0px_black] mr-4'>
+                        <p className='text-yellow-500 font-bold text-sm drop-shadow-[1px_1px_0px_black] mr-4'>
                             {likes.length} Likes
                         </p>
-                        
                     </div>
                     <div className='flex justify-between items-end mt-4'>
                         <div className='flex gap-2 mt-auto'>

@@ -1,6 +1,6 @@
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
-import { USERS_API } from '../../../config/api.js';
+import { PROFILES_API } from '../../../config/api.js';
 import request from '../../../utils/requester.js';
 import LogoSpinner from '../../ui/spinner/LogoSpinner.jsx';
 
@@ -9,7 +9,7 @@ export default function ProfileCard() {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        request(`${USERS_API}${userId}`)
+        request(`${PROFILES_API}${userId}`)
             .then(data => setUser(data))
             .catch(error => alert(error.message));
     }, [userId]);

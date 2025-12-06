@@ -9,7 +9,6 @@ export default function Register({ onRegister }) {
         const formData = new FormData(e.target);
 
         const email = formData.get('email');
-        const username = formData.get('username');
         const password = formData.get('password');
         const confirmPassword = formData.get('confirmPassword');
 
@@ -20,7 +19,6 @@ export default function Register({ onRegister }) {
         try {
             onRegister({
                 email,
-                username,
                 password
             });
 
@@ -50,22 +48,6 @@ export default function Register({ onRegister }) {
                         required
                         pattern='[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'
                         placeholder='example@mail.com'
-                        className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
-                    />
-                </div>
-                <div>
-                    <label className='block text-black font-bold mb-2 text-shadow-sm'>
-                        Username
-                    </label>
-                    <input
-                        type='text'
-                        id='username'
-                        name='username'
-                        required
-                        minlength='3'
-                        maxlength='20'
-                        pattern='[A-Za-z0-9]+'
-                        placeholder='JohnDoe'
                         className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
                     />
                 </div>

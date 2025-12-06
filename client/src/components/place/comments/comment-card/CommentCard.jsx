@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { COMMENTS_API, USERS_API } from '../../../../config/api.js';
+import { COMMENTS_API, PROFILES_API } from '../../../../config/api.js';
 import request from '../../../../utils/requester.js';
 import CommentEditOverlay from '../comment-edit/CommentEditOverlay.jsx';
 import LogoSpinner from '../../../ui/spinner/LogoSpinner.jsx';
@@ -17,7 +17,7 @@ export default function CommentCard({
     const formattedDate = new Date(_createdOn).toLocaleDateString();
 
     useEffect(() => {
-        request(`${USERS_API}${userId}`)
+        request(`${PROFILES_API}${userId}`)
             .then(data => setUser(data))
             .catch(error => {
                 alert(error.message);

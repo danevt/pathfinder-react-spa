@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import request from '../../../utils/requester.js';
-import { COMMENTS_API, PLACES_API, USERS_API } from '../../../config/api.js';
+import { COMMENTS_API, PLACES_API, PROFILES_API } from '../../../config/api.js';
 import LogoSpinner from '../../ui/spinner/LogoSpinner.jsx';
 import ProfileCard from '../profile-card/ProfileCard.jsx';
 import PlaceCard from '../../place/card/PlaceCard.jsx';
@@ -29,7 +29,7 @@ export default function ProfileDetails({ currentUser }) {
                     [
                         request(PLACES_API),
                         request(COMMENTS_API),
-                        request(USERS_API)
+                        request(PROFILES_API)
                     ]
                 );
 
