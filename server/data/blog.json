@@ -1,49 +1,52 @@
 {
     "users": {
-        "u1": {
-            "_id": "u1",
-            "email": "ivan@example.com",
-            "username": "Ivan Petrov",
+        "847ec027-f659-4086-8032-5173e2f9c93a": {
+            "_id": "847ec027-f659-4086-8032-5173e2f9c93a",
+            "email": "john@abv.bg",
+            "password": "123456"
+        },
+        "a91f3c12-4b7e-4c98-9e82-1fbb7b0cd9e4": {
+            "_id": "a91f3c12-4b7e-4c98-9e82-1fbb7b0cd9e4",
+            "email": "maria@abv.bg",
+            "password": "123456"
+        },
+        "35c62d76-8152-4626-8712-eeb96381bea8": {
+            "_id": "35c62d76-8152-4626-8712-eeb96381bea8",
+            "email": "peter@abv.bg",
+            "password": "123456"
+        },
+        "d73ae820-6c44-47fb-9c09-2c6b1cf452fa": {
+            "_id": "d73ae820-6c44-47fb-9c09-2c6b1cf452fa",
+            "email": "stela@abv.bg",
+            "password": "123456"
+        }
+    },
+    "profiles": {
+        "847ec027-f659-4086-8032-5173e2f9c93a": {
+            "_id": "847ec027-f659-4086-8032-5173e2f9c93a",
+            "username": "John Smith",
             "avatar": "avatar6",
             "aboutMe": "Explorer of mountains and nature. Weekends are best spent surrounded by greenery."
         },
-        "u2": {
-            "_id": "u2",
-            "email": "maria@example.com",
+        "a91f3c12-4b7e-4c98-9e82-1fbb7b0cd9e4": {
+            "_id": "a91f3c12-4b7e-4c98-9e82-1fbb7b0cd9e4",
             "username": "Maria Georgieva",
             "avatar": "avatar8",
             "aboutMe": "Passionate traveler and photographer. Always chasing new adventures."
         },
-        "u3": {
-            "_id": "u3",
-            "email": "georgi@example.com",
-            "username": "G.Iliev",
+        "35c62d76-8152-4626-8712-eeb96381bea8": {
+            "_id": "35c62d76-8152-4626-8712-eeb96381bea8",
+            "username": "Peter Iliev",
             "avatar": "avatar7",
             "aboutMe": "Lover of hikes and scenic views. Adventure is my daily inspiration."
         },
-        "u4": {
-            "_id": "u4",
-            "email": "stela@example.com",
+        "d73ae820-6c44-47fb-9c09-2c6b1cf452fa": {
+            "_id": "d73ae820-6c44-47fb-9c09-2c6b1cf452fa",
             "username": "Stela Dimitrova",
             "avatar": "avatar3",
             "aboutMe": "History and culture enthusiast. Always exploring landmarks and hidden gems."
-        },
-        "u5": {
-            "_id": "u5",
-            "email": "petar@example.com",
-            "username": "Petar Ivanov",
-            "avatar": "avatar2",
-            "aboutMe": "Active lifestyle and outdoor sports fan. Hiking and exploring are my passions."
-        },
-        "u6": {
-            "_id": "u6",
-            "email": "dimitar@example.com",
-            "username": "Dimitar Kolev",
-            "avatar": "avatar10",
-            "aboutMe": "Adventurer at heart. Seeking breathtaking landscapes and new challenges everywhere."
         }
     },
-
     "places": {
         "5f1d7c2e": {
             "_id": "5f1d7c2e",
@@ -53,11 +56,14 @@
             "location": "Sofia",
             "category": "mountain",
             "difficulty": "easy",
-            "likes": ["u1", "u5", "u3"],
+            "likes": [
+                "847ec027-f659-4086-8032-5173e2f9c93a",
+                "a91f3c12-4b7e-4c98-9e82-1fbb7b0cd9e4",
+                "35c62d76-8152-4626-8712-eeb96381bea8"
+            ],
             "_createdOn": 1617194350000,
-            "_ownerId": "u1"
+            "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a"
         },
-
         "6a2b8e3f": {
             "_id": "6a2b8e3f",
             "title": "Nessebar Old Town",
@@ -66,11 +72,10 @@
             "location": "Nessebar",
             "category": "historic-town",
             "difficulty": "easy",
-            "likes": ["u6"],
+            "likes": ["d73ae820-6c44-47fb-9c09-2c6b1cf452fa"],
             "_createdOn": 1617200000000,
-            "_ownerId": "u2"
+            "_ownerId": "a91f3c12-4b7e-4c98-9e82-1fbb7b0cd9e4"
         },
-
         "7b3c9f4g": {
             "_id": "7b3c9f4g",
             "title": "Seven Rila Lakes",
@@ -79,11 +84,13 @@
             "location": "Rila Mountain",
             "category": "lake",
             "difficulty": "medium",
-            "likes": ["u4", "u5"],
+            "likes": [
+                "d73ae820-6c44-47fb-9c09-2c6b1cf452fa",
+                "a91f3c12-4b7e-4c98-9e82-1fbb7b0cd9e4"
+            ],
             "_createdOn": 1617210000000,
-            "_ownerId": "u3"
+            "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8"
         },
-
         "8c4d0g5h": {
             "_id": "8c4d0g5h",
             "title": "Buzludzha Monument",
@@ -92,11 +99,13 @@
             "location": "Stara Planina",
             "category": "landmark",
             "difficulty": "hard",
-            "likes": ["u2", "u3"],
+            "likes": [
+                "a91f3c12-4b7e-4c98-9e82-1fbb7b0cd9e4",
+                "35c62d76-8152-4626-8712-eeb96381bea8"
+            ],
             "_createdOn": 1617220000000,
-            "_ownerId": "u4"
+            "_ownerId": "d73ae820-6c44-47fb-9c09-2c6b1cf452fa"
         },
-
         "9d5e1h6i": {
             "_id": "9d5e1h6i",
             "title": "Plovdiv Old Town",
@@ -105,11 +114,10 @@
             "location": "Plovdiv",
             "category": "historic-town",
             "difficulty": "easy",
-            "likes": ["u2"],
+            "likes": ["a91f3c12-4b7e-4c98-9e82-1fbb7b0cd9e4"],
             "_createdOn": 1617230000000,
-            "_ownerId": "u1"
+            "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a"
         },
-
         "0e6f2i7j": {
             "_id": "0e6f2i7j",
             "title": "Pirin National Park",
@@ -118,11 +126,10 @@
             "location": "Bansko",
             "category": "mountain",
             "difficulty": "medium",
-            "likes": ["u1"],
+            "likes": ["847ec027-f659-4086-8032-5173e2f9c93a"],
             "_createdOn": 1617240000000,
-            "_ownerId": "u2"
+            "_ownerId": "a91f3c12-4b7e-4c98-9e82-1fbb7b0cd9e4"
         },
-
         "01karandila": {
             "_id": "01karandila",
             "title": "\"Halkata\"",
@@ -131,11 +138,17 @@
             "location": "Sliven",
             "category": "mountain",
             "difficulty": "medium",
-            "likes": ["u1", "u2", "u3", "u4", "u5", "u6"],
+            "likes": [
+                "847ec027-f659-4086-8032-5173e2f9c93a",
+                "a91f3c12-4b7e-4c98-9e82-1fbb7b0cd9e4",
+                "35c62d76-8152-4626-8712-eeb96381bea8",
+                "d73ae820-6c44-47fb-9c09-2c6b1cf452fa",
+                "a91f3c12-4b7e-4c98-9e82-1fbb7b0cd9e4",
+                "35c62d76-8152-4626-8712-eeb96381bea8"
+            ],
             "_createdOn": 1617255500000,
-            "_ownerId": "u3"
+            "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8"
         },
-
         "02bolata": {
             "_id": "02bolata",
             "title": "Bolata Bay",
@@ -144,11 +157,14 @@
             "location": "Kaliakra",
             "category": "beach",
             "difficulty": "easy",
-            "likes": ["u1", "u2", "u3"],
+            "likes": [
+                "847ec027-f659-4086-8032-5173e2f9c93a",
+                "a91f3c12-4b7e-4c98-9e82-1fbb7b0cd9e4",
+                "35c62d76-8152-4626-8712-eeb96381bea8"
+            ],
             "_createdOn": 1617265500000,
-            "_ownerId": "u4"
+            "_ownerId": "d73ae820-6c44-47fb-9c09-2c6b1cf452fa"
         },
-
         "03bachkovo": {
             "_id": "03bachkovo",
             "title": "Bachkovo Monastery",
@@ -157,11 +173,10 @@
             "location": "Asenovgrad",
             "category": "monastery",
             "difficulty": "easy",
-            "likes": ["u2"],
+            "likes": ["a91f3c12-4b7e-4c98-9e82-1fbb7b0cd9e4"],
             "_createdOn": 1617275500000,
-            "_ownerId": "u1"
+            "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a"
         },
-
         "04iskar": {
             "_id": "04iskar",
             "title": "Iskar Gorge",
@@ -170,156 +185,184 @@
             "location": "Vratsa",
             "category": "river",
             "difficulty": "hard",
-            "likes": ["u3"],
+            "likes": ["35c62d76-8152-4626-8712-eeb96381bea8"],
             "_createdOn": 1617285500000,
-            "_ownerId": "u2"
+            "_ownerId": "a91f3c12-4b7e-4c98-9e82-1fbb7b0cd9e4"
         }
     },
-
     "comments": {
         "c1": {
             "_id": "c1",
             "placeId": "5f1d7c2e",
-            "userId": "u2",
+            "userId": "a91f3c12-4b7e-4c98-9e82-1fbb7b0cd9e4",
             "text": "Perfect weekend spot! Trails are easy and the nature is amazing.",
             "_createdOn": 1617250000000,
-            "likes": ["u1", "u3"]
+            "likes": [
+                "847ec027-f659-4086-8032-5173e2f9c93a",
+                "35c62d76-8152-4626-8712-eeb96381bea8"
+            ]
         },
         "c2": {
             "_id": "c2",
             "placeId": "5f1d7c2e",
-            "userId": "u3",
+            "userId": "35c62d76-8152-4626-8712-eeb96381bea8",
             "text": "We go every spring. Lovely place for beginners.",
             "_createdOn": 1617253000000,
-            "likes": ["u2"]
+            "likes": ["a91f3c12-4b7e-4c98-9e82-1fbb7b0cd9e4"]
         },
         "c3": {
             "_id": "c3",
             "placeId": "7b3c9f4g",
-            "userId": "u1",
+            "userId": "847ec027-f659-4086-8032-5173e2f9c93a",
             "text": "Seven Rila Lakes never disappoints! Wear good shoes.",
             "_createdOn": 1617260000000,
-            "likes": ["u3", "u4"]
+            "likes": [
+                "35c62d76-8152-4626-8712-eeb96381bea8",
+                "d73ae820-6c44-47fb-9c09-2c6b1cf452fa"
+            ]
         },
         "c4": {
             "_id": "c4",
             "placeId": "7b3c9f4g",
-            "userId": "u4",
+            "userId": "d73ae820-6c44-47fb-9c09-2c6b1cf452fa",
             "text": "The views are magical. One of the best places I've visited.",
             "_createdOn": 1617261000000,
-            "likes": ["u1"]
+            "likes": ["847ec027-f659-4086-8032-5173e2f9c93a"]
         },
         "c5": {
             "_id": "c5",
             "placeId": "7b3c9f4g",
-            "userId": "u2",
+            "userId": "a91f3c12-4b7e-4c98-9e82-1fbb7b0cd9e4",
             "text": "Crowded in summer but worth it!",
             "_createdOn": 1617262000000,
-            "likes": ["u1", "u2", "u4"]
+            "likes": [
+                "847ec027-f659-4086-8032-5173e2f9c93a",
+                "a91f3c12-4b7e-4c98-9e82-1fbb7b0cd9e4",
+                "d73ae820-6c44-47fb-9c09-2c6b1cf452fa"
+            ]
         },
         "c6": {
             "_id": "c6",
             "placeId": "8c4d0g5h",
-            "userId": "u3",
+            "userId": "35c62d76-8152-4626-8712-eeb96381bea8",
             "text": "Eerie atmosphere but incredible location!",
             "_createdOn": 1617270000000,
-            "likes": ["u4"]
+            "likes": ["d73ae820-6c44-47fb-9c09-2c6b1cf452fa"]
         },
         "c7": {
             "_id": "c7",
             "placeId": "8c4d0g5h",
-            "userId": "u1",
+            "userId": "847ec027-f659-4086-8032-5173e2f9c93a",
             "text": "One of the most unique places I've seen.",
             "_createdOn": 1617272000000,
-            "likes": ["u2", "u3"]
+            "likes": [
+                "a91f3c12-4b7e-4c98-9e82-1fbb7b0cd9e4",
+                "35c62d76-8152-4626-8712-eeb96381bea8"
+            ]
         },
         "c8": {
             "_id": "c8",
             "placeId": "9d5e1h6i",
-            "userId": "u4",
+            "userId": "d73ae820-6c44-47fb-9c09-2c6b1cf452fa",
             "text": "Great atmosphere in the old town!",
             "_createdOn": 1617280000000,
-            "likes": ["u1"]
+            "likes": ["847ec027-f659-4086-8032-5173e2f9c93a"]
         },
         "c9": {
             "_id": "c9",
             "placeId": "9d5e1h6i",
-            "userId": "u3",
+            "userId": "35c62d76-8152-4626-8712-eeb96381bea8",
             "text": "Nice cafes and beautiful architecture.",
             "_createdOn": 1617281000000,
-            "likes": ["u2", "u4"]
+            "likes": [
+                "a91f3c12-4b7e-4c98-9e82-1fbb7b0cd9e4",
+                "d73ae820-6c44-47fb-9c09-2c6b1cf452fa"
+            ]
         },
         "c10": {
             "_id": "c10",
             "placeId": "01karandila",
-            "userId": "u1",
+            "userId": "847ec027-f659-4086-8032-5173e2f9c93a",
             "text": "Perfect view over Sliven!",
             "_createdOn": 1617290000000,
-            "likes": ["u3"]
+            "likes": ["35c62d76-8152-4626-8712-eeb96381bea8"]
         },
         "c11": {
             "_id": "c11",
             "placeId": "01karandila",
-            "userId": "u4",
+            "userId": "d73ae820-6c44-47fb-9c09-2c6b1cf452fa",
             "text": "Great for a weekend hike!",
             "_createdOn": 1617291000000,
-            "likes": ["u1", "u2"]
+            "likes": [
+                "847ec027-f659-4086-8032-5173e2f9c93a",
+                "a91f3c12-4b7e-4c98-9e82-1fbb7b0cd9e4"
+            ]
         },
         "c12": {
             "_id": "c12",
             "placeId": "02bolata",
-            "userId": "u2",
+            "userId": "a91f3c12-4b7e-4c98-9e82-1fbb7b0cd9e4",
             "text": "One of the most beautiful beaches in Bulgaria!",
             "_createdOn": 1617300000000,
-            "likes": ["u3"]
+            "likes": ["35c62d76-8152-4626-8712-eeb96381bea8"]
         },
         "c13": {
             "_id": "c13",
             "placeId": "02bolata",
-            "userId": "u3",
+            "userId": "35c62d76-8152-4626-8712-eeb96381bea8",
             "text": "Crystal clear water and amazing cliffs.",
             "_createdOn": 1617301000000,
-            "likes": ["u1", "u4"]
+            "likes": [
+                "847ec027-f659-4086-8032-5173e2f9c93a",
+                "d73ae820-6c44-47fb-9c09-2c6b1cf452fa"
+            ]
         },
         "c14": {
             "_id": "c14",
             "placeId": "02bolata",
-            "userId": "u1",
+            "userId": "847ec027-f659-4086-8032-5173e2f9c93a",
             "text": "Quiet and peaceful during the week.",
             "_createdOn": 1617302000000,
-            "likes": ["u2"]
+            "likes": ["a91f3c12-4b7e-4c98-9e82-1fbb7b0cd9e4"]
         },
         "c15": {
             "_id": "c15",
             "placeId": "0e6f2i7j",
-            "userId": "u2",
+            "userId": "a91f3c12-4b7e-4c98-9e82-1fbb7b0cd9e4",
             "text": "Amazing trails with breathtaking views, perfect for a day hike.",
             "_createdOn": 1617305000000,
-            "likes": ["u1", "u3", "u4"]
+            "likes": [
+                "847ec027-f659-4086-8032-5173e2f9c93a",
+                "35c62d76-8152-4626-8712-eeb96381bea8",
+                "d73ae820-6c44-47fb-9c09-2c6b1cf452fa"
+            ]
         },
         "c16": {
             "_id": "c16",
             "placeId": "0e6f2i7j",
-            "userId": "u3",
+            "userId": "35c62d76-8152-4626-8712-eeb96381bea8",
             "text": "Loved the peaceful nature and the variety of wildlife along the paths.",
             "_createdOn": 1617306000000,
-            "likes": ["u2"]
+            "likes": ["a91f3c12-4b7e-4c98-9e82-1fbb7b0cd9e4"]
         },
         "c17": {
             "_id": "c17",
             "placeId": "04iskar",
-            "userId": "u1",
+            "userId": "847ec027-f659-4086-8032-5173e2f9c93a",
             "text": "A spectacular gorge with dramatic scenery, a must-see for nature lovers.",
             "_createdOn": 1617307000000,
-            "likes": ["u3", "u4"]
+            "likes": [
+                "35c62d76-8152-4626-8712-eeb96381bea8",
+                "d73ae820-6c44-47fb-9c09-2c6b1cf452fa"
+            ]
         },
         "c18": {
             "_id": "c18",
             "placeId": "04iskar",
-            "userId": "u4",
+            "userId": "d73ae820-6c44-47fb-9c09-2c6b1cf452fa",
             "text": "Perfect spot for photography and adventure hiking, truly unforgettable.",
             "_createdOn": 1617308000000,
-            "likes": ["u1"]
+            "likes": ["847ec027-f659-4086-8032-5173e2f9c93a"]
         }
     }
 }
