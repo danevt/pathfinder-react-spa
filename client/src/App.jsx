@@ -1,5 +1,4 @@
 import { Route, Routes } from 'react-router';
-import { useState } from 'react';
 import Header from './components/layout/header/Header.jsx';
 import Footer from './components/layout/footer/Footer.jsx';
 import Home from './components/home/Home.jsx';
@@ -13,81 +12,30 @@ import Logout from './components/auth/Logout/Logout.jsx';
 import About from './components/about/About.jsx';
 import NotFound from './components/not-found/NotFound.jsx';
 import ProfileDetails from './components/profile/profile-details/ProfileDetails.jsx';
+import { useUserContext } from './contexts/UserContext.jsx';
 
 function App() {
-    const [registerdUser, setRegisterdUser] = useState([]);
-    const [user, setUser] = useState(null);
-
-    const registerHandler = ({ email, username, password }) => {
-        if (registerdUser.some(user => user.email === email)) {
-            throw new Error('Email already exists.');
-        }
-
-        if (registerdUser.some(user => user.username === username)) {
-            throw new Error('Username already exists.');
-        }
-
-        const newUser = { email, username, password };
-
-        setRegisterdUser(regUsers => [...regUsers, newUser]);
-
-        setUser(newUser);
-    };
-
-    const loginHandler = (email, password) => {
-        const existingUser = registerdUser.find(u => u.email === email);
-
-        if (!existingUser || existingUser.password !== password) {
-            throw new Error('Invalid email or password!');
-        }
-
-        setUser(existingUser);
-    };
-
-    const logoutHandler = () => {
-        setUser(null);
-    };
+    const { user } = useUserContext();
 
     return (
         <>
             <div className='flex flex-col h-screen'>
-                <Header user={user} />
-
-                <main className='flex-grow bg-gradient-to-r from-black via-gray-500 to-black'>
-                    <Routes>
-                        <Route path='/' element={<Home />} />
-                        <Route path='/catalog' element={<Catalog />} />
-                        <Route
-                            path='/register'
-                            element={<Register onRegister={registerHandler} />}
-                        />
-                        <Route
-                            path='/login'
-                            element={<Login onLogin={loginHandler} />}
-                        />
-                        <Route path='/about' element={<About user={user} />} />
-                        <Route path='/create' element={<PlaceCreate />} />
-                        <Route
-                            path='/places/:placeId/details'
-                            element={<PlaceDetails currentUser={user} />}
-                        />
-                        <Route
-                            path='/places/:placeId/edit'
-                            element={<PlaceEdit />}
-                        />
-                        <Route
-                            path='/users/:userId/profile'
-                            element={<ProfileDetails currentUser={user} />}
-                        />
-                        <Route
-                            path='/logout'
-                            element={<Logout onLogout={logoutHandler} />}
-                        />
-
-                        <Route path='*' element={<NotFound />} />
-                    </Routes>
-                </main>
-
+                <Header />
+                    <main className='flex-grow bg-gradient-to-r from-black via-gray-500 to-black'>
+                        <Routes>
+                            <Route path='/' element={<Home />} />
+                            <Route path='/catalog' element={<Catalog />} />
+                            <Route path='/register' element={<Register />} />
+                            <Route path='/login' element={<Login />} />
+                            <Route path='/about' element={<About />} />
+                            <Route path='/create' element={<PlaceCreate />} />
+                            <Route path='/places/:placeId/details' element={<PlaceDetails />} />
+                            <Route path='/places/:placeId/edit' element={<PlaceEdit />} />
+                            <Route path='/users/:userId/profile' element={<ProfileDetails />} />
+                            <Route path='/logout' element={<Logout />} />
+                            <Route path='*' element={<NotFound />} />   
+                        </Routes>
+                    </main>
                 <Footer />
             </div>
         </>
