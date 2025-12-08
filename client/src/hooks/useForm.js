@@ -21,6 +21,9 @@ export default function useForm(callback, initialValues = {}) {
         onChange: changeHandler
     });
 
+    const resetValues = newValues =>
+        setValues(state => ({ ...state, ...newValues }));
+
     const resetForm = () => setValues(initialValues);
 
     return {
@@ -29,6 +32,7 @@ export default function useForm(callback, initialValues = {}) {
         register,
         changeHandler,
         formAction,
+        resetValues,
         resetForm
     };
 }

@@ -1,37 +1,53 @@
+import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router';
+import UserContext from '../../../contexts/UserContext.jsx';
+import useForm from '../../../hooks/useForm.js';
 
-export default function Register({ onRegister }) {
+export default function Register() {
     const navigate = useNavigate();
+    const { registerHandler } = useContext(UserContext);
 
-    const submitHandler = e => {
-        e.preventDefault();
+    const registerSubmitHandler = async values => {
+        const { email, password, confirmPassword } = values;
 
-        const formData = new FormData(e.target);
-
-        const email = formData.get('email');
-        const password = formData.get('password');
-        const confirmPassword = formData.get('confirmPassword');
+        if (!email || !password) {
+            return alert('Email and password are required!');
+        }
 
         if (password !== confirmPassword) {
-            return alert('Passwords do not match.');
+            resetValues({ password: '', confirmPassword: '' });
+            return alert('Passwords do not match!');
+        }
+
+        if (!/\S+@\S+\.\S+/.test(email)) {
+            return alert('Invalid email format!');
         }
 
         try {
-            onRegister({
-                email,
-                password
-            });
+            await registerHandler(email, password);
 
+            resetForm();
             navigate('/');
         } catch (error) {
+            resetValues({ password: '', confirmPassword: '' });
             alert(error.message);
         }
     };
+
+    const { register, formAction, resetValues, resetForm } = useForm(
+        registerSubmitHandler,
+        {
+            email: '',
+            password: '',
+            confirmPassword: ''
+        }
+    );
+
     return (
         <section className='bg-gradient-to-r from-black via-gray-500 to-black px-6 py-12 flex justify-center items-center'>
             <form
                 id='register'
-                onSubmit={submitHandler}
+                action={formAction}
                 className='bg-white rounded-xl shadow-lg p-8 w-full max-w-md space-y-6 border-b-6 border-black border-r-6 border-gray-800'
             >
                 <h2 className='text-4xl font-bold text-center text-[#4A9603] drop-shadow-[3px_3px_1px_black]'>
@@ -44,9 +60,8 @@ export default function Register({ onRegister }) {
                     <input
                         type='email'
                         id='email'
-                        name='email'
                         required
-                        pattern='[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'
+                        {...register('email')}
                         placeholder='example@mail.com'
                         className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
                     />
@@ -60,9 +75,9 @@ export default function Register({ onRegister }) {
                         id='password'
                         name='password'
                         required
-                        minlength='8'
+                        minlength='6'
                         maxlength='20'
-                        pattern='[A-Za-z0-9!@#$%^&*()_+=-]+'
+                        {...register('password')}
                         placeholder='********'
                         className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
                     />
@@ -76,6 +91,9 @@ export default function Register({ onRegister }) {
                         id='confirmPassword'
                         name='confirmPassword'
                         required
+                        minlength='6'
+                        maxlength='20'
+                        {...register('confirmPassword')}
                         placeholder='********'
                         className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
                     />

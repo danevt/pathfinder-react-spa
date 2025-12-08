@@ -31,8 +31,16 @@ export default function useRequest(initialUrl = '', initialState = null) {
 
         const response = await fetch(`${BASE_URL}${endpoint}`, options);
 
+        // if (!response.ok) {
+        //     throw response.statusText;
+        // }
+
         if (!response.ok) {
-            throw response.statusText;
+            if (response.status === 409) {
+                throw new Error('Email already exists!');
+            }
+
+            throw new Error('Something went wrong!');
         }
 
         if (response.status === 204) {
