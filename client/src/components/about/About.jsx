@@ -1,8 +1,11 @@
+import { useContext } from 'react';
+import UserContext from '../../contexts/UserContext.jsx';
 import { Link } from 'react-router';
 
-export default function About({ user }) {
-    const isGuest = !user;
-    const isLogged = !!user;
+export default function About() {
+    const { isAuthenticated } = useContext(UserContext);
+    const isGuest = !isAuthenticated;
+    const isLogged = isAuthenticated;
 
     const linkClasses = active =>
         `font-bold transition text-shadow-sm ${
