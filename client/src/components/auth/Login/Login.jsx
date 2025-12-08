@@ -1,28 +1,45 @@
+import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router';
+import UserContext from '../../../contexts/UserContext.jsx';
+import useForm from '../../../hooks/useForm.js';
 
-export default function Login({ onLogin }) {
+export default function Login() {
     const navigate = useNavigate();
+    const { loginHandler } = useContext(UserContext);
 
-    const submitHandler = e => {
-        e.preventDefault();
+    const loginSubmitHandler = async ({ email, password }) => {
+        if (!email || !password) {
+            return alert('Email and password are required!');
+        }
 
-        const formData = new FormData(e.target);
-        const email = formData.get('email');
-        const password = formData.get('password');
+        if (!/\S+@\S+\.\S+/.test(email)) {
+            return alert('Invalid email format!');
+        }
 
         try {
-            onLogin(email, password);
+            await loginHandler(email, password);
 
+            resetForm();
             navigate('/');
         } catch (error) {
+            resetValues({ password: '' });
             alert(error.message);
         }
     };
+
+    const { register, formAction, resetValues, resetForm } = useForm(
+        loginSubmitHandler,
+        {
+            email: '',
+            password: ''
+        }
+    );
+
     return (
         <section className='bg-gradient-to-r from-black via-gray-500 to-black px-6 py-16 flex justify-center items-center'>
             <form
                 id='login'
-                onSubmit={submitHandler}
+                action={formAction}
                 className='bg-white rounded-xl shadow-lg p-8 w-full max-w-md space-y-6 border-b-6 border-black border-r-6 border-gray-800'
             >
                 <h2 className='text-4xl font-bold text-center text-[#4A9603] drop-shadow-[3px_3px_1px_black]'>
@@ -35,7 +52,7 @@ export default function Login({ onLogin }) {
                     <input
                         type='email'
                         id='email'
-                        name='email'
+                        {...register('email')}
                         required
                         placeholder='example@mail.com'
                         className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
@@ -48,7 +65,7 @@ export default function Login({ onLogin }) {
                     <input
                         type='password'
                         id='password'
-                        name='password'
+                        {...register('password')}
                         required
                         placeholder='********'
                         className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
