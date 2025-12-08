@@ -1,24 +1,52 @@
 import { Link, useNavigate } from 'react-router';
 import { ENDPOINT_PLACES } from '../../../config/api.js';
-import request from '../../../utils/requester.js';
 import LogoSpinner from '../../ui/spinner/LogoSpinner.jsx';
 import { useState } from 'react';
+import useRequest from '../../../hooks/useRequest.js';
+import useForm from '../../../hooks/useForm.js';
+import DifficultyRadioBtn from '../../ui/radio-buttons/DifficultyRadioBtn.jsx';
 
 export default function PlaceCreate() {
-    const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+    const { request } = useRequest();
 
-    const addPlaceHandler = async e => {
-        e.preventDefault();
+    const createPlaceHandler = async values => {
+        if (!values.title || values.title.length < 3) {
+            alert('Title must be at least 3 characters');
+            return;
+        }
+
+        if (!values.imageUrl || !values.imageUrl.startsWith('http')) {
+            alert('Image URL must start with http');
+            return;
+        }
+
+        if (!values.description || values.description.length < 30) {
+            alert('Description must be at least 30 characters');
+            return;
+        }
+
+        if (!values.location || values.location.length < 3) {
+            alert('Location must be at least 3 characters');
+            return;
+        }
+
+        if (!values.category) {
+            alert('Category is required');
+            return;
+        }
+
+        if (!values.difficulty) {
+            alert('Difficulty is required');
+            return;
+        }
+
+        const data = { ...values, _createdOn: Date.now() };
         setLoading(true);
-
-        const formData = new FormData(e.target);
-        const data = Object.fromEntries(formData);
-        data._createdOn = Date.now();
 
         try {
             await request(ENDPOINT_PLACES, 'POST', data);
-
             navigate('/catalog');
         } catch (error) {
             alert(error.message);
@@ -27,13 +55,25 @@ export default function PlaceCreate() {
         }
     };
 
+    const { register, values, changeHandler, formAction } = useForm(
+        createPlaceHandler,
+        {
+            title: '',
+            imageUrl: '',
+            description: '',
+            location: '',
+            category: '',
+            difficulty: ''
+        }
+    );
+
     return (
         <section className='bg-gradient-to-r from-black via-gray-500 to-black px-6 py-12 flex justify-center items-center'>
             {loading && <LogoSpinner />}
 
             <form
                 id='add-new-place'
-                onSubmit={addPlaceHandler}
+                action={formAction}
                 className='bg-white rounded-xl shadow-lg p-8 w-full max-w-md space-y-6 border-b-6 border-black border-r-6 border-gray-800'
             >
                 <h2 className='text-4xl font-bold text-center text-[#4A9603] drop-shadow-[3px_3px_1px_black]'>
@@ -50,7 +90,7 @@ export default function PlaceCreate() {
                     <input
                         type='text'
                         id='title'
-                        name='title'
+                        {...register('title')}
                         required
                         placeholder='Enter place title...'
                         className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
@@ -67,7 +107,7 @@ export default function PlaceCreate() {
                     <input
                         type='text'
                         id='imageUrl'
-                        name='imageUrl'
+                        {...register('imageUrl')}
                         required
                         placeholder='https://example.com/image.jpg'
                         className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
@@ -83,7 +123,7 @@ export default function PlaceCreate() {
                     </label>
                     <textarea
                         id='description'
-                        name='description'
+                        {...register('description')}
                         required
                         placeholder='Describe the place...'
                         className='w-full h-40 px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
@@ -100,7 +140,7 @@ export default function PlaceCreate() {
                     <input
                         type='text'
                         id='location'
-                        name='location'
+                        {...register('location')}
                         required
                         placeholder='City'
                         className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
@@ -116,7 +156,7 @@ export default function PlaceCreate() {
                     </label>
                     <select
                         id='category'
-                        name='category'
+                        {...register('category')}
                         required
                         className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
                     >
@@ -132,45 +172,16 @@ export default function PlaceCreate() {
                         <option value='museum'>Museum</option>
                     </select>
                 </div>
+
                 <div>
                     <span className='block text-black font-bold mb-2 text-shadow-sm pl-2'>
                         Difficulty
                     </span>
-                    <div className='flex gap-4 font-bold text-shadow-sm pl-4'>
-                        <label className='text-green-600'>
-                            <input
-                                type='radio'
-                                id='difficulty-easy'
-                                name='difficulty'
-                                value='easy'
-                                required
-                                className='mr-1'
-                            />
-                            Easy
-                        </label>
-                        <label className='text-yellow-500'>
-                            <input
-                                type='radio'
-                                id='difficulty-medium'
-                                name='difficulty'
-                                value='medium'
-                                required
-                                className='mr-1'
-                            />
-                            Medium
-                        </label>
-                        <label className='text-red-600'>
-                            <input
-                                type='radio'
-                                id='difficulty-hard'
-                                name='difficulty'
-                                value='hard'
-                                required
-                                className='mr-1'
-                            />
-                            Hard
-                        </label>
-                    </div>
+                    <DifficultyRadioBtn
+                        value={values.difficulty}
+                        onChange={changeHandler}
+                        name='difficulty'
+                    />
                 </div>
 
                 <button

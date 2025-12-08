@@ -17,8 +17,6 @@ export default function NotFound() {
             </p>
             <p className='text-[#7CFC00] text-sm md:text-base font-bold mt-2 mb-2'>
                 To find your way back to familiar paths, follow your Pathfinder.
-                {/* Lost on the trail? Let your Pathfinder guide you home. */}
-                {/* Return to known routes using your Pathfinder. */}
             </p>
 
             <Link
