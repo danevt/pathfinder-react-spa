@@ -69,7 +69,7 @@ export default function useRequest(url, initialState) {
         return () => {
             isActive = false;
         };
-    }, [url, user?.accessToken, isAuthenticated]); // safe dependencies
+    }, [url, user?.accessToken, isAuthenticated]); 
 
     return {
         request,

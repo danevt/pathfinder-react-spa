@@ -12,10 +12,8 @@ import Logout from './components/auth/Logout/Logout.jsx';
 import About from './components/about/About.jsx';
 import NotFound from './components/not-found/NotFound.jsx';
 import ProfileDetails from './components/profile/profile-details/ProfileDetails.jsx';
-import { useUserContext } from './contexts/UserContext.jsx';
 
 function App() {
-    const { user } = useUserContext();
 
     return (
         <>

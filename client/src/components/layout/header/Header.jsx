@@ -1,6 +1,8 @@
 import { Link } from 'react-router';
+import { useUserContext } from '../../../contexts/UserContext.jsx';
 
-export default function Header({ user }) {
+export default function Header() {
+    const { user } = useUserContext();
     const isLogged = Boolean(user);
     const profilePath = isLogged ? `/users/${user._id}/profile` : '/login';
 
