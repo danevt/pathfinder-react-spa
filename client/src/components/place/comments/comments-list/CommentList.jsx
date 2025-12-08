@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
-import { COMMENTS_API } from '../../../../config/api.js';
+import { ENDPOINT_COMMENTS } from '../../../../config/api.js';
 import CommentCard from '../comment-card/CommentCard.jsx';
 import request from '../../../../utils/requester.js';
 import LogoSpinner from '../../../ui/spinner/LogoSpinner.jsx';
@@ -12,7 +12,7 @@ export default function CommentList({ onClose, placeId, currentUser }) {
 
     useEffect(() => {
         setLoading(true);
-        request(COMMENTS_API)
+        request(ENDPOINT_COMMENTS)
             .then(result => {
                 const filteredComments = Object.values(result).filter(
                     comment => comment.placeId === placeId

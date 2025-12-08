@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import request from '../../../utils/requester.js';
-import { PROFILES_API } from '../../../config/api.js';
+import { ENDPOINT_PROFILES } from '../../../config/api.js';
 
 export default function ProfileSettingsOverlay({
     user,
@@ -25,7 +25,7 @@ export default function ProfileSettingsOverlay({
         setIsSaving(true);
         try {
             const updatedUser = await request(
-                `${PROFILES_API}${user._id}`,
+                `${ENDPOINT_PROFILES}${user._id}`,
                 'PUT',
                 {
                     username,
@@ -50,7 +50,7 @@ export default function ProfileSettingsOverlay({
 
         setIsDeleting(true);
         try {
-            await request(`${PROFILES_API}${user._id}`, 'DELETE');
+            await request(`${ENDPOINT_PROFILES}${user._id}`, 'DELETE');
             onUserDelete(user._id);
         } catch (err) {
             alert(err.message);

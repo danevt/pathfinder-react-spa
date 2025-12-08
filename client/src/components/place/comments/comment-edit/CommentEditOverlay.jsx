@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { COMMENTS_API } from '../../../../config/api.js';
+import { ENDPOINT_COMMENTS } from '../../../../config/api.js';
 import request from '../../../../utils/requester.js';
 import LogoSpinner from '../../../ui/spinner/LogoSpinner.jsx';
 
@@ -18,7 +18,7 @@ export default function CommentEditOverlay({ comment, onClose, onSave }) {
             text
         };
 
-        request(`${COMMENTS_API}${comment._id}`, 'PUT', updatedComment)
+        request(`${ENDPOINT_COMMENTS}${comment._id}`, 'PUT', updatedComment)
             .then(() => {
                 onSave(updatedComment);
                 onClose();
@@ -33,9 +33,8 @@ export default function CommentEditOverlay({ comment, onClose, onSave }) {
 
     return (
         <div className='absolute inset-0 z-50 flex items-center justify-center'>
-
             {loading && <LogoSpinner />}
-            
+
             <div
                 className='fixed inset-0 bg-black/10 backdrop-blur-[2px]'
                 onClick={onClose}

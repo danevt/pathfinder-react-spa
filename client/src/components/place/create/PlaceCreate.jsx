@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router';
-import { PLACES_API } from '../../../config/api.js';
+import { ENDPOINT_PLACES } from '../../../config/api.js';
 import request from '../../../utils/requester.js';
 import LogoSpinner from '../../ui/spinner/LogoSpinner.jsx';
 import { useState } from 'react';
@@ -17,7 +17,7 @@ export default function PlaceCreate() {
         data._createdOn = Date.now();
 
         try {
-            await request(PLACES_API, 'POST', data);
+            await request(ENDPOINT_PLACES, 'POST', data);
 
             navigate('/catalog');
         } catch (error) {

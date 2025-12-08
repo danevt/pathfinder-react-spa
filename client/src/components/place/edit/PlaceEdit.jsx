@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router';
-import { PLACES_API } from '../../../config/api.js';
+import { ENDPOINT_PLACES } from '../../../config/api.js';
 import request from '../../../utils/requester.js';
 import LogoSpinner from '../../ui/spinner/LogoSpinner.jsx';
 
@@ -29,7 +29,7 @@ export default function PlaceEdit() {
 
     useEffect(() => {
         setIsLoading(true);
-        request(`${PLACES_API}${placeId}`)
+        request(`${ENDPOINT_PLACES}${placeId}`)
             .then(result => setValues(result))
             .catch(error => alert(error.message))
             .finally(() => setIsLoading(false));

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { COMMENTS_API } from '../../../../config/api.js';
+import { ENDPOINT_COMMENTS } from '../../../../config/api.js';
 import request from '../../../../utils/requester.js';
 import LogoSpinner from '../../../ui/spinner/LogoSpinner.jsx';
 
@@ -28,7 +28,7 @@ export default function CommentCreateOverlay({
                 _createdOn: Date.now()
             };
 
-            await request(COMMENTS_API, 'POST', newComment);
+            await request(ENDPOINT_COMMENTS, 'POST', newComment);
 
             setText('');
             onClose();
@@ -40,7 +40,6 @@ export default function CommentCreateOverlay({
     };
     return (
         <div className='absolute inset-0 z-50 flex items-center justify-center'>
-            
             {loading && <LogoSpinner />}
 
             <div

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router';
 import PlaceDelete from '../delete/PlaceDelete.jsx';
 import request from '../../../utils/requester.js';
-import { PLACES_API, PROFILES_API } from '../../../config/api.js';
+import { ENDPOINT_PLACES, ENDPOINT_PROFILES } from '../../../config/api.js';
 import CommentCreateOverlay from '../comments/comment-create/CommentCreateOverlay.jsx';
 import CommentList from '../comments/comments-list/CommentList.jsx';
 import LogoSpinner from '../../ui/spinner/LogoSpinner.jsx';
@@ -24,13 +24,13 @@ export default function PlaceDetails({ currentUser }) {
             try {
                 setIsLoading(true);
 
-                const result = await request(`${PLACES_API}${placeId}`);
+                const result = await request(`${ENDPOINT_PLACES}${placeId}`);
                 setPlace(result);
                 setLikes(result.likes);
 
                 if (result._ownerId) {
                     const authorData = await request(
-                        `${PROFILES_API}${result._ownerId}`
+                        `${ENDPOINT_PROFILES}${result._ownerId}`
                     );
                     setAuthor(authorData);
                 } else {
@@ -64,7 +64,7 @@ export default function PlaceDetails({ currentUser }) {
         }
 
         try {
-            await request(`${PLACES_API}${placeId}`, 'PATCH', {
+            await request(`${ENDPOINT_PLACES}${placeId}`, 'PATCH', {
                 likes: updatedLikes
             });
             setLikes(updatedLikes);

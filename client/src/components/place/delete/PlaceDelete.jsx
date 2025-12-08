@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { PLACES_API } from '../../../config/api.js';
+import { ENDPOINT_PLACES } from '../../../config/api.js';
 import request from '../../../utils/requester.js';
 
 export default function PlaceDelete({
@@ -14,7 +14,7 @@ export default function PlaceDelete({
         setIsDeleting(true);
 
         try {
-            await request(`${PLACES_API}${placeId}`, 'DELETE');
+            await request(`${ENDPOINT_PLACES}${placeId}`, 'DELETE');
 
             onConfirm();
         } catch (error) {

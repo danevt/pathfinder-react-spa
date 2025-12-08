@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import request from '../../../utils/requester.js';
-import { COMMENTS_API, PLACES_API, PROFILES_API } from '../../../config/api.js';
+import {
+    ENDPOINT_COMMENTS,
+    ENDPOINT_PLACES,
+    ENDPOINT_PROFILES
+} from '../../../config/api.js';
 import LogoSpinner from '../../ui/spinner/LogoSpinner.jsx';
 import ProfileCard from '../profile-card/ProfileCard.jsx';
 import PlaceCard from '../../place/card/PlaceCard.jsx';
@@ -27,9 +31,9 @@ export default function ProfileDetails({ currentUser }) {
             try {
                 const [placesData, commentsData, usersData] = await Promise.all(
                     [
-                        request(PLACES_API),
-                        request(COMMENTS_API),
-                        request(PROFILES_API)
+                        request(ENDPOINT_PLACES),
+                        request(ENDPOINT_COMMENTS),
+                        request(ENDPOINT_PROFILES)
                     ]
                 );
 

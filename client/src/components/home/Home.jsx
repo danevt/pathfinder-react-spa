@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import PlaceCard from '../place/card/PlaceCard.jsx';
 import request from '../../utils/requester.js';
-import { PLACES_API } from '../../config/api.js';
+import { ENDPOINT_PLACES } from '../../config/api.js';
 import LogoSpinner from '../ui/spinner/LogoSpinner.jsx';
 
 export default function Home() {
@@ -11,7 +11,7 @@ export default function Home() {
 
     useEffect(() => {
         setIsLoading(true);
-        request(PLACES_API)
+        request(ENDPOINT_PLACES)
             .then(result => {
                 const resultPlaces = Object.values(result)
                     .sort((a, b) => b._createdOn - a._createdOn)

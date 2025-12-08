@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import PlaceCard from '../place/card/PlaceCard.jsx';
 import request from '../../utils/requester.js';
-import { PLACES_API } from '../../config/api.js';
+import { ENDPOINT_PLACES } from '../../config/api.js';
 import Pagination from '../ui/pagination/Pagination.jsx';
 
 export default function Catalog() {
@@ -12,7 +12,7 @@ export default function Catalog() {
     const placesPerPage = 3;
 
     useEffect(() => {
-        request(PLACES_API)
+        request(ENDPOINT_PLACES)
             .then(result => {
                 const sortedPlaces = Object.values(result).sort((a, b) =>
                     sortAsc

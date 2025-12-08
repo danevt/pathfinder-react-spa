@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
-import { COMMENTS_API, PROFILES_API } from '../../../../config/api.js';
+import {
+    ENDPOINT_COMMENTS,
+    ENDPOINT_PROFILES
+} from '../../../../config/api.js';
 import request from '../../../../utils/requester.js';
 import CommentEditOverlay from '../comment-edit/CommentEditOverlay.jsx';
 import LogoSpinner from '../../../ui/spinner/LogoSpinner.jsx';
@@ -17,7 +20,7 @@ export default function CommentCard({
     const formattedDate = new Date(_createdOn).toLocaleDateString();
 
     useEffect(() => {
-        request(`${PROFILES_API}${userId}`)
+        request(`${ENDPOINT_PROFILES}${userId}`)
             .then(data => setUser(data))
             .catch(error => {
                 alert(error.message);
@@ -28,7 +31,7 @@ export default function CommentCard({
     const handleDelete = () => {
         if (!confirm('Are you sure you want to delete this comment?')) return;
 
-        request(`${COMMENTS_API}${comment._id}`, 'DELETE')
+        request(`${ENDPOINT_COMMENTS}${comment._id}`, 'DELETE')
             .then(() => {
                 onDelete(comment._id);
             })
@@ -51,7 +54,7 @@ export default function CommentCard({
             updatedLikes = [...likes, currentUser._id];
         }
 
-        request(`${COMMENTS_API}${comment._id}`, 'PATCH', {
+        request(`${ENDPOINT_COMMENTS}${comment._id}`, 'PATCH', {
             likes: updatedLikes
         })
             .then(() => {
