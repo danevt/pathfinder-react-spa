@@ -1,31 +1,16 @@
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import PlaceCard from '../place/card/PlaceCard.jsx';
-import request from '../../utils/requester.js';
 import { ENDPOINT_PLACES } from '../../config/api.js';
 import LogoSpinner from '../ui/spinner/LogoSpinner.jsx';
+import useRequest from '../../hooks/useRequest.js';
 
 export default function Home() {
-    const [latestPlaces, setLatestPlaces] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const { data: latestPlaces } = useRequest(
+        `${ENDPOINT_PLACES}?sortBy=_createdOn%20desc&pageSize=3`,
+        []
+    );
 
-    useEffect(() => {
-        setIsLoading(true);
-        request(ENDPOINT_PLACES)
-            .then(result => {
-                const resultPlaces = Object.values(result)
-                    .sort((a, b) => b._createdOn - a._createdOn)
-                    .slice(0, 3);
-
-                setLatestPlaces(resultPlaces);
-            })
-            .catch(error => alert(error.message))
-            .finally(() => setIsLoading(false));
-    }, []);
-
-    if (isLoading) {
-        return <LogoSpinner />;
-    }
+    if (!latestPlaces) return <LogoSpinner />;
 
     return (
         <section className='bg-gradient-to-r from-black via-gray-500 to-black p-6 flex flex-col items-center'>

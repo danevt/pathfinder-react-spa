@@ -2,9 +2,11 @@ import { Link } from 'react-router';
 import { useUserContext } from '../../../contexts/UserContext.jsx';
 
 export default function Header() {
-    const { user } = useUserContext();
-    const isLogged = Boolean(user);
-    const profilePath = isLogged ? `/users/${user._id}/profile` : '/login';
+    const { user, isAuthenticated } = useUserContext();
+
+    const profilePath = isAuthenticated
+        ? `/users/${user._id}/profile`
+        : '/login';
 
     return (
         <header className='bg-gradient-to-r from-[#438004] via-[#7CFC00] to-[#4A9603] flex justify-between items-center px-6 py-0 border-b-4 border-black'>
@@ -32,7 +34,7 @@ export default function Header() {
                     Destinations
                 </Link>
 
-                {isLogged ? (
+                {isAuthenticated ? (
                     <>
                         <Link
                             className='inline-block text-3xl drop-shadow-[1px_1px_1px_black] hover:text-black  hover:drop-shadow-[3px_3px_3px_#7CFC00] transform transition-transform duration-300 hover:scale-110'
