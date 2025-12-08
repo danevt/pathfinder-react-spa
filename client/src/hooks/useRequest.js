@@ -2,24 +2,22 @@ import { useContext, useEffect, useState } from 'react';
 import UserContext from '../contexts/UserContext';
 import { BASE_URL } from '../config/api.js';
 
-export default function useRequest(initialUrl = '', initialState = null) {
+export default function useRequest(url, initialState) {
     const { user, isAuthenticated } = useContext(UserContext);
     const [data, setData] = useState(initialState);
-    const [url, setUrl] = useState(initialUrl);
 
-    const request = async (endpoint, method, body, config = {}) => {
-        const options = {};
+    const request = async (url, method, data, config = {}) => {
+        let options = {};
 
         if (method) {
             options.method = method;
         }
 
-        if (body) {
+        if (data) {
             options.headers = {
-                'Content-Type': 'application/json'
+                'content-type': 'application/json'
             };
-
-            options.body = JSON.stringify(body);
+            options.body = JSON.stringify(data);
         }
 
         if (config.accessToken || isAuthenticated) {
@@ -29,18 +27,19 @@ export default function useRequest(initialUrl = '', initialState = null) {
             };
         }
 
-        const response = await fetch(`${BASE_URL}${endpoint}`, options);
-
-        // if (!response.ok) {
-        //     throw response.statusText;
-        // }
+        const response = await fetch(`${BASE_URL}${url}`, options);
 
         if (!response.ok) {
-            if (response.status === 409) {
-                throw new Error('Email already exists!');
+            let message = '';
+
+            try {
+                const json = await response.json();
+                message = json.message || response.statusText;
+            } catch {
+                message = response.statusText;
             }
 
-            throw new Error('Something went wrong!');
+            throw new Error(message);
         }
 
         if (response.status === 204) {
@@ -48,7 +47,6 @@ export default function useRequest(initialUrl = '', initialState = null) {
         }
 
         const result = await response.json();
-
         return result;
     };
 
@@ -61,8 +59,8 @@ export default function useRequest(initialUrl = '', initialState = null) {
             try {
                 const result = await request(url);
                 if (isActive) setData(result);
-            } catch (err) {
-                if (isActive) alert(err.message);
+            } catch (error) {
+                if (isActive) alert(error.message);
             }
         };
 
@@ -71,7 +69,11 @@ export default function useRequest(initialUrl = '', initialState = null) {
         return () => {
             isActive = false;
         };
-    }, [url, user?.accessToken, isAuthenticated]);
+    }, [url, user?.accessToken, isAuthenticated]); // safe dependencies
 
-    return { data, setData, setUrl, request };
+    return {
+        request,
+        data,
+        setData
+    };
 }
