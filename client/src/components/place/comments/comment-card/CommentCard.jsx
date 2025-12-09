@@ -1,116 +1,93 @@
-import { useEffect, useState } from 'react';
-import {
-    ENDPOINT_COMMENTS,
-    ENDPOINT_PROFILES
-} from '../../../../config/api.js';
-import request from '../../../../utils/requester.js';
+import { useState, useEffect } from 'react';
+import { useUserContext } from '../../../../contexts/UserContext.jsx';
+import useRequest from '../../../../hooks/useRequest.js';
 import CommentEditOverlay from '../comment-edit/CommentEditOverlay.jsx';
 import LogoSpinner from '../../../ui/spinner/LogoSpinner.jsx';
+import LikeButton from '../../../ui/buttons/LikeButton.jsx';
+import { ENDPOINT_PROFILES } from '../../../../config/api.js';
 
-export default function CommentCard({
-    comment,
-    currentUser,
-    onUpdate,
-    onDelete
-}) {
-    const { userId, _createdOn, text, likes } = comment;
-    const [user, setUser] = useState(null);
+export default function CommentCard({ comment, onUpdate, onDelete }) {
+    const { user, isAuthenticated } = useUserContext();
+    const { request } = useRequest();
+    const [author, setAuthor] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
 
-    const formattedDate = new Date(_createdOn).toLocaleDateString();
+    const formattedDate = new Date(comment._createdOn).toLocaleDateString();
+    const isAuthor = isAuthenticated && user._id === comment.userId;
 
     useEffect(() => {
-        request(`${ENDPOINT_PROFILES}${userId}`)
-            .then(data => setUser(data))
-            .catch(error => {
-                alert(error.message);
-                setUser({ username: 'Unknown', avatar: 'avatar1' });
-            });
-    }, [userId]);
+        if (!comment.userId) return;
+        request(`${ENDPOINT_PROFILES}${comment.userId}`)
+            .then(data => setAuthor(data))
+            .catch(() => setAuthor({ username: 'Unknown', avatar: 'avatar1' }));
+    }, [comment.userId, request]);
 
-    const handleDelete = () => {
+    const handleDelete = async () => {
         if (!confirm('Are you sure you want to delete this comment?')) return;
-
-        request(`${ENDPOINT_COMMENTS}${comment._id}`, 'DELETE')
-            .then(() => {
-                onDelete(comment._id);
-            })
-            .catch(error => {
-                alert(error.message || 'Failed to delete comment');
-            });
+        try {
+            await request(`${ENDPOINT_COMMENTS}${comment._id}`, 'DELETE');
+            onDelete(comment._id);
+        } catch (err) {
+            alert(err.message);
+        }
     };
 
-    const handleLike = () => {
-        if (!currentUser) {
-            alert('You need to be logged in like comments!');
-            return;
-        }
+    if (!author) return <LogoSpinner />;
 
-        let updatedLikes;
-
-        if (likes.includes(currentUser._id)) {
-            updatedLikes = likes.filter(id => id !== currentUser._id);
-        } else {
-            updatedLikes = [...likes, currentUser._id];
-        }
-
-        request(`${ENDPOINT_COMMENTS}${comment._id}`, 'PATCH', {
-            likes: updatedLikes
-        })
-            .then(() => {
-                onUpdate({ ...comment, likes: updatedLikes });
-            })
-            .catch(error => alert(error.message));
-    };
-
-    if (!user) return <LogoSpinner />;
-
-    const { username, avatar } = user;
-    const avatarSrc = `/images/avatars/${avatar}.svg`;
+    const avatarSrc = `/images/avatars/${author.avatar}.svg`;
 
     return (
         <>
-            <div className='bg-gradient-to-r from-white via-gray-300 to-gray-400 rounded-xl shadow-md w-[420px] h-[180px] border-b-8 border-black border-r-6 border-gray-900 relative p-8 z-10 flex flex-col justify-between pointer-events-auto'>
-                <h2 className='text-1xl font-semibold text-black drop-shadow-lg text-center mb-5'>
-                    {text}
-                </h2>
-                <div className='flex items-center gap-2 ml-[-10px]'>
-                    <img
-                        src={avatarSrc}
-                        alt={username}
-                        className='w-12 h-12 rounded-full'
-                    />
-                    <div className='text-gray-700 text-sm'>
-                        <p>{formattedDate}</p>
-                        <p className='font-semibold'>{username}</p>
+            <div className='bg-gradient-to-r from-white via-gray-300 to-gray-400 rounded-xl shadow-md w-[420px] h-[180px] border-b-8 border-black border-r-6 border-gray-900 relative p-6 flex flex-col justify-between pointer-events-auto'>
+                <div className='flex gap-4'>
+                    <div className='flex flex-col items-start'>
+                        <div className='flex items-center gap-2'>
+                            <img
+                                src={avatarSrc}
+                                alt={author.username}
+                                className='w-12 h-12 rounded-full'
+                            />
+                            <div className='text-gray-700 text-sm'>
+                                <p className='font-semibold'>
+                                    {author.username}
+                                </p>
+                                <p className='text-xs'>{formattedDate}</p>
+                            </div>
+                        </div>
                     </div>
-                    <p className='text-sm  text-yellow-500 font-bold drop-shadow-[1px_1px_0px_black]'>
-                        {likes?.length || 0} Likes
-                    </p>
+
+                    <div className='flex-1 flex items-start justify-start'>
+                        <p className='text-black font-semibold drop-shadow-lg break-words'>
+                            {comment.text}
+                        </p>
+                    </div>
                 </div>
-                <div className='relative flex-1'>
-                    <div className='absolute bottom-0 right-0 flex gap-2'>
-                        <button
-                            onClick={handleLike}
-                            className='bg-yellow-500 text-black font-bold py-2 px-4 rounded-xl border-b-4 border-black border-r-4 border-gray-900 hover:bg-yellow-400 transform transition-transform duration-300 hover:scale-105'
-                        >
-                            Like
-                        </button>
-                        <button
-                            onClick={() => setIsEditing(true)}
-                            className='bg-[#4A9603] text-black font-bold py-2 px-4 rounded-xl border-b-4 border-black border-r-4 border-gray-900 hover:bg-[#5ECF00] transform transition-transform duration-300 hover:scale-105'
-                        >
-                            Edit
-                        </button>
-                        <button
-                            onClick={handleDelete}
-                            className='py-2 px-2 rounded-xl border-b-4 border-black border-r-4 font-bold text-black transform transition-transform duration-300 hover:scale-105 bg-red-600 hover:bg-red-500'
-                        >
-                            Delete
-                        </button>
-                    </div>
+
+                <div className='flex justify-center gap-2 mt-2'>
+                    <LikeButton
+                        itemObject={comment}
+                        currentUser={user}
+                        authorId={comment.userId}
+                    />
+                    {isAuthor && (
+                        <>
+                            <button
+                                onClick={() => setIsEditing(true)}
+                                className='bg-[#4A9603] text-black font-bold py-2 px-2 rounded-xl border-b-4 border-black border-r-4 border-gray-900 hover:bg-[#5ECF00] w-[80px]'
+                            >
+                                Edit
+                            </button>
+                            <button
+                                onClick={handleDelete}
+                                className='bg-red-600 text-black font-bold py-2 px-2 rounded-xl border-b-4 border-black border-r-4 border-gray-900 hover:bg-red-500 w-[80px]'
+                            >
+                                Delete
+                            </button>
+                        </>
+                    )}
                 </div>
             </div>
+
             {isEditing && (
                 <CommentEditOverlay
                     comment={comment}
