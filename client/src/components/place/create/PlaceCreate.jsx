@@ -4,7 +4,7 @@ import LogoSpinner from '../../ui/spinner/LogoSpinner.jsx';
 import { useState } from 'react';
 import useRequest from '../../../hooks/useRequest.js';
 import useForm from '../../../hooks/useForm.js';
-import DifficultyRadioBtn from '../../ui/radio-buttons/DifficultyRadioBtn.jsx';
+import DifficultyRadioBtn from '../../ui/buttons/DifficultyRadioBtn.jsx';
 
 export default function PlaceCreate() {
     const [loading, setLoading] = useState(false);
