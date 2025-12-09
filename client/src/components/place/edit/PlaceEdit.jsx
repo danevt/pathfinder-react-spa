@@ -1,59 +1,85 @@
-import { useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router';
-import { ENDPOINT_PLACES } from '../../../config/api.js';
-import request from '../../../utils/requester.js';
+import { useEffect } from 'react';
+import { useNavigate, useParams, Link } from 'react-router';
+import useForm from '../../../hooks/useForm.js';
+import useRequest from '../../../hooks/useRequest.js';
 import LogoSpinner from '../../ui/spinner/LogoSpinner.jsx';
+import DifficultyRadioBtn from '../../ui/buttons/DifficultyRadioBtn.jsx';
+import { ENDPOINT_PLACES } from '../../../config/api.js';
 
-const initialValues = {
-    title: '',
-    imageUrl: '',
-    description: '',
-    location: '',
-    category: '',
-    difficulty: ''
-};
 export default function PlaceEdit() {
     const navigate = useNavigate();
     const { placeId } = useParams();
-    const [values, setValues] = useState(initialValues);
-    const [isLoading, setIsLoading] = useState(true);
+    const { request } = useRequest();
 
-    const inputHandler = e => {
-        const { name, value } = e.target;
+    const editPlaceHandler = async values => {
+        if (!values.title || values.title.length < 3) {
+            alert('Title must be at least 3 characters');
+            return;
+        }
 
-        setValues(state => ({
-            ...state,
-            [name]: value
-        }));
-    };
+        if (!values.imageUrl || !values.imageUrl.startsWith('http')) {
+            alert('Image URL must start with http');
+            return;
+        }
 
-    useEffect(() => {
-        setIsLoading(true);
-        request(`${ENDPOINT_PLACES}${placeId}`)
-            .then(result => setValues(result))
-            .catch(error => alert(error.message))
-            .finally(() => setIsLoading(false));
-    }, [placeId]);
+        if (!values.description || values.description.length < 30) {
+            alert('Description must be at least 30 characters');
+            return;
+        }
 
-    if (isLoading) {
-        return <LogoSpinner />;
-    }
+        if (!values.location || values.location.length < 3) {
+            alert('Location must be at least 3 characters');
+            return;
+        }
 
-    const editPlaceHandler = async () => {
+        if (!values.category) {
+            alert('Category is required');
+            return;
+        }
+
+        if (!values.difficulty) {
+            alert('Difficulty is required');
+            return;
+        }
+
         try {
-            await request(`places/${placeId}`, 'PUT', values);
-
+            await request(`${ENDPOINT_PLACES}${placeId}`, 'PUT', values);
             navigate(`/places/${placeId}/details`);
-        } catch (error) {
-            alert(error.message);
+        } catch (err) {
+            alert(err.message);
         }
     };
+
+    const { register, formAction, setValues, values, changeHandler } = useForm(
+        editPlaceHandler,
+        {
+            title: '',
+            imageUrl: '',
+            description: '',
+            location: '',
+            category: '',
+            difficulty: ''
+        }
+    );
+
+    useEffect(() => {
+        let active = true;
+        request(`${ENDPOINT_PLACES}${placeId}`)
+            .then(result => {
+                if (active) setValues(result);
+            })
+            .catch(err => alert(err.message));
+
+        return () => (active = false);
+    }, [placeId, setValues]);
+
+    if (!values) return <LogoSpinner />;
 
     return (
         <section className='bg-gradient-to-r from-black via-gray-500 to-black px-6 py-12 flex justify-center items-center'>
             <form
-                action={editPlaceHandler}
                 id='edit-place'
+                action={formAction}
                 className='bg-white rounded-xl shadow-lg p-8 w-full max-w-md space-y-6 border-b-6 border-black border-r-6 border-gray-800'
             >
                 <h2 className='text-4xl font-bold text-center text-[#4A9603] drop-shadow-[3px_3px_1px_black]'>
@@ -70,11 +96,9 @@ export default function PlaceEdit() {
                     <input
                         type='text'
                         id='title'
-                        name='title'
-                        onChange={inputHandler}
-                        value={values.title}
-                        required
+                        {...register('title')}
                         placeholder='Enter place title...'
+                        required
                         className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
                     />
                 </div>
@@ -89,11 +113,9 @@ export default function PlaceEdit() {
                     <input
                         type='text'
                         id='imageUrl'
-                        name='imageUrl'
-                        onChange={inputHandler}
-                        value={values.imageUrl}
-                        required
+                        {...register('imageUrl')}
                         placeholder='https://example.com/image.jpg'
+                        required
                         className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
                     />
                 </div>
@@ -107,11 +129,9 @@ export default function PlaceEdit() {
                     </label>
                     <textarea
                         id='description'
-                        name='description'
-                        onChange={inputHandler}
-                        value={values.description}
-                        required
+                        {...register('description')}
                         placeholder='Describe the place...'
+                        required
                         className='w-full h-40 px-5 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
                     ></textarea>
                 </div>
@@ -126,11 +146,9 @@ export default function PlaceEdit() {
                     <input
                         type='text'
                         id='location'
-                        name='location'
-                        onChange={inputHandler}
-                        value={values.location}
-                        required
+                        {...register('location')}
                         placeholder='City'
+                        required
                         className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
                     />
                 </div>
@@ -144,9 +162,7 @@ export default function PlaceEdit() {
                     </label>
                     <select
                         id='category'
-                        name='category'
-                        onChange={inputHandler}
-                        value={values.category}
+                        {...register('category')}
                         required
                         className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
                     >
@@ -162,66 +178,30 @@ export default function PlaceEdit() {
                         <option value='museum'>Museum</option>
                     </select>
                 </div>
+
                 <div>
                     <span className='block text-black font-bold mb-2 text-shadow-sm pl-2'>
                         Difficulty
                     </span>
-                    <div className='flex gap-4 font-bold text-shadow-sm pl-4'>
-                        <label className='text-green-600'>
-                            <input
-                                type='radio'
-                                id='difficulty-easy'
-                                name='difficulty'
-                                onChange={inputHandler}
-                                value='easy'
-                                checked={values.difficulty === 'easy'}
-                                required
-                                className='mr-1'
-                            />
-                            Easy
-                        </label>
-                        <label className='text-yellow-500'>
-                            <input
-                                type='radio'
-                                id='difficulty-medium'
-                                name='difficulty'
-                                onChange={inputHandler}
-                                value='medium'
-                                checked={values.difficulty === 'medium'}
-                                required
-                                className='mr-1'
-                            />
-                            Medium
-                        </label>
-                        <label className='text-red-600'>
-                            <input
-                                type='radio'
-                                id='difficulty-hard'
-                                name='difficulty'
-                                onChange={inputHandler}
-                                value='hard'
-                                checked={values.difficulty === 'hard'}
-                                required
-                                className='mr-1'
-                            />
-                            Hard
-                        </label>
-                    </div>
+                    <DifficultyRadioBtn
+                        value={values.difficulty}
+                        onChange={changeHandler}
+                    />
                 </div>
 
                 <button
                     type='submit'
-                    className='w-full bg-[#4A9603] text-black font-bold py-2 hover:bg-[#5ECF00] rounded-xl shadow-md border-b-4 border-black border-r-4 border-gray-900 transform transition-transform duration-300 hover:scale-105'
+                    className='w-full bg-[#4A9603] text-black font-bold py-2 hover:bg-[#5ECF00] rounded-xl shadow-md border-b-4 border-black border-r-4 transform transition-transform duration-300 hover:scale-105'
                 >
-                    Edit Place
+                    Save Changes
                 </button>
 
-                <p className='text-sm text-center mt-4 text-black font-semibold'>
+                <p className='text-lg text-center mt-0 text-black font-semibold'>
                     <Link
-                        to='/'
-                        className='text-[#4A9603] drop-shadow-[1px_1px_0px_black] font-bold hover:text-[#5ECF00] transition text-shadow-sm'
+                        to={`/places/${placeId}/details`}
+                        className='text-[#4A9603] drop-shadow-[1px_1px_0px_black] font-bold hover:text-[#5ECF00]'
                     >
-                        Back to Home
+                        Cancel
                     </Link>
                 </p>
             </form>
