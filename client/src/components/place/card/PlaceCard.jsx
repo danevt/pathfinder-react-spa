@@ -35,7 +35,7 @@ export default function PlaceCard({
                 <div className='flex justify-center items-center'>
                     <Link to={`/places/${_id}/details`}>
                         <button
-                            className='bg-[#4A9603] hover:bg-[#5ECF00] text-black font-bold py-2 px-6
+                            className='relative -top-4 bg-[#4A9603] hover:bg-[#5ECF00] text-black font-bold py-2 px-6
                         rounded-xl shadow-md border-b-4 border-black border-r-4 border-gray-900
                         transform transition-transform duration-300 hover:scale-105'
                         >

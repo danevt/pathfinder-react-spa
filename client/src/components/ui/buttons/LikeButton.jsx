@@ -16,7 +16,7 @@ export default function LikeButton({ itemObject, currentUser, authorId }) {
         <button
             onClick={toggleLike}
             disabled={isAuthor || isGuest}
-            className='bg-yellow-500 text-black font-bold py-2 px-4 rounded-xl border-b-4 border-black border-r-4 border-gray-900
+            className='bg-yellow-500 text-black font-bold py-1 px-3 rounded-xl border-b-4 border-black border-r-4 border-gray-900
                        hover:bg-yellow-400 transform transition-transform duration-300 hover:scale-105 flex items-center justify-between gap-2'
         >
             <span>{likes.length}</span>
