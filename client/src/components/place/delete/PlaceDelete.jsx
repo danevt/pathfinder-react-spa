@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ENDPOINT_PLACES } from '../../../config/api.js';
-import request from '../../../utils/requester.js';
+import useRequest from '../../../hooks/useRequest.js';
 
 export default function PlaceDelete({
     placeId,
@@ -9,6 +9,7 @@ export default function PlaceDelete({
     onConfirm
 }) {
     const [isDeleting, setIsDeleting] = useState(false);
+    const { request } = useRequest();
 
     const deletePlaceHandler = async () => {
         setIsDeleting(true);
