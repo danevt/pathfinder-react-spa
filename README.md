@@ -48,7 +48,6 @@ This installs React, ReactDOM, Vite, Tailwind, and all other required dependenci
 
 -   Public catalog of user-added places
 -   Authentication: register, login, logout
--   User profiles with personal place management
 -   Add, view, edit, and delete places
 -   Image, description, difficulty, and location fields
 -   Guest users can browse the catalog; authenticated users can interact with content
@@ -61,13 +60,6 @@ This installs React, ReactDOM, Vite, Tailwind, and all other required dependenci
 -   Clean modular project structure
 -   Server is the SoftUni Practice Server
 
----
 
-## Future Documentation
 
--   Full functional description
--   API specification
--   Component structure
--   Project architecture
--   Usage examples
--   Deployment instructions
+
