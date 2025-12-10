@@ -133,6 +133,7 @@ export default function PlaceDetails() {
             {showComments && (
                 <CommentList
                     placeId={placeId}
+                    currentUser={user}
                     onClose={() => setShowComments(false)}
                 />
             )}

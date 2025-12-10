@@ -1,16 +1,20 @@
 import { useState, useEffect } from 'react';
 import { useUserContext } from '../../../../contexts/UserContext.jsx';
 import useRequest from '../../../../hooks/useRequest.js';
-import CommentEditOverlay from '../comment-edit/CommentEditOverlay.jsx';
+import CommentEdit from '../comment-edit/CommentEdit.jsx';
 import LogoSpinner from '../../../ui/spinner/LogoSpinner.jsx';
 import LikeButton from '../../../ui/buttons/LikeButton.jsx';
-import { ENDPOINT_PROFILES } from '../../../../config/api.js';
+import {
+    ENDPOINT_COMMENTS,
+    ENDPOINT_PROFILES
+} from '../../../../config/api.js';
 
 export default function CommentCard({ comment, onUpdate, onDelete }) {
     const { user, isAuthenticated } = useUserContext();
     const { request } = useRequest();
     const [author, setAuthor] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
+    const [isDeleting, setIsDeleting] = useState(false);
 
     const formattedDate = new Date(comment._createdOn).toLocaleDateString();
     const isAuthor = isAuthenticated && user._id === comment.userId;
@@ -20,15 +24,29 @@ export default function CommentCard({ comment, onUpdate, onDelete }) {
         request(`${ENDPOINT_PROFILES}${comment.userId}`)
             .then(data => setAuthor(data))
             .catch(() => setAuthor({ username: 'Unknown', avatar: 'avatar1' }));
-    }, [comment.userId, request]);
+    }, [comment.userId]);
 
     const handleDelete = async () => {
         if (!confirm('Are you sure you want to delete this comment?')) return;
+
+        console.log('User object:', user);
+        console.log('Access token:', user?.accessToken);
+        console.log(user?._id, comment.userId, user?.accessToken);
+
+        setIsDeleting(true);
+
         try {
-            await request(`${ENDPOINT_COMMENTS}${comment._id}`, 'DELETE');
+            await request(
+                `${ENDPOINT_COMMENTS}${comment._id}`,
+                'DELETE',
+                null,
+                { accessToken: user?.accessToken }
+            );
             onDelete(comment._id);
         } catch (err) {
-            alert(err.message);
+            alert(`Unable to delete comment: ${err.message}`);
+        } finally {
+            setIsDeleting(false);
         }
     };
 
@@ -79,6 +97,7 @@ export default function CommentCard({ comment, onUpdate, onDelete }) {
                             </button>
                             <button
                                 onClick={handleDelete}
+                                disabled={isDeleting}
                                 className='bg-red-600 text-black font-bold py-2 px-2 rounded-xl border-b-4 border-black border-r-4 border-gray-900 hover:bg-red-500 w-[80px]'
                             >
                                 Delete
@@ -89,7 +108,7 @@ export default function CommentCard({ comment, onUpdate, onDelete }) {
             </div>
 
             {isEditing && (
-                <CommentEditOverlay
+                <CommentEdit
                     comment={comment}
                     onClose={() => setIsEditing(false)}
                     onSave={updated => {
