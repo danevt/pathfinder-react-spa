@@ -1,10 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
-import UserContext from '../contexts/UserContext';
 import { BASE_URL } from '../config/api.js';
+import UserContext from '../contexts/UserContext';
+import errorHandler from '../utils/errorHandler.js';
 
 export default function useRequest(url, initialState) {
-    const { user, isAuthenticated } = useContext(UserContext);
+    const { user, isAuthenticated, logoutHandler } = useContext(UserContext);
     const [data, setData] = useState(initialState);
+    const [loading, setLoading] = useState(false);
 
     const request = async (url, method, data, config = {}) => {
         let options = {};
@@ -43,7 +45,10 @@ export default function useRequest(url, initialState) {
                 message = response.statusText;
             }
 
-            throw new Error(message);
+            const error = new Error(message);
+            error.status = response.status;
+
+            throw error;
         }
 
         if (response.status === 204) {
@@ -55,22 +60,34 @@ export default function useRequest(url, initialState) {
     };
 
     useEffect(() => {
-        if (!url) return;
+        if (!url) {
+            return;
+        }
 
         const controller = new AbortController();
+        setLoading(true);
 
         request(url, undefined, undefined, { signal: controller.signal })
             .then(result => setData(result))
-            .catch(err => {
-                if (err.name !== 'AbortError') alert(err.message);
-            });
+            .catch(error => {
+                if (error.name !== 'AbortError') {
+                    errorHandler(error, {
+                        onAlert: message => alert(message),
+                        onLogout: logoutHandler
+                    });
+                }
+            })
+            .finally(() => setLoading(false));
 
-        return () => controller.abort();
+        return () => {
+            controller.abort();
+        };
     }, [url]);
 
     return {
         request,
         data,
-        setData
+        setData,
+        loading
     };
 }
