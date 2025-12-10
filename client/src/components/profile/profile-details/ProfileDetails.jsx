@@ -8,7 +8,6 @@ import {
 import LogoSpinner from '../../ui/spinner/LogoSpinner.jsx';
 import CommentCard from '../../place/comments/comment-card/CommentCard.jsx';
 import Pagination from '../../ui/pagination/Pagination.jsx';
-import ProfileSettingsOverlay from '../profile-settings/ProfileSettingsOverlay.jsx';
 import ProfileCard from '../../profile/profile-card/ProfileCard.jsx';
 import PlaceCard from '../../place/card/PlaceCard.jsx';
 import useRequest from '../../../hooks/useRequest.js';
