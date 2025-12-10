@@ -12,38 +12,70 @@ export default function PlaceEdit() {
     const { request } = useRequest();
 
     const editPlaceHandler = async values => {
-        if (!values.title || values.title.length < 3) {
+        const title = values.title.trim();
+        const imageUrl = values.imageUrl.trim();
+        const description = values.description.trim();
+        const location = values.location.trim();
+        const category = values.category;
+        const difficulty = values.difficulty;
+
+        if (title.length < 3) {
             alert('Title must be at least 3 characters');
             return;
         }
 
-        if (!values.imageUrl || !values.imageUrl.startsWith('http')) {
-            alert('Image URL must start with http');
+        if (title.length > 30) {
+            alert('Title must be at most 30 characters');
             return;
         }
 
-        if (!values.description || values.description.length < 30) {
+        if (!imageUrl.startsWith('http') && !imageUrl.startsWith('/')) {
+            alert('Image URL must start with http or /');
+            return;
+        }
+
+        if (description.length < 30) {
             alert('Description must be at least 30 characters');
             return;
         }
 
-        if (!values.location || values.location.length < 3) {
+        if (description.length > 350) {
+            alert('Description must be at most 350 characters');
+            return;
+        }
+
+        if (location.length < 3) {
             alert('Location must be at least 3 characters');
             return;
         }
 
-        if (!values.category) {
+        if (location.length > 20) {
+            alert('Location must be at most 20 characters');
+            return;
+        }
+
+        if (!category) {
             alert('Category is required');
             return;
         }
 
-        if (!values.difficulty) {
+        if (!difficulty) {
             alert('Difficulty is required');
             return;
         }
 
+        const data = {
+            title,
+            imageUrl,
+            description,
+            location,
+            category,
+            difficulty,
+            _createdOn: values._createdOn
+        };
+
         try {
-            await request(`${ENDPOINT_PLACES}${placeId}`, 'PUT', values);
+            await request(`${ENDPOINT_PLACES}${placeId}`, 'PUT', data);
             navigate(`/places/${placeId}/details`);
         } catch (err) {
             alert(err.message);

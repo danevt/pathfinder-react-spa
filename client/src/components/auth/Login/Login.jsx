@@ -8,6 +8,9 @@ export default function Login() {
     const { loginHandler } = useContext(UserContext);
 
     const loginSubmitHandler = async ({ email, password }) => {
+        const email = values.email.trim();
+        const password = values.password.trim();
+
         if (!email || !password) {
             return alert('Email and password are required!');
         }

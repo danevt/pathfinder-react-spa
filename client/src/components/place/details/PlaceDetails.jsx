@@ -66,8 +66,8 @@ export default function PlaceDetails() {
                         </p>
                     </div>
 
-                    <div className='flex-1 flex items-center justify-center my-4 overflow-auto'>
-                        <p className='text-center break-words'>
+                    <div className='flex-1 mt-8 mb-4 overflow-auto'>
+                        <p className='text-center break-words whitespace-pre-wrap'>
                             {place.description}
                         </p>
                     </div>

@@ -8,7 +8,9 @@ export default function Register() {
     const { registerHandler } = useContext(UserContext);
 
     const registerSubmitHandler = async values => {
-        const { email, password, confirmPassword } = values;
+        const email = values.email.trim();
+        const password = values.password.trim();
+        const confirmPassword = values.confirmPassword.trim();
 
         if (!email || !password) {
             return alert('Email and password are required!');
@@ -75,8 +77,8 @@ export default function Register() {
                         id='password'
                         name='password'
                         required
-                        minlength='6'
-                        maxlength='20'
+                        minLength='6'
+                        maxLength='20'
                         {...register('password')}
                         placeholder='********'
                         className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
@@ -91,8 +93,8 @@ export default function Register() {
                         id='confirmPassword'
                         name='confirmPassword'
                         required
-                        minlength='6'
-                        maxlength='20'
+                        minLength='6'
+                        maxLength='20'
                         {...register('confirmPassword')}
                         placeholder='********'
                         className='w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5ECF00]'
