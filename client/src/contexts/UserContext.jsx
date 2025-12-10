@@ -1,7 +1,6 @@
 import { createContext, useContext } from 'react';
 import useRequest from '../hooks/useRequest.js';
 import usePersistedState from '../hooks/usePersistedState.js';
-import { ENDPOINT_USERS } from '../config/api.js';
 
 const UserContext = createContext({
     isAuthenticated: false,
@@ -18,21 +17,19 @@ const UserContext = createContext({
 });
 
 export function UserProvider({ children }) {
-    const [user, setUser] = usePersistedState('user', null);
+    const [user, setUser] = usePersistedState(null);
     const { request } = useRequest();
 
     const registerHandler = async (email, password) => {
-        const newUser = { email, password };
-        const result = await request(
-            `${ENDPOINT_USERS}register`,
-            'POST',
-            newUser
-        );
+        const result = await request('users/register', 'POST', {
+            email,
+            password
+        });
         setUser(result);
     };
 
     const loginHandler = async (email, password) => {
-        const result = await request(`${ENDPOINT_USERS}login`, 'POST', {
+        const result = await request('users/login', 'POST', {
             email,
             password
         });
@@ -40,8 +37,10 @@ export function UserProvider({ children }) {
     };
 
     const logoutHandler = () => {
-        return request(`${ENDPOINT_USERS}logout`, 'GET', null, {
-            accessToken: user?.accessToken
+        if (!user) return Promise.resolve();
+
+        return request('users/logout', 'GET', null, {
+            accessToken: user.accessToken
         }).finally(() => setUser(null));
     };
 

@@ -27,6 +27,10 @@ export default function useRequest(url, initialState) {
             };
         }
 
+        if (config.signal) {
+            options.signal = config.signal;
+        }
+
         const response = await fetch(`${BASE_URL}${url}`, options);
 
         if (!response.ok) {
@@ -53,23 +57,16 @@ export default function useRequest(url, initialState) {
     useEffect(() => {
         if (!url) return;
 
-        let isActive = true;
+        const controller = new AbortController();
 
-        const fetchData = async () => {
-            try {
-                const result = await request(url);
-                if (isActive) setData(result);
-            } catch (error) {
-                if (isActive) alert(error.message);
-            }
-        };
+        request(url, undefined, undefined, { signal: controller.signal })
+            .then(result => setData(result))
+            .catch(err => {
+                if (err.name !== 'AbortError') alert(err.message);
+            });
 
-        fetchData();
-
-        return () => {
-            isActive = false;
-        };
-    }, [url, user?.accessToken, isAuthenticated]); 
+        return () => controller.abort();
+    }, [url]);
 
     return {
         request,
