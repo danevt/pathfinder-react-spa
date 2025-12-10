@@ -25,7 +25,22 @@ export function UserProvider({ children }) {
             email,
             password
         });
-        setUser(result);
+
+        const mainPart = email.split('@')[0];
+        const profile = {
+            _id: result._id,
+            username: mainPart.charAt(0).toUpperCase() + mainPart.slice(1),
+            avatar: '/images/avatars/avatar1.svg',
+            aboutMe: ''
+        };
+
+        setUser({ ...result, profile });
+
+        const profiles = JSON.parse(localStorage.getItem('profiles')) || {};
+        profiles[result._id] = profile;
+        localStorage.setItem('profiles', JSON.stringify(profiles));
+
+        return { user: result, profile };
     };
 
     const loginHandler = async (email, password) => {
