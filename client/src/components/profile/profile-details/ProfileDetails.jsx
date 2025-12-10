@@ -86,7 +86,7 @@ export default function ProfileDetails() {
                 <div className='flex-1 flex flex-col gap-2'>
                     <div className='flex gap-4 max-h-[220px] overflow-x-auto'>
                         {currentComments.length === 0 ? (
-                            <p className='text-white text-lg flex items-center justify-center w-full'>
+                            <p className='text-white text-3xl flex items-center justify-center w-full font-bold mb-8 text-white drop-shadow-[5px_5px_2px_black]'>
                                 You still haven't made any comments.
                             </p>
                         ) : (
@@ -117,12 +117,6 @@ export default function ProfileDetails() {
                     </div>
 
                     <div className='flex items-center mt-2 gap-2'>
-                        <button
-                            onClick={() => setShowSettings(true)}
-                            className='bg-blue-500 text-black font-bold py-2 px-4 rounded-xl border-b-4 border-black border-r-4 border-gray-900 hover:bg-blue-400 transform transition-transform duration-300 hover:scale-105 self-start'
-                        >
-                            Settings
-                        </button>
                         <Pagination
                             currentPage={currentCommentPage}
                             totalItems={userComments.length}
@@ -136,7 +130,7 @@ export default function ProfileDetails() {
             <div className='w-full max-w-7xl flex flex-col gap-2 pl-[15px] mt-6'>
                 <div className='flex gap-8'>
                     {currentPlaces.length === 0 ? (
-                        <p className='text-white text-lg flex items-center justify-center w-full'>
+                        <p className='text-white text-3xl flex items-center justify-center w-full font-bold mb-8 text-white drop-shadow-[5px_5px_2px_black]'>
                             You still haven't added any places.
                         </p>
                     ) : (

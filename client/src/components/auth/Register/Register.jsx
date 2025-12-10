@@ -8,9 +8,7 @@ export default function Register() {
     const { registerHandler } = useContext(UserContext);
 
     const registerSubmitHandler = async values => {
-        const email = values.email.trim();
-        const password = values.password.trim();
-        const confirmPassword = values.confirmPassword.trim();
+        const { email, password, confirmPassword } = values;
 
         if (!email || !password) {
             return alert('Email and password are required!');
@@ -27,6 +25,7 @@ export default function Register() {
 
         try {
             await registerHandler(email, password);
+
 
             resetForm();
             navigate('/');
