@@ -1,17 +1,14 @@
 import { useState } from 'react';
+import { useUserContext } from '../../../../contexts/UserContext.jsx';
 import useForm from '../../../../hooks/useForm.js';
 import useRequest from '../../../../hooks/useRequest.js';
 import LogoSpinner from '../../../ui/spinner/LogoSpinner.jsx';
 import { ENDPOINT_COMMENTS } from '../../../../config/api.js';
 
-export default function CommentCreate({
-    onClose,
-    placeId,
-    currentUser,
-    setComments
-}) {
+export default function CommentCreate({ onClose, placeId, setComments }) {
     const [loading, setLoading] = useState(false);
     const { request } = useRequest();
+    const { user } = useUserContext();
 
     const createCommentHandler = async values => {
         const text = values.text.trim();
@@ -21,14 +18,14 @@ export default function CommentCreate({
             return;
         }
 
-        if (!currentUser) {
+        if (!user) {
             alert('You must be logged in to post a comment.');
             return;
         }
 
         const data = {
             placeId,
-            userId: currentUser._id,
+            userId: user._id,
             text,
             _createdOn: Date.now()
         };

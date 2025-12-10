@@ -5,7 +5,7 @@ import LogoSpinner from '../../../ui/spinner/LogoSpinner.jsx';
 import CommentCard from '../comment-card/CommentCard.jsx';
 import CommentCreate from '../comment-create/CommentCreate.jsx';
 
-export default function CommentList({ onClose, placeId, currentUser }) {
+export default function CommentList({ onClose, placeId }) {
     const {
         data: commentsData,
         setData,
@@ -70,7 +70,6 @@ export default function CommentList({ onClose, placeId, currentUser }) {
                             <CommentCard
                                 key={comment._id}
                                 comment={comment}
-                                currentUser={currentUser}
                                 onUpdate={updated =>
                                     setData(prev => ({
                                         ...prev,
@@ -94,7 +93,6 @@ export default function CommentList({ onClose, placeId, currentUser }) {
                 <CommentCreate
                     onClose={() => setShowOverlay(false)}
                     placeId={placeId}
-                    currentUser={currentUser}
                     setComments={setData}
                 />
             )}

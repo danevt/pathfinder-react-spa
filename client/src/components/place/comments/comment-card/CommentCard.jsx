@@ -17,7 +17,7 @@ export default function CommentCard({ comment, onUpdate, onDelete }) {
     const [isDeleting, setIsDeleting] = useState(false);
 
     const formattedDate = new Date(comment._createdOn).toLocaleDateString();
-    const isAuthor = isAuthenticated && user._id === comment.userId;
+    const isAuthor = isAuthenticated && user?._id === comment.userId;
 
     useEffect(() => {
         if (!comment.userId) return;
@@ -29,19 +29,10 @@ export default function CommentCard({ comment, onUpdate, onDelete }) {
     const handleDelete = async () => {
         if (!confirm('Are you sure you want to delete this comment?')) return;
 
-        console.log('User object:', user);
-        console.log('Access token:', user?.accessToken);
-        console.log(user?._id, comment.userId, user?.accessToken);
-
         setIsDeleting(true);
 
         try {
-            await request(
-                `${ENDPOINT_COMMENTS}${comment._id}`,
-                'DELETE',
-                null,
-                { accessToken: user?.accessToken }
-            );
+            await request(`${ENDPOINT_COMMENTS}${comment._id}`, 'DELETE');
             onDelete(comment._id);
         } catch (err) {
             alert(`Unable to delete comment: ${err.message}`);
@@ -100,7 +91,7 @@ export default function CommentCard({ comment, onUpdate, onDelete }) {
                                 disabled={isDeleting}
                                 className='bg-red-600 text-black font-bold py-2 px-2 rounded-xl border-b-4 border-black border-r-4 border-gray-900 hover:bg-red-500 w-[80px]'
                             >
-                                Delete
+                                {isDeleting ? '...' : 'Delete'}
                             </button>
                         </>
                     )}
