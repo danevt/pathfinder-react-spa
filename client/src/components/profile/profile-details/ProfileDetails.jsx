@@ -1,72 +1,69 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router';
-import request from '../../../utils/requester.js';
 import {
     ENDPOINT_COMMENTS,
     ENDPOINT_PLACES,
     ENDPOINT_PROFILES
 } from '../../../config/api.js';
 import LogoSpinner from '../../ui/spinner/LogoSpinner.jsx';
-import ProfileCard from '../profile-card/ProfileCard.jsx';
-import PlaceCard from '../../place/card/PlaceCard.jsx';
 import CommentCard from '../../place/comments/comment-card/CommentCard.jsx';
 import Pagination from '../../ui/pagination/Pagination.jsx';
 import ProfileSettingsOverlay from '../profile-settings/ProfileSettingsOverlay.jsx';
+import ProfileCard from '../../profile/profile-card/ProfileCard.jsx';
+import PlaceCard from '../../place/card/PlaceCard.jsx';
+import useRequest from '../../../hooks/useRequest.js';
 
-export default function ProfileDetails({ currentUser }) {
+export default function ProfileDetails() {
     const { userId } = useParams();
     const navigate = useNavigate();
+
+    const { data: placesData, loading: loadingPlaces } = useRequest(
+        ENDPOINT_PLACES,
+        {}
+    );
+    const {
+        data: commentsData,
+        setData: setCommentsData,
+        loading: loadingComments
+    } = useRequest(ENDPOINT_COMMENTS, {});
+    const { data: usersData, loading: loadingUsers } = useRequest(
+        ENDPOINT_PROFILES,
+        {}
+    );
+
     const [user, setUser] = useState(null);
-    const [places, setPlaces] = useState([]);
-    const [comments, setComments] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [currentCommentPage, setCurrentCommentPage] = useState(1);
     const [currentPlacePage, setCurrentPlacePage] = useState(1);
     const [showSettings, setShowSettings] = useState(false);
     const itemsPerPage = 2;
 
     useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true);
-            try {
-                const [placesData, commentsData, usersData] = await Promise.all(
-                    [
-                        request(ENDPOINT_PLACES),
-                        request(ENDPOINT_COMMENTS),
-                        request(ENDPOINT_PROFILES)
-                    ]
-                );
+        if (!usersData) return;
+        const usersArray = Object.values(usersData);
+        const profile = usersArray.find(u => u._id === userId);
+        setUser(profile || null);
+    }, [usersData, userId]);
 
-                setPlaces(
-                    Object.values(placesData).filter(p => p._ownerId === userId)
-                );
-                setComments(
-                    Object.values(commentsData).filter(c => c.userId === userId)
-                );
-                setUser(usersData[userId]);
-            } catch (error) {
-                alert(error.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchData();
-    }, [userId]);
+    const placesArray = Object.values(placesData);
+    const commentsArray = Object.values(commentsData);
 
-    if (loading) return <LogoSpinner />;
+    const userPlaces = placesArray.filter(p => p._ownerId === userId);
+    const userComments = commentsArray.filter(c => c.userId === userId);
 
-    const currentComments = comments.slice(
+    if (loadingPlaces || loadingComments || loadingUsers)
+        return <LogoSpinner />;
+
+    const currentComments = userComments.slice(
         (currentCommentPage - 1) * itemsPerPage,
         currentCommentPage * itemsPerPage
     );
 
-    const currentPlaces = places.slice(
+    const currentPlaces = userPlaces.slice(
         (currentPlacePage - 1) * itemsPerPage,
         currentPlacePage * itemsPerPage
     );
 
     const handleUserUpdate = updatedUser => setUser(updatedUser);
-
     const handleUserDelete = () => {
         alert('Profile deleted!');
         setUser(null);
@@ -100,23 +97,19 @@ export default function ProfileDetails({ currentUser }) {
                                 >
                                     <CommentCard
                                         comment={comment}
-                                        currentUser={currentUser}
-                                        onUpdate={updated =>
-                                            setComments(prev =>
-                                                prev.map(c =>
-                                                    c._id === updated._id
-                                                        ? updated
-                                                        : c
-                                                )
-                                            )
-                                        }
-                                        onDelete={deletedId =>
-                                            setComments(prev =>
-                                                prev.filter(
-                                                    c => c._id !== deletedId
-                                                )
-                                            )
-                                        }
+                                        onUpdate={updated => {
+                                            setCommentsData(prev => ({
+                                                ...prev,
+                                                [updated._id]: updated
+                                            }));
+                                        }}
+                                        onDelete={deletedId => {
+                                            setCommentsData(prev => {
+                                                const copy = { ...prev };
+                                                delete copy[deletedId];
+                                                return copy;
+                                            });
+                                        }}
                                     />
                                 </div>
                             ))
@@ -132,7 +125,7 @@ export default function ProfileDetails({ currentUser }) {
                         </button>
                         <Pagination
                             currentPage={currentCommentPage}
-                            totalItems={comments.length}
+                            totalItems={userComments.length}
                             itemsPerPage={itemsPerPage}
                             onPageChange={setCurrentCommentPage}
                         />
@@ -161,7 +154,7 @@ export default function ProfileDetails({ currentUser }) {
                 <div className='mt-2'>
                     <Pagination
                         currentPage={currentPlacePage}
-                        totalItems={places.length}
+                        totalItems={userPlaces.length}
                         itemsPerPage={itemsPerPage}
                         onPageChange={setCurrentPlacePage}
                     />
